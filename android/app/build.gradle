@@ -77,7 +77,7 @@ android {
             signingConfig signingConfigs.debug
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
 
-            // 👇 prevent the "failed to strip debug symbols" error
+            // prevent the "failed to strip debug symbols" error
             ndk {
                 // use one of these:
                 // debugSymbolLevel 'NONE'          // simplest workaround
