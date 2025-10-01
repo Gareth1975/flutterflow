@@ -76,6 +76,14 @@ android {
             // Signing with the debug keys for now, so `flutter run --release` works.
             signingConfig signingConfigs.debug
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+
+            // 👇 prevent the "failed to strip debug symbols" error
+            ndk {
+                // use one of these:
+                // debugSymbolLevel 'NONE'          // simplest workaround
+                debugSymbolLevel 'SYMBOL_TABLE'     // smaller than FULL, still provides symbols
+                // debugSymbolLevel 'FULL'          // default (can fail on Windows setups)
+            }
         }
     }
 }
