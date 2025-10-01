@@ -59,7 +59,7 @@ android {
         targetSdkVersion 35
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
-	
+	}
 	//	GR Added 01/10/25
 	// already added above:
   ndkVersion "25.2.9519653"
@@ -76,7 +76,7 @@ android {
       }
     }
   }
-}
+
 
 //  Belt-and-braces: hard-disable every strip task, any name/variant/ABI
 afterEvaluate {
