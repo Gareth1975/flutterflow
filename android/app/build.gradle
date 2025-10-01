@@ -61,27 +61,31 @@ android {
         versionName flutterVersionName
 	
 	//	GR Added 01/10/25
-	// keep this if you already added it:
-		ndkVersion "27.0.12077973"
+	// already added above:
+  ndkVersion "25.2.9519653"
 
-	packagingOptions {
-		jniLibs {
-		  // keep all symbols; prevents strip attempts
-		  keepDebugSymbols += ['**/*.so']
-		  // If your AGP is older and complains about keepDebugSymbols,
-		  // use the legacy directive in Step 2 instead.
-    }
-	
+  // Legacy directive – works across AGP versions
+  packagingOptions {
+    doNotStrip "**/*.so"
   }
+
   buildTypes {
     release {
-      // optional: also tell the NDK not to generate a separate symbols bundle
       ndk {
-        debugSymbolLevel 'NONE'
+        debugSymbolLevel 'NONE'   // ensures no symbol bundle generation
       }
     }
   }
+}
+
+//  Belt-and-braces: hard-disable every strip task, any name/variant/ABI
+afterEvaluate {
+  tasks.configureEach { t ->
+    def n = t.name.toLowerCase()
+    if (n.contains('strip') && n.contains('debugsymbols')) {
+      t.enabled = false
     }
+  }
 
 // GR End
 
