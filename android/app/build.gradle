@@ -59,7 +59,31 @@ android {
         targetSdkVersion 35
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
+	
+	//	GR Added 01/10/25
+	// keep this if you already added it:
+		ndkVersion "27.0.12077973"
+
+	packagingOptions {
+		jniLibs {
+		  // keep all symbols; prevents strip attempts
+		  keepDebugSymbols += ['**/*.so']
+		  // If your AGP is older and complains about keepDebugSymbols,
+		  // use the legacy directive in Step 2 instead.
     }
+	
+  }
+  buildTypes {
+    release {
+      // optional: also tell the NDK not to generate a separate symbols bundle
+      ndk {
+        debugSymbolLevel 'NONE'
+      }
+    }
+  }
+    }
+
+// GR End
 
    signingConfigs {
        release {
