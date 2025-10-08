@@ -22,11 +22,11 @@ android {
     ndkVersion "27.0.12077973"
 
     defaultConfig {
-        applicationId "com.mycompany.kikonnect"  // <-- change if needed
+        applicationId "com.mycompany.kikonnect"   // <- keep yours
         minSdkVersion 26
         targetSdkVersion 35
-        versionCode flutterVersionCode.toInteger()
-        versionName flutterVersionName
+        versionCode 1            // <-- set an integer
+        versionName "0.0.16"      // <-- set a string
     }
 
     // Use Java/Kotlin 17
