@@ -1,47 +1,35 @@
+// ===== app/build.gradle (module: app) =====
+
+import java.util.Properties
+import java.io.FileInputStream
+
 plugins {
-   id "com.android.application"
-   id "kotlin-android"
-   id "dev.flutter.flutter-gradle-plugin"
+    id 'com.android.application'
+    id 'kotlin-android'
+    id 'dev.flutter.flutter-gradle-plugin'
 }
 
-def localProperties = new Properties()
-def localPropertiesFile = rootProject.file('local.properties')
-if (localPropertiesFile.exists()) {
-    localPropertiesFile.withReader('UTF-8') { reader ->
-        localProperties.load(reader)
-    }
-}
-
-def flutterVersionCode = localProperties.getProperty('flutter.versionCode')
-if (flutterVersionCode == null) {
-    flutterVersionCode = '1'
-}
-
-def flutterVersionName = localProperties.getProperty('flutter.versionName')
-if (flutterVersionName == null) {
-    flutterVersionName = '1.0'
-}
-
+// --- Optional: load keystore info if android/key.properties exists ---
 def keystoreProperties = new Properties()
-def keystorePropertiesFile = rootProject.file('key.properties')
+def keystorePropertiesFile = rootProject.file("key.properties")
 if (keystorePropertiesFile.exists()) {
     keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
 }
 
 android {
-    namespace "com.mycompany.kikonnect"
+    namespace "com.mycompany.kikonnect"   // <-- change if needed
     compileSdkVersion 35
-    ndkVersion "25.2.9519653"
+    ndkVersion "27.0.12077973"
 
     defaultConfig {
-        applicationId "com.mycompany.kikonnect"
+        applicationId "com.mycompany.kikonnect"  // <-- change if needed
         minSdkVersion 26
         targetSdkVersion 35
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
     }
 
-    // Java/Kotlin 17 to remove the Java 8 warnings
+    // Use Java/Kotlin 17
     compileOptions {
         coreLibraryDesugaringEnabled true
         sourceCompatibility JavaVersion.VERSION_17
@@ -51,46 +39,71 @@ android {
         jvmTarget = '17'
     }
 
-    sourceSets {
-        main.java.srcDirs += 'src/main/kotlin'
-    }
-
+    // Keep Gradle quiet about some generated packages in release
     lintOptions {
         disable 'InvalidPackage'
         checkReleaseBuilds false
     }
 
-    // put signingConfigs BEFORE buildTypes
+    // If you have a real release keystore, this will be populated.
+    // Safe if key.properties is missing (you'll stay on debug signing).
     signingConfigs {
         release {
-            keyAlias keystoreProperties['keyAlias']
-            keyPassword keystoreProperties['keyPassword']
-            storeFile keystoreProperties['storeFile'] ? file(keystoreProperties['storeFile']) : null
-            storePassword keystoreProperties['storePassword']
+            if (keystorePropertiesFile.exists()) {
+                keyAlias keystoreProperties['keyAlias']
+                keyPassword keystoreProperties['keyPassword']
+                storeFile keystoreProperties['storeFile'] ? file(keystoreProperties['storeFile']) : null
+                storePassword keystoreProperties['storePassword']
+            }
         }
     }
 
-    // don’t strip native symbols (prevents the Windows strip error)
+    // Workaround for Windows + NDK strip issue:
+    // 1) do NOT strip symbols from .so files
     packagingOptions {
-        // if your AGP is newer and supports jniLibs.keepDebugSymbols, this legacy line still works fine
+        // legacy directive that works across AGP versions
         doNotStrip "**/*.so"
     }
 
     buildTypes {
         release {
-            // TODO: when ready, switch to release signing
+            // TODO: when ready to sign for store, switch to:
+            // signingConfig signingConfigs.release
+            // For now keep debug signing so `flutter run --release` works:
             signingConfig signingConfigs.debug
 
+            // If you use proguard, keep this:
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
 
+            // 2) also tell the NDK not to produce a separate symbols bundle
             ndk {
-                // avoid generating separate symbols bundle
                 debugSymbolLevel 'NONE'
             }
         }
+        debug {
+            // No special changes needed here
+        }
+    }
+
+    sourceSets {
+        main.java.srcDirs += 'src/main/kotlin'
     }
 }
-// Hard-disable any strip*DebugSymbols tasks (belt & braces)
+
+// Flutter toolchain hook (keep as is)
+flutter {
+    source '../..'
+}
+
+dependencies {
+    // Required when using Java 17 APIs on older Android API levels
+    coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:2.1.4'
+
+    // Kotlin stdlib (modern default)
+    implementation "org.jetbrains.kotlin:kotlin-stdlib"
+}
+
+// --- Hard-disable any strip*DebugSymbols tasks (belt & braces) ---
 afterEvaluate {
     tasks.configureEach { t ->
         def n = t.name.toLowerCase()
@@ -98,8 +111,14 @@ afterEvaluate {
             t.enabled = false
         }
     }
-}
-dependencies {
-    coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:2.1.4'
-    implementation "org.jetbrains.kotlin:kotlin-stdlib"
+    // Explicit per-ABI task names (seen in some AGP/NDK combos)
+    [
+            'stripReleaseDebugSymbols',
+            'stripReleaseDebugSymbolsArm64-v8a',
+            'stripReleaseDebugSymbolsArmeabi-v7a',
+            'stripReleaseDebugSymbolsX86',
+            'stripReleaseDebugSymbolsX86_64'
+    ].each { name ->
+        tasks.findByName(name)?.enabled = false
+    }
 }
