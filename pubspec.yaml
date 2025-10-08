@@ -64,7 +64,6 @@ dependencies:
   image_picker_macos: 0.2.1+2
   image_picker_platform_interface: 2.10.1
   image_picker_windows: 0.2.1+1
-  intl: 0.20.2
   json_path: 0.7.2
   mime_type: 1.0.0
   package_info_plus: ^8.0.0
@@ -97,7 +96,7 @@ dependencies:
   shared_preferences_windows: 2.4.1
   sqflite: 2.3.3+1
   sqflite_common: 2.5.4+3
-  synchronized: 3.4.0
+  synchronized: 3.3.0
   timeago: 3.7.1
   url_launcher: 6.3.1
   url_launcher_android: 6.3.16
