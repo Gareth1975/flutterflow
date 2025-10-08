@@ -103,22 +103,30 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib"
 }
 
-// --- Hard-disable any strip*DebugSymbols tasks (belt & braces) ---
-afterEvaluate {
-    tasks.configureEach { t ->
+// A. Disable all strip*DebugSymbols tasks after evaluation (variant/ABI agnostic)
+gradle.projectsEvaluated {
+    tasks.matching { t ->
         def n = t.name.toLowerCase()
-        if (n.contains('strip') && n.contains('debugsymbols')) {
-            t.enabled = false
-        }
+        n.contains('strip') && n.contains('debugsymbols')
+    }.all { t ->
+        t.enabled = false
     }
-    // Explicit per-ABI task names (seen in some AGP/NDK combos)
-    [
-            'stripReleaseDebugSymbols',
-            'stripReleaseDebugSymbolsArm64-v8a',
-            'stripReleaseDebugSymbolsArmeabi-v7a',
-            'stripReleaseDebugSymbolsX86',
-            'stripReleaseDebugSymbolsX86_64'
-    ].each { name ->
-        tasks.findByName(name)?.enabled = false
+}
+
+// B. Also disable via the Android Components API (AGP 7+/8+)
+plugins.withId("com.android.application") {
+    extensions.findByName("androidComponents")?.onVariants(
+            { true }  // all variants
+    ) { variant ->
+        def base = "strip${variant.name.capitalize()}DebugSymbols"
+        // Try the generic and ABI-suffixed task names:
+        [ base,
+          "${base}Arm64-v8a",
+          "${base}Armeabi-v7a",
+          "${base}X86",
+          "${base}X86_64"
+        ].each { name ->
+            tasks.findByName(name)?.enabled = false
+        }
     }
 }
