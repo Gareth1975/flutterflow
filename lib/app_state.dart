@@ -20,6 +20,10 @@ class FFAppState extends ChangeNotifier {
   Future initializePersistedState() async {
     secureStorage = FlutterSecureStorage();
     await _safeInitAsync(() async {
+      _profileToken =
+          await secureStorage.getString('ff_profileToken') ?? _profileToken;
+    });
+    await _safeInitAsync(() async {
       _Quote = await secureStorage.getString('ff_Quote') ?? _Quote;
     });
     await _safeInitAsync(() async {
@@ -33,6 +37,10 @@ class FFAppState extends ChangeNotifier {
       _avatarBase64 =
           await secureStorage.getString('ff_avatarBase64') ?? _avatarBase64;
     });
+    await _safeInitAsync(() async {
+      _refreshToken =
+          await secureStorage.getString('ff_refreshToken') ?? _refreshToken;
+    });
   }
 
   void update(VoidCallback callback) {
@@ -41,6 +49,17 @@ class FFAppState extends ChangeNotifier {
   }
 
   late FlutterSecureStorage secureStorage;
+
+  String _profileToken = '';
+  String get profileToken => _profileToken;
+  set profileToken(String value) {
+    _profileToken = value;
+    secureStorage.setString('ff_profileToken', value);
+  }
+
+  void deleteProfileToken() {
+    secureStorage.delete(key: 'ff_profileToken');
+  }
 
   String _Quote = '';
   String get Quote => _Quote;
@@ -126,6 +145,17 @@ class FFAppState extends ChangeNotifier {
   String get AccoountToken => _AccoountToken;
   set AccoountToken(String value) {
     _AccoountToken = value;
+  }
+
+  String _refreshToken = '';
+  String get refreshToken => _refreshToken;
+  set refreshToken(String value) {
+    _refreshToken = value;
+    secureStorage.setString('ff_refreshToken', value);
+  }
+
+  void deleteRefreshToken() {
+    secureStorage.delete(key: 'ff_refreshToken');
   }
 }
 

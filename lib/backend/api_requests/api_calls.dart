@@ -1039,7 +1039,7 @@ class APIloginCall {
     return ApiManager.instance.makeApiCall(
       callName: 'APIlogin',
       apiUrl:
-          'https://prod-38.uksouth.logic.azure.com:443/workflows/1d7bd835191a4cad8780e23d0eeebe40/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=Dak-oF04cF4hNoqx8EAyEbCjW0P8rNuzQVmj5JJsMmI',
+          'https://9b92f9eb2f6ce295b1fc31d7492246.ad.environment.api.powerplatform.com:443/powerautomate/automations/direct/workflows/1d7bd835191a4cad8780e23d0eeebe40/triggers/manual/paths/invoke?api-version=1&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=nPAKYg7vjd4fJiFf9hZhiv6IBCUa3qo3tJYkaRpTn0g',
       callType: ApiCallType.POST,
       headers: {
         'Content-Type': 'application/JSON',
@@ -1090,7 +1090,7 @@ class ActivitiesCall {
     return ApiManager.instance.makeApiCall(
       callName: 'activities',
       apiUrl:
-          'https://prod-31.uksouth.logic.azure.com:443/workflows/ff6488b8e1cf4dc49772b316384c1aca/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=jkFdYuVeRFnUKZM0JJWzJgSVylx-SrIvzgTOXWfg8Ms',
+          'https://9b92f9eb2f6ce295b1fc31d7492246.ad.environment.api.powerplatform.com:443/powerautomate/automations/direct/workflows/ff6488b8e1cf4dc49772b316384c1aca/triggers/manual/paths/invoke?api-version=1&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=ovOfmN8nJ5HT9cvksGwtEQv32P6-uUea_n747dSdEyM',
       callType: ApiCallType.POST,
       headers: {
         'Content-Type': 'application/JSON',
@@ -1164,6 +1164,111 @@ class ActivitiesCall {
         response,
         r'''$..hdl_activitycategory''',
       ));
+}
+
+class SahhagetTokenCall {
+  static Future<ApiCallResponse> call({
+    String? clientID = '1000',
+  }) async {
+    final ffApiRequestBody = '''
+{
+  "ClientID": "${escapeStringForJson(clientID)}"
+}''';
+    return ApiManager.instance.makeApiCall(
+      callName: 'SahhagetToken',
+      apiUrl:
+          'https://9b92f9eb2f6ce295b1fc31d7492246.ad.environment.api.powerplatform.com:443/powerautomate/automations/direct/workflows/04790d06fd35453ea0b0c3b5e7aad0a3/triggers/manual/paths/invoke?api-version=1&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=lTWlI4Fm74yJPJQQXK_eAPaVlViCn3skgkUUekmJ5XQ',
+      callType: ApiCallType.POST,
+      headers: {
+        'Content-Type': 'application/JSON',
+      },
+      params: {},
+      body: ffApiRequestBody,
+      bodyType: BodyType.JSON,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      isStreamingApi: false,
+      alwaysAllowBody: false,
+    );
+  }
+
+  static String? accounttoken(dynamic response) =>
+      castToType<String>(getJsonField(
+        response,
+        r'''$.tokenType''',
+      ));
+}
+
+class SahharegisterDeviceCall {
+  static Future<ApiCallResponse> call({
+    String? clientID = '1001',
+  }) async {
+    final ffApiRequestBody = '''
+{
+  "ExternalID": "${escapeStringForJson(clientID)}"
+}''';
+    return ApiManager.instance.makeApiCall(
+      callName: 'SahharegisterDevice',
+      apiUrl:
+          'https://9b92f9eb2f6ce295b1fc31d7492246.ad.environment.api.powerplatform.com:443/powerautomate/automations/direct/workflows/5d0bb3e555bf4d049312a7eca4903dfc/triggers/manual/paths/invoke?api-version=1&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=6U24ggjY28krdnlBI-U6NXsXNRfMSeAek1sWc5zd2e4',
+      callType: ApiCallType.POST,
+      headers: {
+        'Content-Type': 'application/JSON',
+      },
+      params: {},
+      body: ffApiRequestBody,
+      bodyType: BodyType.JSON,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      isStreamingApi: false,
+      alwaysAllowBody: false,
+    );
+  }
+
+  static String? profiletoken(dynamic response) =>
+      castToType<String>(getJsonField(
+        response,
+        r'''$.profileToken''',
+      ));
+  static int? profilexpiresin(dynamic response) => castToType<int>(getJsonField(
+        response,
+        r'''$.expiresIn''',
+      ));
+  static String? tokentype(dynamic response) => castToType<String>(getJsonField(
+        response,
+        r'''$.tokenType''',
+      ));
+  static String? refreshtoken(dynamic response) =>
+      castToType<String>(getJsonField(
+        response,
+        r'''$.refreshToken''',
+      ));
+}
+
+class SahhadeviceInformationCall {
+  static Future<ApiCallResponse> call({
+    String? authorization = '',
+  }) async {
+    return ApiManager.instance.makeApiCall(
+      callName: 'SahhadeviceInformation',
+      apiUrl: 'https://sandbox-api.sahha.ai/api/v1/profile/deviceInformation',
+      callType: ApiCallType.GET,
+      headers: {
+        'Authorization': '${authorization}',
+      },
+      params: {},
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      isStreamingApi: false,
+      alwaysAllowBody: false,
+    );
+  }
 }
 
 class ApiPagingParams {

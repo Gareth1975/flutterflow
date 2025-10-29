@@ -190,6 +190,8 @@ class _AccountSettingsWidgetState extends State<AccountSettingsWidget> {
                                 onPressed: () async {
                                   await requestPermission(cameraPermission);
                                   final selectedMedia = await selectMedia(
+                                    maxWidth: 42.00,
+                                    maxHeight: 42.00,
                                     multiImage: false,
                                   );
                                   if (selectedMedia != null &&
