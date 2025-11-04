@@ -5,3 +5,4 @@ export 'get_app_version_info.dart' show getAppVersionInfo;
 export 'sahha_authenticate_with_token.dart' show sahhaAuthenticateWithToken;
 export 'sahha_enable_sensors.dart' show sahhaEnableSensors;
 export 'sahha_get_today_stat.dart' show sahhaGetTodayStat;
+export 'sahha_get_stats_range.dart' show sahhaGetStatsRange;

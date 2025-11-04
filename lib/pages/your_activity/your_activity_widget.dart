@@ -2,11 +2,13 @@ import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_charts.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/random_data_util.dart' as random_data;
+import '/custom_code/actions/index.dart' as actions;
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'your_activity_model.dart';
 export 'your_activity_model.dart';
 
@@ -32,6 +34,16 @@ class _YourActivityWidgetState extends State<YourActivityWidget>
   void initState() {
     super.initState();
     _model = createModel(context, () => YourActivityModel());
+
+    // On page load action.
+    SchedulerBinding.instance.addPostFrameCallback((_) async {
+      _model.stepsStats7d = await actions.sahhaGetStatsRange(
+        'steps',
+        7,
+      );
+      FFAppState().stepsStats7d = _model.stepsStats7d!.toList().cast<dynamic>();
+      safeSetState(() {});
+    });
 
     animationsMap.addAll({
       'containerOnPageLoadAnimation4': AnimationInfo(
@@ -80,6 +92,8 @@ class _YourActivityWidgetState extends State<YourActivityWidget>
 
   @override
   Widget build(BuildContext context) {
+    context.watch<FFAppState>();
+
     return GestureDetector(
       onTap: () {
         FocusScope.of(context).unfocus();
@@ -204,6 +218,32 @@ class _YourActivityWidgetState extends State<YourActivityWidget>
                                       .fontStyle,
                                 ),
                           ),
+                        ),
+                        Text(
+                          valueOrDefault<String>(
+                            FFAppState()
+                                .stepsStats7d
+                                .containsMap(<String, int>{}).toString(),
+                            '[]',
+                          ),
+                          style:
+                              FlutterFlowTheme.of(context).bodyMedium.override(
+                                    font: GoogleFonts.inter(
+                                      fontWeight: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .fontWeight,
+                                      fontStyle: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .fontStyle,
+                                    ),
+                                    letterSpacing: 0.0,
+                                    fontWeight: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .fontWeight,
+                                    fontStyle: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .fontStyle,
+                                  ),
                         ),
                         Expanded(
                           child: Padding(
@@ -785,124 +825,51 @@ class _YourActivityWidgetState extends State<YourActivityWidget>
                               ],
                             ),
                           ),
-                          Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
-                                16.0, 16.0, 16.0, 0.0),
-                            child: Container(
-                              width: double.infinity,
-                              height: 200.0,
-                              child: FlutterFlowLineChart(
-                                data: [
-                                  FFLineChartData(
-                                    xData: List.generate(
-                                        random_data.randomInteger(5, 5),
-                                        (index) =>
-                                            random_data.randomInteger(0, 10)),
-                                    yData: List.generate(
-                                        random_data.randomInteger(5, 5),
-                                        (index) =>
-                                            random_data.randomInteger(0, 10)),
-                                    settings: LineChartBarData(
-                                      color:
-                                          FlutterFlowTheme.of(context).primary,
-                                      barWidth: 2.0,
-                                      isCurved: true,
-                                      preventCurveOverShooting: true,
-                                      dotData: FlDotData(show: false),
-                                      belowBarData: BarAreaData(
-                                        show: true,
-                                        color: FlutterFlowTheme.of(context)
-                                            .accent1,
-                                      ),
-                                    ),
-                                  ),
-                                  FFLineChartData(
-                                    xData: List.generate(
-                                        random_data.randomInteger(5, 5),
-                                        (index) =>
-                                            random_data.randomInteger(0, 200)),
-                                    yData: List.generate(
-                                        random_data.randomInteger(5, 5),
-                                        (index) =>
-                                            random_data.randomInteger(0, 200)),
-                                    settings: LineChartBarData(
-                                      color: FlutterFlowTheme.of(context)
-                                          .secondary,
-                                      barWidth: 2.0,
-                                      isCurved: true,
-                                      preventCurveOverShooting: true,
-                                      dotData: FlDotData(show: false),
-                                      belowBarData: BarAreaData(
-                                        show: true,
-                                        color: FlutterFlowTheme.of(context)
-                                            .accent2,
-                                      ),
-                                    ),
-                                  )
-                                ],
-                                chartStylingInfo: ChartStylingInfo(
-                                  enableTooltip: true,
-                                  backgroundColor: FlutterFlowTheme.of(context)
-                                      .secondaryBackground,
-                                  showBorder: false,
-                                ),
-                                axisBounds: AxisBounds(),
-                                xAxisLabelInfo: AxisLabelInfo(
-                                  title: 'Last 30 Days',
-                                  titleTextStyle: FlutterFlowTheme.of(context)
-                                      .bodyMedium
-                                      .override(
-                                        font: GoogleFonts.inter(
-                                          fontWeight:
-                                              FlutterFlowTheme.of(context)
-                                                  .bodyMedium
-                                                  .fontWeight,
-                                          fontStyle:
-                                              FlutterFlowTheme.of(context)
-                                                  .bodyMedium
-                                                  .fontStyle,
-                                        ),
-                                        letterSpacing: 0.0,
-                                        fontWeight: FlutterFlowTheme.of(context)
-                                            .bodyMedium
-                                            .fontWeight,
-                                        fontStyle: FlutterFlowTheme.of(context)
-                                            .bodyMedium
-                                            .fontStyle,
-                                      ),
-                                ),
-                                yAxisLabelInfo: AxisLabelInfo(
-                                  title: 'Avg. Grade',
-                                  titleTextStyle: FlutterFlowTheme.of(context)
-                                      .bodyMedium
-                                      .override(
-                                        font: GoogleFonts.inter(
-                                          fontWeight:
-                                              FlutterFlowTheme.of(context)
-                                                  .bodyMedium
-                                                  .fontWeight,
-                                          fontStyle:
-                                              FlutterFlowTheme.of(context)
-                                                  .bodyMedium
-                                                  .fontStyle,
-                                        ),
-                                        letterSpacing: 0.0,
-                                        fontWeight: FlutterFlowTheme.of(context)
-                                            .bodyMedium
-                                            .fontWeight,
-                                        fontStyle: FlutterFlowTheme.of(context)
-                                            .bodyMedium
-                                            .fontStyle,
-                                      ),
-                                ),
-                              ),
-                            ),
-                          ),
                         ],
                       ),
                     ),
                   ).animateOnPageLoad(
                       animationsMap['containerOnPageLoadAnimation4']!),
+                ),
+                Container(
+                  width: 370.0,
+                  height: 230.0,
+                  child: FlutterFlowLineChart(
+                    data: [
+                      FFLineChartData(
+                        xData: _model.stepsStats7d!,
+                        yData: FFAppState()
+                            .stepsStats7d
+                            .map((e) => getJsonField(
+                                  e,
+                                  r'''$.date''',
+                                ))
+                            .toList(),
+                        settings: LineChartBarData(
+                          color: FlutterFlowTheme.of(context).primary,
+                          barWidth: 2.0,
+                          isCurved: true,
+                          dotData: FlDotData(show: false),
+                          belowBarData: BarAreaData(
+                            show: true,
+                            color: FlutterFlowTheme.of(context).accent1,
+                          ),
+                        ),
+                      )
+                    ],
+                    chartStylingInfo: ChartStylingInfo(
+                      backgroundColor:
+                          FlutterFlowTheme.of(context).secondaryBackground,
+                      showBorder: false,
+                    ),
+                    axisBounds: AxisBounds(),
+                    xAxisLabelInfo: AxisLabelInfo(
+                      reservedSize: 32.0,
+                    ),
+                    yAxisLabelInfo: AxisLabelInfo(
+                      reservedSize: 40.0,
+                    ),
+                  ),
                 ),
               ],
             ),
