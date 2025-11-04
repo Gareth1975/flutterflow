@@ -6,6 +6,21 @@ import 'package:flutter/material.dart';
 // Begin custom action code
 // DO NOT REMOVE OR MODIFY THE CODE ABOVE!
 
+
+
+import 'package:flutter/foundation.dart' show kIsWeb;
+import 'package:sahha_flutter/sahha_flutter.dart';
+
 Future<String> sahhaEnableSensors() async {
-  // Add your function code here!
+  if (kIsWeb) return 'skipped_web';
+
+  try {
+    final status = await SahhaFlutter.enableSensors([
+      SahhaSensor.steps,
+      SahhaSensor.sleep,
+    ]);
+    return status.name; // "enabled" | "disabled" | "pending" | "unavailable"
+  } catch (_) {
+    return 'error';
+  }
 }
