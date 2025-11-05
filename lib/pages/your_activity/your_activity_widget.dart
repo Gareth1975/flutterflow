@@ -220,12 +220,7 @@ class _YourActivityWidgetState extends State<YourActivityWidget>
                           ),
                         ),
                         Text(
-                          valueOrDefault<String>(
-                            FFAppState()
-                                .stepsStats7d
-                                .containsMap(<String, int>{}).toString(),
-                            '[]',
-                          ),
+                          'Hello World',
                           style:
                               FlutterFlowTheme.of(context).bodyMedium.override(
                                     font: GoogleFonts.inter(
@@ -870,6 +865,48 @@ class _YourActivityWidgetState extends State<YourActivityWidget>
                       reservedSize: 40.0,
                     ),
                   ),
+                ),
+                Text(
+                  valueOrDefault<String>(
+                    FFAppState()
+                        .stepsStats7d
+                        .containsMap(<String, int>{}).toString(),
+                    '[]',
+                  ),
+                  style: FlutterFlowTheme.of(context).bodyMedium.override(
+                        font: GoogleFonts.inter(
+                          fontWeight: FlutterFlowTheme.of(context)
+                              .bodyMedium
+                              .fontWeight,
+                          fontStyle:
+                              FlutterFlowTheme.of(context).bodyMedium.fontStyle,
+                        ),
+                        letterSpacing: 0.0,
+                        fontWeight:
+                            FlutterFlowTheme.of(context).bodyMedium.fontWeight,
+                        fontStyle:
+                            FlutterFlowTheme.of(context).bodyMedium.fontStyle,
+                      ),
+                ),
+                Text(
+                  valueOrDefault<String>(
+                    _model.stepsStats7d?.length.toString(),
+                    '[]',
+                  ),
+                  style: FlutterFlowTheme.of(context).bodyMedium.override(
+                        font: GoogleFonts.inter(
+                          fontWeight: FlutterFlowTheme.of(context)
+                              .bodyMedium
+                              .fontWeight,
+                          fontStyle:
+                              FlutterFlowTheme.of(context).bodyMedium.fontStyle,
+                        ),
+                        letterSpacing: 0.0,
+                        fontWeight:
+                            FlutterFlowTheme.of(context).bodyMedium.fontWeight,
+                        fontStyle:
+                            FlutterFlowTheme.of(context).bodyMedium.fontStyle,
+                      ),
                 ),
               ],
             ),
