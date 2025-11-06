@@ -853,7 +853,7 @@ class _YourActivityWidgetState extends State<YourActivityWidget>
                 Text(
                   getJsonField(
                     FFAppState().stepsStats7d.elementAtOrNull(0),
-                    r'''$.stats[0].value''',
+                    r'''$.value''',
                   ).toString(),
                   style: FlutterFlowTheme.of(context).bodyMedium.override(
                         font: GoogleFonts.inter(
@@ -870,6 +870,12 @@ class _YourActivityWidgetState extends State<YourActivityWidget>
                             FlutterFlowTheme.of(context).bodyMedium.fontStyle,
                       ),
                 ),
+				Text(
+				  getJsonField(
+					FFAppState().stepsStats7d.elementAtOrNull(0),
+					r'''$.date''',
+				  ).toString(),
+				),
                 Text(
                   valueOrDefault<String>(
                     _model.stepsStats7d?.length.toString(),
