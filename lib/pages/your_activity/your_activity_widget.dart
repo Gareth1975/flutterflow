@@ -811,7 +811,12 @@ class _YourActivityWidgetState extends State<YourActivityWidget>
                   child: FlutterFlowLineChart(
                     data: [
                       FFLineChartData(
-                        xData: _model.stepsStats7d!,
+                        xData: _model.stepsStats7d!
+                            .map((e) => getJsonField(
+                                  e,
+                                  r'''$.value''',
+                                ))
+                            .toList(),
                         yData: FFAppState()
                             .stepsStats7d
                             .map((e) => getJsonField(
@@ -823,7 +828,7 @@ class _YourActivityWidgetState extends State<YourActivityWidget>
                           color: FlutterFlowTheme.of(context).primary,
                           barWidth: 2.0,
                           isCurved: true,
-                          dotData: FlDotData(show: false),
+                          preventCurveOverShooting: true,
                           belowBarData: BarAreaData(
                             show: true,
                             color: FlutterFlowTheme.of(context).accent1,
