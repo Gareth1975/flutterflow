@@ -197,7 +197,7 @@ class _YourActivityWidgetState extends State<YourActivityWidget>
                           padding: EdgeInsetsDirectional.fromSTEB(
                               16.0, 0.0, 0.0, 0.0),
                           child: Text(
-                            'Your Activity Summary ',
+                            'Your Activity Summary Today',
                             style: FlutterFlowTheme.of(context)
                                 .titleMedium
                                 .override(
@@ -218,27 +218,6 @@ class _YourActivityWidgetState extends State<YourActivityWidget>
                                       .fontStyle,
                                 ),
                           ),
-                        ),
-                        Text(
-                          'Hello World',
-                          style:
-                              FlutterFlowTheme.of(context).bodyMedium.override(
-                                    font: GoogleFonts.inter(
-                                      fontWeight: FlutterFlowTheme.of(context)
-                                          .bodyMedium
-                                          .fontWeight,
-                                      fontStyle: FlutterFlowTheme.of(context)
-                                          .bodyMedium
-                                          .fontStyle,
-                                    ),
-                                    letterSpacing: 0.0,
-                                    fontWeight: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .fontWeight,
-                                    fontStyle: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .fontStyle,
-                                  ),
                         ),
                         Expanded(
                           child: Padding(
@@ -272,7 +251,7 @@ class _YourActivityWidgetState extends State<YourActivityWidget>
                                             CrossAxisAlignment.start,
                                         children: [
                                           Text(
-                                            '8998',
+                                            '????',
                                             style: FlutterFlowTheme.of(context)
                                                 .displaySmall
                                                 .override(
@@ -367,7 +346,7 @@ class _YourActivityWidgetState extends State<YourActivityWidget>
                                             CrossAxisAlignment.start,
                                         children: [
                                           Text(
-                                            '16',
+                                            '?',
                                             style: FlutterFlowTheme.of(context)
                                                 .displaySmall
                                                 .override(
@@ -404,7 +383,7 @@ class _YourActivityWidgetState extends State<YourActivityWidget>
                                                 EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 4.0, 0.0, 0.0),
                                             child: Text(
-                                              'Floors',
+                                              'Floors Climbed',
                                               style:
                                                   FlutterFlowTheme.of(context)
                                                       .labelMedium
@@ -462,7 +441,7 @@ class _YourActivityWidgetState extends State<YourActivityWidget>
                                             CrossAxisAlignment.start,
                                         children: [
                                           Text(
-                                            '8',
+                                            '?',
                                             style: FlutterFlowTheme.of(context)
                                                 .displaySmall
                                                 .override(
@@ -867,12 +846,10 @@ class _YourActivityWidgetState extends State<YourActivityWidget>
                   ),
                 ),
                 Text(
-                  valueOrDefault<String>(
-                    FFAppState()
-                        .stepsStats7d
-                        .containsMap(<String, int>{}).toString(),
-                    '[]',
-                  ),
+                  getJsonField(
+                    FFAppState().stepsStats7d.elementAtOrNull(0),
+                    r'''$.stats[0].value''',
+                  ).toString(),
                   style: FlutterFlowTheme.of(context).bodyMedium.override(
                         font: GoogleFonts.inter(
                           fontWeight: FlutterFlowTheme.of(context)
