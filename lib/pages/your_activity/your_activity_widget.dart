@@ -250,8 +250,10 @@ class _YourActivityWidgetState extends State<YourActivityWidget>
                                         crossAxisAlignment:
                                             CrossAxisAlignment.start,
                                         children: [
-                                          Text(
-                                            '????',
+                                          Text(getJsonField(
+													FFAppState().stepsStats7d.elementAtOrNull(6),
+													r'''$.value''',
+												  ).toString(),
                                             style: FlutterFlowTheme.of(context)
                                                 .displaySmall
                                                 .override(
@@ -852,7 +854,7 @@ class _YourActivityWidgetState extends State<YourActivityWidget>
                 ),
                 Text(
                   getJsonField(
-                    FFAppState().stepsStats7d.elementAtOrNull(0),
+                    FFAppState().stepsStats7d.elementAtOrNull(6),
                     r'''$.value''',
                   ).toString(),
                   style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -872,7 +874,7 @@ class _YourActivityWidgetState extends State<YourActivityWidget>
                 ),
 				Text(
 				  getJsonField(
-					FFAppState().stepsStats7d.elementAtOrNull(0),
+					FFAppState().stepsStats7d.elementAtOrNull(6),
 					r'''$.date''',
 				  ).toString(),
 				),
