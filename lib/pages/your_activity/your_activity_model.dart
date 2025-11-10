@@ -7,6 +7,8 @@ class YourActivityModel extends FlutterFlowModel<YourActivityWidget> {
 
   // Stores action output result for [Custom Action - sahhaGetStatsRange] action in YourActivity widget.
   List<dynamic>? stepsStats7d;
+  // Stores action output result for [Custom Action - sahhaGetStatsRange] action in YourActivity widget.
+  List<dynamic>? sleepStats7d;
 
   @override
   void initState(BuildContext context) {}
