@@ -518,23 +518,14 @@ class _YourActivityWidgetState extends State<YourActivityWidget>
                                   ))
                               .toList(),
                           color: FlutterFlowTheme.of(context).primary,
-                        ),
-                        FFBarChartData(
-                          yData: _model.stepsStats7d!,
-                          color: Color(0xFF7029CC),
                         )
                       ],
-                      xLabels: _model.stepsStats7d!
-                          .map((e) => getJsonField(
-                                e,
-                                r'''$.value''',
-                              ))
-                          .toList()
+                      xLabels: FFAppState()
+                          .stepsStats7d
                           .map((e) => e.toString())
                           .toList(),
                       barWidth: 16.0,
                       barBorderRadius: BorderRadius.circular(8.0),
-                      barSpace: 0.0,
                       groupSpace: 8.0,
                       alignment: BarChartAlignment.spaceAround,
                       chartStylingInfo: ChartStylingInfo(

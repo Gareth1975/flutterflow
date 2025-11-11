@@ -104,11 +104,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => MessagesWidget(),
         ),
         FFRoute(
-          name: YourScheduleOldWidget.routeName,
-          path: YourScheduleOldWidget.routePath,
-          builder: (context, params) => YourScheduleOldWidget(),
-        ),
-        FFRoute(
             name: YourActivityWidget.routeName,
             path: YourActivityWidget.routePath,
             builder: (context, params) => params.isEmpty

@@ -320,7 +320,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                       highlightColor: Colors.transparent,
                       onTap: () async {
                         context.pushNamed(
-                          YourScheduleOldWidget.routeName,
+                          ScheduleWidget.routeName,
                           extra: <String, dynamic>{
                             kTransitionInfoKey: TransitionInfo(
                               hasTransition: true,
