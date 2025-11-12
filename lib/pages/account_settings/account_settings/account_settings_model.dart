@@ -10,7 +10,7 @@ class AccountSettingsModel extends FlutterFlowModel<AccountSettingsWidget> {
   String? getAppVersionInfo;
   bool isDataUploading_uploadData9bn = false;
   FFUploadedFile uploadedLocalFile_uploadData9bn =
-      FFUploadedFile(bytes: Uint8List.fromList([]));
+      FFUploadedFile(bytes: Uint8List.fromList([]), originalFilename: '');
 
   @override
   void initState(BuildContext context) {}

@@ -2,8 +2,6 @@
 export '/pages/home_page/home_page_widget.dart' show HomePageWidget;
 export '/pages/loginpage/loginpage_widget.dart' show LoginpageWidget;
 export '/pages/old/messages/messages_widget.dart' show MessagesWidget;
-export '/pages/old/your_schedule_old/your_schedule_old_widget.dart'
-    show YourScheduleOldWidget;
 export '/pages/your_activity/your_activity_widget.dart' show YourActivityWidget;
 export '/pages/schedule/schedule_widget.dart' show ScheduleWidget;
 export '/act_video_details2/act_video_details2_widget.dart'
