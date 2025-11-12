@@ -223,10 +223,12 @@ class _YourActivityWidgetState extends State<YourActivityWidget>
                                           children: [
                                             Text(
                                               valueOrDefault<String>(
-                                                FFAppState()
-                                                    .stepsStats7d
-                                                    .lastOrNull
-                                                    ?.toString(),
+                                                getJsonField(
+                                                  FFAppState()
+                                                      .stepsStats7d
+                                                      .lastOrNull,
+                                                  r'''$.value''',
+                                                )?.toString(),
                                                 '?',
                                               ),
                                               style: FlutterFlowTheme.of(
@@ -424,7 +426,15 @@ class _YourActivityWidgetState extends State<YourActivityWidget>
                                               CrossAxisAlignment.start,
                                           children: [
                                             Text(
-                                              '?sleep',
+                                              valueOrDefault<String>(
+                                                getJsonField(
+                                                  FFAppState()
+                                                      .sleepStats7d
+                                                      .lastOrNull,
+                                                  r'''$.value''',
+                                                )?.toString(),
+                                                '?',
+                                              ),
                                               style: FlutterFlowTheme.of(
                                                       context)
                                                   .displaySmall
