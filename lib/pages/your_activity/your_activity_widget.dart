@@ -222,7 +222,13 @@ class _YourActivityWidgetState extends State<YourActivityWidget>
                                               CrossAxisAlignment.start,
                                           children: [
                                             Text(
-                                              '????',
+                                              valueOrDefault<String>(
+                                                FFAppState()
+                                                    .stepsStats7d
+                                                    .lastOrNull
+                                                    ?.toString(),
+                                                '?',
+                                              ),
                                               style: FlutterFlowTheme.of(
                                                       context)
                                                   .displaySmall
