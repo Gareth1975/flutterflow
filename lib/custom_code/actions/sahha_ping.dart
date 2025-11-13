@@ -6,17 +6,7 @@ import 'package:flutter/material.dart';
 // Begin custom action code
 // DO NOT REMOVE OR MODIFY THE CODE ABOVE!
 
-import 'dart:async';
-import 'package:flutter/foundation.dart';
-
 /// broken
 Future<String?> sahhaPing() async {
-  try {
-    debugPrint('[SahhaPing] entered');
-    // (Optional) touch the SDK here if you want compile-time check via import
-    return 'SDK import check: action ran ✅';
-  } catch (e, st) {
-    debugPrint('[SahhaPing] ERROR: $e\n$st');
-    return 'SDK import check failed ❌: $e';
-  }
+  // Add your function code here!
 }

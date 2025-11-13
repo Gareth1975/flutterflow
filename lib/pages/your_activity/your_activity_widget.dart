@@ -35,7 +35,7 @@ class _YourActivityWidgetState extends State<YourActivityWidget>
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       _model.stepsStats7d = await actions.sahhaGetStatsRange(
         'steps',
-        1,
+        7,
       );
       FFAppState().stepsStats7d =
           FFAppState().stepsStats7d.toList().cast<dynamic>();
@@ -607,37 +607,92 @@ class _YourActivityWidgetState extends State<YourActivityWidget>
                       ),
                 ),
                 Container(
-                  width: 100.0,
-                  height: 100.0,
+                  width: 350.5,
+                  height: 152.12,
                   decoration: BoxDecoration(
                     color: FlutterFlowTheme.of(context).secondaryBackground,
                   ),
-                  child: Text(
-                    valueOrDefault<String>(
-                      getJsonField(
-                        FFAppState().stepsStats7d.lastOrNull,
-                        r'''$..value''',
-                      )?.toString(),
-                      '?',
-                    ),
-                    style: FlutterFlowTheme.of(context).displaySmall.override(
-                          font: GoogleFonts.interTight(
-                            fontWeight: FlutterFlowTheme.of(context)
-                                .displaySmall
-                                .fontWeight,
-                            fontStyle: FlutterFlowTheme.of(context)
-                                .displaySmall
-                                .fontStyle,
-                          ),
-                          color: FlutterFlowTheme.of(context).secondary,
-                          letterSpacing: 0.0,
-                          fontWeight: FlutterFlowTheme.of(context)
-                              .displaySmall
-                              .fontWeight,
-                          fontStyle: FlutterFlowTheme.of(context)
-                              .displaySmall
-                              .fontStyle,
+                  child: Column(
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      Text(
+                        valueOrDefault<String>(
+                          'stepsStats7d length: ' +
+                              FFAppState().stepsStats7d.length.toString(),
+                          '?',
                         ),
+                        style:
+                            FlutterFlowTheme.of(context).displaySmall.override(
+                                  font: GoogleFonts.interTight(
+                                    fontWeight: FlutterFlowTheme.of(context)
+                                        .displaySmall
+                                        .fontWeight,
+                                    fontStyle: FlutterFlowTheme.of(context)
+                                        .displaySmall
+                                        .fontStyle,
+                                  ),
+                                  color: FlutterFlowTheme.of(context).secondary,
+                                  fontSize: 14.0,
+                                  letterSpacing: 0.0,
+                                  fontWeight: FlutterFlowTheme.of(context)
+                                      .displaySmall
+                                      .fontWeight,
+                                  fontStyle: FlutterFlowTheme.of(context)
+                                      .displaySmall
+                                      .fontStyle,
+                                ),
+                      ),
+                      Text(
+                        valueOrDefault<String>(
+                          'stepsStats7d: ' +
+                              FFAppState().stepsStats7d.toString(),
+                          '?',
+                        ),
+                        style: FlutterFlowTheme.of(context).bodyMedium.override(
+                              font: GoogleFonts.inter(
+                                fontWeight: FlutterFlowTheme.of(context)
+                                    .bodyMedium
+                                    .fontWeight,
+                                fontStyle: FlutterFlowTheme.of(context)
+                                    .bodyMedium
+                                    .fontStyle,
+                              ),
+                              letterSpacing: 0.0,
+                              fontWeight: FlutterFlowTheme.of(context)
+                                  .bodyMedium
+                                  .fontWeight,
+                              fontStyle: FlutterFlowTheme.of(context)
+                                  .bodyMedium
+                                  .fontStyle,
+                            ),
+                      ),
+                      Text(
+                        valueOrDefault<String>(
+                          getJsonField(
+                            FFAppState().stepsStats7d.elementAtOrNull(6),
+                            r'''$.value''',
+                          )?.toString(),
+                          '?',
+                        ),
+                        style: FlutterFlowTheme.of(context).bodyMedium.override(
+                              font: GoogleFonts.inter(
+                                fontWeight: FlutterFlowTheme.of(context)
+                                    .bodyMedium
+                                    .fontWeight,
+                                fontStyle: FlutterFlowTheme.of(context)
+                                    .bodyMedium
+                                    .fontStyle,
+                              ),
+                              letterSpacing: 0.0,
+                              fontWeight: FlutterFlowTheme.of(context)
+                                  .bodyMedium
+                                  .fontWeight,
+                              fontStyle: FlutterFlowTheme.of(context)
+                                  .bodyMedium
+                                  .fontStyle,
+                            ),
+                      ),
+                    ],
                   ),
                 ),
               ],
