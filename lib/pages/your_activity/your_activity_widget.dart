@@ -35,14 +35,14 @@ class _YourActivityWidgetState extends State<YourActivityWidget>
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       _model.stepsStats7d = await actions.sahhaGetStatsRange(
         'steps',
-        7,
+        1,
       );
       FFAppState().stepsStats7d =
           FFAppState().stepsStats7d.toList().cast<dynamic>();
       safeSetState(() {});
       _model.sleepStats7d = await actions.sahhaGetStatsRange(
         'sleep',
-        7,
+        1,
       );
       FFAppState().sleepStats7d = _model.sleepStats7d!.toList().cast<dynamic>();
       safeSetState(() {});
@@ -616,7 +616,7 @@ class _YourActivityWidgetState extends State<YourActivityWidget>
                     valueOrDefault<String>(
                       getJsonField(
                         FFAppState().stepsStats7d.lastOrNull,
-                        r'''$.value''',
+                        r'''$..value''',
                       )?.toString(),
                       '?',
                     ),
