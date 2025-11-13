@@ -531,7 +531,7 @@ class _YourActivityWidgetState extends State<YourActivityWidget>
                               .stepsStats7d
                               .map((e) => getJsonField(
                                     e,
-                                    r'''$.date''',
+                                    r'''$.value''',
                                   ))
                               .toList(),
                           color: FlutterFlowTheme.of(context).primary,
@@ -539,6 +539,11 @@ class _YourActivityWidgetState extends State<YourActivityWidget>
                       ],
                       xLabels: FFAppState()
                           .stepsStats7d
+                          .map((e) => getJsonField(
+                                e,
+                                r'''$.date''',
+                              ))
+                          .toList()
                           .map((e) => e.toString())
                           .toList(),
                       barWidth: 16.0,
@@ -552,6 +557,10 @@ class _YourActivityWidgetState extends State<YourActivityWidget>
                       ),
                       axisBounds: AxisBounds(),
                       xAxisLabelInfo: AxisLabelInfo(
+                        title: 'Steps for the last 7 days ',
+                        titleTextStyle: TextStyle(
+                          fontSize: 14.0,
+                        ),
                         reservedSize: 28.0,
                       ),
                       yAxisLabelInfo: AxisLabelInfo(

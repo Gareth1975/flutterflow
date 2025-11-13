@@ -58,7 +58,6 @@ Future<String?> sahhaInitSandbox() async {
     const sensors = [
       SahhaSensor.sleep,
       SahhaSensor.steps,
-      SahhaSensor.heart_rate,
     ];
     final before = await SahhaFlutter.getSensorStatus(sensors);
     add('Status before: $before');
