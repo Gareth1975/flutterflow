@@ -38,7 +38,7 @@ class _YourActivityWidgetState extends State<YourActivityWidget>
         7,
       );
       FFAppState().stepsStats7d =
-          _model.stepsStats7d!.lastOrNull!.toList().cast<dynamic>();
+          FFAppState().stepsStats7d.toList().cast<dynamic>();
       safeSetState(() {});
       _model.sleepStats7d = await actions.sahhaGetStatsRange(
         'sleep',
