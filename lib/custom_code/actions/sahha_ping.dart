@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
 // Begin custom action code
 // DO NOT REMOVE OR MODIFY THE CODE ABOVE!
 
-/// broken
 Future<String?> sahhaPing() async {
-  // Add your function code here!
+  return 'SDK import check: action returned a string ✅';
 }
