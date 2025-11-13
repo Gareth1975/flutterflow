@@ -37,7 +37,8 @@ class _YourActivityWidgetState extends State<YourActivityWidget>
         'steps',
         7,
       );
-      FFAppState().stepsStats7d = _model.stepsStats7d!.toList().cast<dynamic>();
+      FFAppState().stepsStats7d =
+          _model.stepsStats7d!.lastOrNull!.toList().cast<dynamic>();
       safeSetState(() {});
       _model.sleepStats7d = await actions.sahhaGetStatsRange(
         'sleep',
@@ -578,6 +579,57 @@ class _YourActivityWidgetState extends State<YourActivityWidget>
                         fontStyle:
                             FlutterFlowTheme.of(context).bodyMedium.fontStyle,
                       ),
+                ),
+                Text(
+                  '',
+                  style: FlutterFlowTheme.of(context).bodyMedium.override(
+                        font: GoogleFonts.inter(
+                          fontWeight: FlutterFlowTheme.of(context)
+                              .bodyMedium
+                              .fontWeight,
+                          fontStyle:
+                              FlutterFlowTheme.of(context).bodyMedium.fontStyle,
+                        ),
+                        letterSpacing: 0.0,
+                        fontWeight:
+                            FlutterFlowTheme.of(context).bodyMedium.fontWeight,
+                        fontStyle:
+                            FlutterFlowTheme.of(context).bodyMedium.fontStyle,
+                      ),
+                ),
+                Container(
+                  width: 100.0,
+                  height: 100.0,
+                  decoration: BoxDecoration(
+                    color: FlutterFlowTheme.of(context).secondaryBackground,
+                  ),
+                  child: Text(
+                    valueOrDefault<String>(
+                      getJsonField(
+                        FFAppState().stepsStats7d.lastOrNull,
+                        r'''$.value''',
+                      )?.toString(),
+                      '?',
+                    ),
+                    style: FlutterFlowTheme.of(context).displaySmall.override(
+                          font: GoogleFonts.interTight(
+                            fontWeight: FlutterFlowTheme.of(context)
+                                .displaySmall
+                                .fontWeight,
+                            fontStyle: FlutterFlowTheme.of(context)
+                                .displaySmall
+                                .fontStyle,
+                          ),
+                          color: FlutterFlowTheme.of(context).secondary,
+                          letterSpacing: 0.0,
+                          fontWeight: FlutterFlowTheme.of(context)
+                              .displaySmall
+                              .fontWeight,
+                          fontStyle: FlutterFlowTheme.of(context)
+                              .displaySmall
+                              .fontStyle,
+                        ),
+                  ),
                 ),
               ],
             ),
