@@ -227,7 +227,7 @@ class _YourActivityWidgetState extends State<YourActivityWidget>
                                               valueOrDefault<String>(
                                                 getJsonField(
                                                   FFAppState()
-                                                      .stepsStats7d
+                                                      .sleepStats7d
                                                       .lastOrNull,
                                                   r'''$.value''',
                                                 )?.toString(),
@@ -253,6 +253,7 @@ class _YourActivityWidgetState extends State<YourActivityWidget>
                                                     color: FlutterFlowTheme.of(
                                                             context)
                                                         .secondary,
+                                                    fontSize: 36.0,
                                                     letterSpacing: 0.0,
                                                     fontWeight:
                                                         FlutterFlowTheme.of(
