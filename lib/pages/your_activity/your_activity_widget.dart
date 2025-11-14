@@ -34,8 +34,8 @@ class _YourActivityWidgetState extends State<YourActivityWidget>
 
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      _model.todaySteps = await actions.sahhaGetTodaySteps();
-      FFAppState().todaySteps = _model.todaySteps!;
+      _model.sahhaGetTodaySteps = await actions.sahhaGetTodaySteps();
+      FFAppState().todaySteps = _model.sahhaGetTodaySteps!;
       safeSetState(() {});
       _model.stepsStats7d = await actions.sahhaGetStatsRange(
         'steps',
