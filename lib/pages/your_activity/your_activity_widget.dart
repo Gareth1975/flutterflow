@@ -34,6 +34,9 @@ class _YourActivityWidgetState extends State<YourActivityWidget>
 
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
+      _model.todaySteps = await actions.sahhaGetTodaySteps();
+      FFAppState().todaySteps = _model.todaySteps!;
+      safeSetState(() {});
       _model.stepsStats7d = await actions.sahhaGetStatsRange(
         'steps',
         7,
@@ -224,15 +227,9 @@ class _YourActivityWidgetState extends State<YourActivityWidget>
                                               CrossAxisAlignment.start,
                                           children: [
                                             Text(
-                                              valueOrDefault<String>(
-                                                getJsonField(
-                                                  FFAppState()
-                                                      .sleepStats7d
-                                                      .lastOrNull,
-                                                  r'''$.value''',
-                                                )?.toString(),
-                                                '?',
-                                              ),
+                                              FFAppState()
+                                                  .todaySteps
+                                                  .toString(),
                                               style: FlutterFlowTheme.of(
                                                       context)
                                                   .displaySmall

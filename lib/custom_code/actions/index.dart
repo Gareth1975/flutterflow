@@ -7,3 +7,4 @@ export 'sahha_enable_sensors.dart' show sahhaEnableSensors;
 export 'sahha_get_today_stat.dart' show sahhaGetTodayStat;
 export 'sahha_get_stats_range.dart' show sahhaGetStatsRange;
 export 'sahha_debug_get_steps_today.dart' show sahhaDebugGetStepsToday;
+export 'sahha_get_today_steps.dart' show sahhaGetTodaySteps;
