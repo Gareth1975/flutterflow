@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 // Begin custom action code
 // DO NOT REMOVE OR MODIFY THE CODE ABOVE!
 
-// i need to config to use a sandbox enviornment with hardcaoded values  and  authenticate and set/ enable permissions to use teh sahha.ai SDK - i have added the project dependancies
+// i need to config to use a sandbox enviornment  with hardcaoded values  and  authenticate and set/ enable permissions to use teh sahha.ai SDK - i have added the project dependancies
 import 'dart:async';
 import 'package:flutter/foundation.dart';
 import 'package:sahha_flutter/sahha_flutter.dart';
