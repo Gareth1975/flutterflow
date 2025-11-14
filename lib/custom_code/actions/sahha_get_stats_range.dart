@@ -6,54 +6,64 @@ import 'package:flutter/material.dart';
 // Begin custom action code
 // DO NOT REMOVE OR MODIFY THE CODE ABOVE!
 
-// lib/custom_code/actions/sahha_get_stats_range.dart
+import 'index.dart'; // Imports other custom actions
+
 import 'dart:convert';
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:sahha_flutter/sahha_flutter.dart';
 
-/// Returns a list like:
-/// [ { "date": "2025-10-30", "value": 5342.0 }, ... ]
+/// Get Sahha stats over a date range and normalise to:
+/// [ { "date": "YYYY-MM-DD", "value": 1234.0 }, ... ]
 ///
-/// FlutterFlow calls this as: sahhaGetStatsRange("steps", 7)
-Future<List<dynamic>> sahhaGetStatsRange(String sensorName, [int? daysBack]) async {
-  // MUST always return a non-null List
+/// - sensorName: e.g. "steps", "sleep", "floorsClimbed"
+/// - daysBack: number of days including today (e.g. 7)
+Future<List<dynamic>> sahhaGetStatsRange(
+  String sensorName,
+  int? daysBack,
+) async {
+  // Always return a non-null list so FlutterFlow is happy.
   if (kIsWeb) {
+    // Sahha doesn't run on web; avoid crashes in FF preview.
     return <dynamic>[];
   }
 
   try {
-    // Map sensorName -> SahhaSensor enum
-    final sensor = SahhaSensor.values.firstWhere(
-      (s) => s.name.toLowerCase() == sensorName.toLowerCase(),
+    // Map sensorName string to SahhaSensor enum (case-insensitive).
+    final lower = sensorName.toLowerCase();
+    final SahhaSensor sensor = SahhaSensor.values.firstWhere(
+      (s) => s.name.toLowerCase() == lower,
       orElse: () => SahhaSensor.steps,
     );
 
+    // Default to 7 days if null or invalid.
     final int window = (daysBack == null || daysBack <= 0) ? 7 : daysBack;
-    final now = DateTime.now();
-    final start = DateTime(now.year, now.month, now.day)
-        .subtract(Duration(days: window - 1));
 
-    // Allow for both String JSON and List responses from getStats
+    final now = DateTime.now();
+    // Start from today's midnight, window-1 days ago.
+    final todayMidnight = DateTime(now.year, now.month, now.day);
+    final start = todayMidnight.subtract(Duration(days: window - 1));
+
     final dynamic raw = await SahhaFlutter.getStats(
       sensor: sensor,
       startDateTime: start,
       endDateTime: now,
     );
 
-    // Normalise to List<dynamic>
-    List<dynamic> statsList;
+    if (raw == null) {
+      return <dynamic>[];
+    }
 
+    // Normalise raw -> List<dynamic>
+    dynamic decoded = raw;
     if (raw is String) {
-      final parsed = jsonDecode(raw);
-      if (parsed is List) {
-        statsList = parsed;
-      } else if (parsed is Map && parsed['stats'] is List) {
-        statsList = (parsed['stats'] as List);
-      } else {
-        return <dynamic>[];
-      }
-    } else if (raw is List) {
-      statsList = raw;
+      decoded = jsonDecode(raw);
+    }
+
+    List<dynamic> statsList;
+    if (decoded is List) {
+      statsList = decoded;
+    } else if (decoded is Map && decoded['stats'] is List) {
+      statsList = decoded['stats'] as List;
     } else {
       return <dynamic>[];
     }
@@ -62,54 +72,86 @@ Future<List<dynamic>> sahhaGetStatsRange(String sensorName, [int? daysBack]) asy
       return <dynamic>[];
     }
 
-    // Convert to [ {date, value} ]
-    final List<Map<String, dynamic>> out = [];
+    // Step 1: map whatever Sahha returns into {date, value}
+    final List<Map<String, dynamic>> flat = [];
+
     for (final item in statsList) {
       if (item is Map) {
-        final v = (item['value'] ?? item['minutes'] ?? item['count']);
-        final dt = (item['dateTime'] ?? item['date'] ?? item['timestamp']);
+        // Value can appear under different keys depending on SDK version.
+        final dynamic v = item['value'] ??
+            item['Value'] ??
+            item['minutes'] ??
+            item['Minutes'] ??
+            item['count'] ??
+            item['Count'];
+
+        // Date/time can also have multiple possible keys.
+        final dynamic dt = item['date'] ??
+            item['Date'] ??
+            item['dateTime'] ??
+            item['DateTime'] ??
+            item['startDateTime'] ??
+            item['StartDateTime'] ??
+            item['timestamp'] ??
+            item['Timestamp'] ??
+            item['endDateTime'] ??
+            item['EndDateTime'];
+
         if (v is num) {
-          DateTime d;
-          try {
-            d = dt is String ? DateTime.parse(dt) : now;
-          } catch (_) {
-            d = now;
+          DateTime d = now;
+          if (dt is String) {
+            try {
+              d = DateTime.parse(dt);
+            } catch (_) {
+              d = now;
+            }
           }
-          out.add({
+
+          flat.add({
             'date': DateTime(d.year, d.month, d.day)
                 .toIso8601String()
-                .substring(0, 10),
+                .substring(0, 10), // YYYY-MM-DD
             'value': v.toDouble(),
           });
         }
       } else if (item is num) {
-        out.add({
-          'date': DateTime.now().toIso8601String().substring(0, 10),
+        // Fallback for simple numeric arrays
+        flat.add({
+          'date': todayMidnight.toIso8601String().substring(0, 10), // today
           'value': item.toDouble(),
         });
       }
     }
 
-    // Merge by date (sum values per day)
+    if (flat.isEmpty) {
+      return <dynamic>[];
+    }
+
+    // Step 2: merge by date (sum multiple entries per day).
     final Map<String, double> byDate = {};
-    for (final row in out) {
-      final d = row['date'] as String;
-      final v = row['value'] as double;
+    for (final row in flat) {
+      final String d = row['date'] as String;
+      final double v = row['value'] as double;
       byDate[d] = (byDate[d] ?? 0) + v;
     }
 
-    // Fill missing days in the range with zeros
+    // Step 3: build a full window with zeros for missing days,
+    // ordered from oldest -> newest.
     final List<Map<String, dynamic>> filled = [];
     for (int i = 0; i < window; i++) {
-      final d = DateTime(now.year, now.month, now.day)
-          .subtract(Duration(days: window - 1 - i));
-      final key = d.toIso8601String().substring(0, 10);
-      filled.add({'date': key, 'value': byDate[key] ?? 0});
+      final day = todayMidnight.subtract(Duration(days: window - 1 - i));
+      final key = day.toIso8601String().substring(0, 10);
+      filled.add({
+        'date': key,
+        'value': byDate[key] ?? 0.0,
+      });
     }
 
-    return filled;  // ✅ successful path returns a List
-  } catch (_) {
-    // ✅ error path also returns a List
+    // This is a List<Map<String, dynamic>> which FF treats as JSON list.
+    return filled;
+  } catch (e, stack) {
+    debugPrint('sahhaGetStatsRange error: $e');
+    debugPrint(stack.toString());
     return <dynamic>[];
   }
 }
