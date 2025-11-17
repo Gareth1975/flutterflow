@@ -34,6 +34,9 @@ class _YourActivityWidgetState extends State<YourActivityWidget>
 
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
+      _model.sahhaGetTodaySteps = await actions.sahhaGetTodaySteps();
+      FFAppState().todaySteps = _model.sahhaGetTodaySteps!;
+      safeSetState(() {});
       _model.stepsStats7d = await actions.sahhaGetStatsRange(
         'steps',
         7,
@@ -224,15 +227,9 @@ class _YourActivityWidgetState extends State<YourActivityWidget>
                                               CrossAxisAlignment.start,
                                           children: [
                                             Text(
-                                              valueOrDefault<String>(
-                                                getJsonField(
-                                                  FFAppState()
-                                                      .stepsStats7d
-                                                      .lastOrNull,
-                                                  r'''$.value''',
-                                                )?.toString(),
-                                                '?',
-                                              ),
+                                              FFAppState()
+                                                  .todaySteps
+                                                  .toString(),
                                               style: FlutterFlowTheme.of(
                                                       context)
                                                   .displaySmall
@@ -253,6 +250,7 @@ class _YourActivityWidgetState extends State<YourActivityWidget>
                                                     color: FlutterFlowTheme.of(
                                                             context)
                                                         .secondary,
+                                                    fontSize: 36.0,
                                                     letterSpacing: 0.0,
                                                     fontWeight:
                                                         FlutterFlowTheme.of(
@@ -736,6 +734,26 @@ class _YourActivityWidgetState extends State<YourActivityWidget>
                           _model.sahhaDebugGetStepsToday,
                           'oops',
                         ),
+                        style: FlutterFlowTheme.of(context).bodyMedium.override(
+                              font: GoogleFonts.inter(
+                                fontWeight: FlutterFlowTheme.of(context)
+                                    .bodyMedium
+                                    .fontWeight,
+                                fontStyle: FlutterFlowTheme.of(context)
+                                    .bodyMedium
+                                    .fontStyle,
+                              ),
+                              letterSpacing: 0.0,
+                              fontWeight: FlutterFlowTheme.of(context)
+                                  .bodyMedium
+                                  .fontWeight,
+                              fontStyle: FlutterFlowTheme.of(context)
+                                  .bodyMedium
+                                  .fontStyle,
+                            ),
+                      ),
+                      Text(
+                        'Hello World',
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
                               font: GoogleFonts.inter(
                                 fontWeight: FlutterFlowTheme.of(context)

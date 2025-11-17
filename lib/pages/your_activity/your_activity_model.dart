@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 class YourActivityModel extends FlutterFlowModel<YourActivityWidget> {
   ///  State fields for stateful widgets in this page.
 
+  // Stores action output result for [Custom Action - sahhaGetTodaySteps] action in YourActivity widget.
+  double? sahhaGetTodaySteps;
   // Stores action output result for [Custom Action - sahhaGetStatsRange] action in YourActivity widget.
   List<dynamic>? stepsStats7d;
   // Stores action output result for [Custom Action - sahhaGetStatsRange] action in YourActivity widget.

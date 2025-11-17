@@ -271,6 +271,12 @@ class FFAppState extends ChangeNotifier {
     secureStorage.setStringList(
         'ff_sleepStats7d', _sleepStats7d.map((x) => jsonEncode(x)).toList());
   }
+
+  double _todaySteps = 0.0;
+  double get todaySteps => _todaySteps;
+  set todaySteps(double value) {
+    _todaySteps = value;
+  }
 }
 
 void _safeInit(Function() initializeField) {
