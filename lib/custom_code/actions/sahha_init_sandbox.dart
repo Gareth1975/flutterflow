@@ -22,7 +22,7 @@ Future<String?> sahhaInitSandbox() async {
   const appId = 'qIFCzHVb3XaQ8XEQ0HRQZoPyXxv0rbRc';
   const appSecret =
       '9MdBgudXVIfCjxUDmhjHwQ0I8Ez0ak0gxBPXTA1P5BgCmmmBDNSen1wAUa9MLtWB';
-  const externalId = 'SampleProfile-6cab4cd2-b217-40fb-a147-60d56ccbca3d';
+  const externalId = '1001';
 
   try {
     add('Configuring SDK (sandbox)…');
