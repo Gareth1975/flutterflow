@@ -8,12 +8,15 @@ import 'package:flutter/material.dart';
 
 /// Set your action name, define your arguments and return parameter, and then
 /// add the boilerplate code using the green button on the right!
+//
+import 'package:sahha_flutter/sahha_flutter.dart';
+
 Future<List<double>?> getStepsLast7Days() async {
   try {
     final now = DateTime.now();
     final start = now.subtract(const Duration(days: 6));
 
-    final stats = await Sahha.getStatsRange(
+    final stats = await SahhaFlutter.getStatsRange(
       startDate: start,
       endDate: now,
       dataTypes: ['steps'],
