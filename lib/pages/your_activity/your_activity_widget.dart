@@ -535,7 +535,9 @@ class _YourActivityWidgetState extends State<YourActivityWidget>
                       chartStylingInfo: ChartStylingInfo(
                         backgroundColor:
                             FlutterFlowTheme.of(context).secondaryBackground,
-                        showBorder: false,
+                        showGrid: true,
+                        borderColor: FlutterFlowTheme.of(context).secondaryText,
+                        borderWidth: 1.0,
                       ),
                       axisBounds: AxisBounds(),
                       xAxisLabelInfo: AxisLabelInfo(
@@ -543,9 +545,17 @@ class _YourActivityWidgetState extends State<YourActivityWidget>
                         titleTextStyle: TextStyle(
                           fontSize: 14.0,
                         ),
+                        showLabels: true,
+                        labelInterval: 10.0,
                         reservedSize: 28.0,
                       ),
                       yAxisLabelInfo: AxisLabelInfo(
+                        title: 'Number of Steps ',
+                        titleTextStyle: TextStyle(
+                          fontSize: 14.0,
+                        ),
+                        showLabels: true,
+                        labelInterval: 10.0,
                         reservedSize: 42.0,
                       ),
                     ),
