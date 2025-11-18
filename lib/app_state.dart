@@ -42,18 +42,6 @@ class FFAppState extends ChangeNotifier {
           await secureStorage.getString('ff_refreshToken') ?? _refreshToken;
     });
     await _safeInitAsync(() async {
-      _stepsStats7d =
-          (await secureStorage.getStringList('ff_stepsStats7d'))?.map((x) {
-                try {
-                  return jsonDecode(x);
-                } catch (e) {
-                  print("Can't decode persisted json. Error: $e.");
-                  return {};
-                }
-              }).toList() ??
-              _stepsStats7d;
-    });
-    await _safeInitAsync(() async {
       _sleepStats7d =
           (await secureStorage.getStringList('ff_sleepStats7d'))?.map((x) {
                 try {
@@ -64,6 +52,12 @@ class FFAppState extends ChangeNotifier {
                 }
               }).toList() ??
               _sleepStats7d;
+    });
+    await _safeInitAsync(() async {
+      _stepsStats7d = (await secureStorage.getStringList('ff_stepsStats7d'))
+              ?.map(double.parse)
+              .toList() ??
+          _stepsStats7d;
     });
   }
 
@@ -182,51 +176,6 @@ class FFAppState extends ChangeNotifier {
     secureStorage.delete(key: 'ff_refreshToken');
   }
 
-  List<dynamic> _stepsStats7d = [];
-  List<dynamic> get stepsStats7d => _stepsStats7d;
-  set stepsStats7d(List<dynamic> value) {
-    _stepsStats7d = value;
-    secureStorage.setStringList(
-        'ff_stepsStats7d', value.map((x) => jsonEncode(x)).toList());
-  }
-
-  void deleteStepsStats7d() {
-    secureStorage.delete(key: 'ff_stepsStats7d');
-  }
-
-  void addToStepsStats7d(dynamic value) {
-    stepsStats7d.add(value);
-    secureStorage.setStringList(
-        'ff_stepsStats7d', _stepsStats7d.map((x) => jsonEncode(x)).toList());
-  }
-
-  void removeFromStepsStats7d(dynamic value) {
-    stepsStats7d.remove(value);
-    secureStorage.setStringList(
-        'ff_stepsStats7d', _stepsStats7d.map((x) => jsonEncode(x)).toList());
-  }
-
-  void removeAtIndexFromStepsStats7d(int index) {
-    stepsStats7d.removeAt(index);
-    secureStorage.setStringList(
-        'ff_stepsStats7d', _stepsStats7d.map((x) => jsonEncode(x)).toList());
-  }
-
-  void updateStepsStats7dAtIndex(
-    int index,
-    dynamic Function(dynamic) updateFn,
-  ) {
-    stepsStats7d[index] = updateFn(_stepsStats7d[index]);
-    secureStorage.setStringList(
-        'ff_stepsStats7d', _stepsStats7d.map((x) => jsonEncode(x)).toList());
-  }
-
-  void insertAtIndexInStepsStats7d(int index, dynamic value) {
-    stepsStats7d.insert(index, value);
-    secureStorage.setStringList(
-        'ff_stepsStats7d', _stepsStats7d.map((x) => jsonEncode(x)).toList());
-  }
-
   List<dynamic> _sleepStats7d = [];
   List<dynamic> get sleepStats7d => _sleepStats7d;
   set sleepStats7d(List<dynamic> value) {
@@ -276,6 +225,57 @@ class FFAppState extends ChangeNotifier {
   double get todaySteps => _todaySteps;
   set todaySteps(double value) {
     _todaySteps = value;
+  }
+
+  double _todayFloors = 0.0;
+  double get todayFloors => _todayFloors;
+  set todayFloors(double value) {
+    _todayFloors = value;
+  }
+
+  List<double> _stepsStats7d = [];
+  List<double> get stepsStats7d => _stepsStats7d;
+  set stepsStats7d(List<double> value) {
+    _stepsStats7d = value;
+    secureStorage.setStringList(
+        'ff_stepsStats7d', value.map((x) => x.toString()).toList());
+  }
+
+  void deleteStepsStats7d() {
+    secureStorage.delete(key: 'ff_stepsStats7d');
+  }
+
+  void addToStepsStats7d(double value) {
+    stepsStats7d.add(value);
+    secureStorage.setStringList(
+        'ff_stepsStats7d', _stepsStats7d.map((x) => x.toString()).toList());
+  }
+
+  void removeFromStepsStats7d(double value) {
+    stepsStats7d.remove(value);
+    secureStorage.setStringList(
+        'ff_stepsStats7d', _stepsStats7d.map((x) => x.toString()).toList());
+  }
+
+  void removeAtIndexFromStepsStats7d(int index) {
+    stepsStats7d.removeAt(index);
+    secureStorage.setStringList(
+        'ff_stepsStats7d', _stepsStats7d.map((x) => x.toString()).toList());
+  }
+
+  void updateStepsStats7dAtIndex(
+    int index,
+    double Function(double) updateFn,
+  ) {
+    stepsStats7d[index] = updateFn(_stepsStats7d[index]);
+    secureStorage.setStringList(
+        'ff_stepsStats7d', _stepsStats7d.map((x) => x.toString()).toList());
+  }
+
+  void insertAtIndexInStepsStats7d(int index, double value) {
+    stepsStats7d.insert(index, value);
+    secureStorage.setStringList(
+        'ff_stepsStats7d', _stepsStats7d.map((x) => x.toString()).toList());
   }
 }
 

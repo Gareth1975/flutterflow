@@ -37,18 +37,9 @@ class _YourActivityWidgetState extends State<YourActivityWidget>
       _model.sahhaGetTodaySteps = await actions.sahhaGetTodaySteps();
       FFAppState().todaySteps = _model.sahhaGetTodaySteps!;
       safeSetState(() {});
-      _model.stepsStats7d = await actions.sahhaGetStatsRange(
-        'steps',
-        7,
-      );
+      _model.getStepsLast7days = await actions.getStepsLast7Days();
       FFAppState().stepsStats7d =
-          FFAppState().stepsStats7d.toList().cast<dynamic>();
-      safeSetState(() {});
-      _model.sleepStats7d = await actions.sahhaGetStatsRange(
-        'sleep',
-        1,
-      );
-      FFAppState().sleepStats7d = _model.sleepStats7d!.toList().cast<dynamic>();
+          _model.getStepsLast7days!.toList().cast<double>();
       safeSetState(() {});
     });
 
@@ -522,27 +513,19 @@ class _YourActivityWidgetState extends State<YourActivityWidget>
                   padding: EdgeInsetsDirectional.fromSTEB(0.0, 30.0, 0.0, 0.0),
                   child: Container(
                     width: 370.0,
-                    height: 98.78,
+                    height: 377.69,
                     child: FlutterFlowBarChart(
                       barData: [
                         FFBarChartData(
                           yData: FFAppState()
                               .stepsStats7d
-                              .map((e) => getJsonField(
-                                    e,
-                                    r'''$.value''',
-                                  ))
+                              .map((e) => e.toString())
                               .toList(),
                           color: FlutterFlowTheme.of(context).primary,
                         )
                       ],
                       xLabels: FFAppState()
                           .stepsStats7d
-                          .map((e) => getJsonField(
-                                e,
-                                r'''$.date''',
-                              ))
-                          .toList()
                           .map((e) => e.toString())
                           .toList(),
                       barWidth: 16.0,
@@ -568,211 +551,81 @@ class _YourActivityWidgetState extends State<YourActivityWidget>
                     ),
                   ),
                 ),
-                Text(
-                  FFAppState()
-                      .sleepStats7d
-                      .containsMap(FFAppState().sleepStats7d.lastOrNull)
-                      .toString(),
-                  style: FlutterFlowTheme.of(context).bodyMedium.override(
-                        font: GoogleFonts.inter(
-                          fontWeight: FlutterFlowTheme.of(context)
-                              .bodyMedium
-                              .fontWeight,
-                          fontStyle:
-                              FlutterFlowTheme.of(context).bodyMedium.fontStyle,
-                        ),
-                        letterSpacing: 0.0,
-                        fontWeight:
-                            FlutterFlowTheme.of(context).bodyMedium.fontWeight,
-                        fontStyle:
-                            FlutterFlowTheme.of(context).bodyMedium.fontStyle,
-                      ),
-                ),
-                Text(
-                  '',
-                  style: FlutterFlowTheme.of(context).bodyMedium.override(
-                        font: GoogleFonts.inter(
-                          fontWeight: FlutterFlowTheme.of(context)
-                              .bodyMedium
-                              .fontWeight,
-                          fontStyle:
-                              FlutterFlowTheme.of(context).bodyMedium.fontStyle,
-                        ),
-                        letterSpacing: 0.0,
-                        fontWeight:
-                            FlutterFlowTheme.of(context).bodyMedium.fontWeight,
-                        fontStyle:
-                            FlutterFlowTheme.of(context).bodyMedium.fontStyle,
-                      ),
-                ),
                 Container(
                   width: 350.5,
-                  height: 277.52,
+                  height: 121.9,
                   decoration: BoxDecoration(
                     color: FlutterFlowTheme.of(context).secondaryBackground,
                   ),
-                  child: Column(
-                    mainAxisSize: MainAxisSize.max,
-                    children: [
-                      Text(
-                        valueOrDefault<String>(
-                          'stepsStats7d length: ' +
-                              FFAppState().stepsStats7d.length.toString(),
-                          '?',
-                        ),
-                        style:
-                            FlutterFlowTheme.of(context).displaySmall.override(
+                  child: SingleChildScrollView(
+                    child: Column(
+                      mainAxisSize: MainAxisSize.max,
+                      children: [
+                        FFButtonWidget(
+                          onPressed: () async {
+                            _model.sahhaDebugGetStepsToday =
+                                await actions.sahhaDebugGetStepsToday();
+
+                            safeSetState(() {});
+                          },
+                          text: 'Button',
+                          options: FFButtonOptions(
+                            height: 40.0,
+                            padding: EdgeInsetsDirectional.fromSTEB(
+                                16.0, 0.0, 16.0, 0.0),
+                            iconPadding: EdgeInsetsDirectional.fromSTEB(
+                                0.0, 0.0, 0.0, 0.0),
+                            color: FlutterFlowTheme.of(context).primary,
+                            textStyle: FlutterFlowTheme.of(context)
+                                .titleSmall
+                                .override(
                                   font: GoogleFonts.interTight(
                                     fontWeight: FlutterFlowTheme.of(context)
-                                        .displaySmall
+                                        .titleSmall
                                         .fontWeight,
                                     fontStyle: FlutterFlowTheme.of(context)
-                                        .displaySmall
+                                        .titleSmall
                                         .fontStyle,
                                   ),
-                                  color: FlutterFlowTheme.of(context).secondary,
-                                  fontSize: 14.0,
+                                  color: Colors.white,
                                   letterSpacing: 0.0,
                                   fontWeight: FlutterFlowTheme.of(context)
-                                      .displaySmall
+                                      .titleSmall
                                       .fontWeight,
                                   fontStyle: FlutterFlowTheme.of(context)
-                                      .displaySmall
+                                      .titleSmall
                                       .fontStyle,
                                 ),
-                      ),
-                      Text(
-                        valueOrDefault<String>(
-                          'stepsStats7d: ' +
-                              FFAppState().stepsStats7d.toString(),
-                          '?',
+                            elevation: 0.0,
+                            borderRadius: BorderRadius.circular(8.0),
+                          ),
                         ),
-                        style: FlutterFlowTheme.of(context).bodyMedium.override(
-                              font: GoogleFonts.inter(
-                                fontWeight: FlutterFlowTheme.of(context)
-                                    .bodyMedium
-                                    .fontWeight,
-                                fontStyle: FlutterFlowTheme.of(context)
-                                    .bodyMedium
-                                    .fontStyle,
-                              ),
-                              letterSpacing: 0.0,
-                              fontWeight: FlutterFlowTheme.of(context)
-                                  .bodyMedium
-                                  .fontWeight,
-                              fontStyle: FlutterFlowTheme.of(context)
-                                  .bodyMedium
-                                  .fontStyle,
-                            ),
-                      ),
-                      Text(
-                        valueOrDefault<String>(
-                          getJsonField(
-                            FFAppState().stepsStats7d.elementAtOrNull(6),
-                            r'''$.value''',
-                          )?.toString(),
-                          '?',
-                        ),
-                        style: FlutterFlowTheme.of(context).bodyMedium.override(
-                              font: GoogleFonts.inter(
-                                fontWeight: FlutterFlowTheme.of(context)
-                                    .bodyMedium
-                                    .fontWeight,
-                                fontStyle: FlutterFlowTheme.of(context)
-                                    .bodyMedium
-                                    .fontStyle,
-                              ),
-                              letterSpacing: 0.0,
-                              fontWeight: FlutterFlowTheme.of(context)
-                                  .bodyMedium
-                                  .fontWeight,
-                              fontStyle: FlutterFlowTheme.of(context)
-                                  .bodyMedium
-                                  .fontStyle,
-                            ),
-                      ),
-                      FFButtonWidget(
-                        onPressed: () async {
-                          _model.sahhaDebugGetStepsToday =
-                              await actions.sahhaDebugGetStepsToday();
-
-                          safeSetState(() {});
-                        },
-                        text: 'Button',
-                        options: FFButtonOptions(
-                          height: 40.0,
-                          padding: EdgeInsetsDirectional.fromSTEB(
-                              16.0, 0.0, 16.0, 0.0),
-                          iconPadding: EdgeInsetsDirectional.fromSTEB(
-                              0.0, 0.0, 0.0, 0.0),
-                          color: FlutterFlowTheme.of(context).primary,
-                          textStyle:
-                              FlutterFlowTheme.of(context).titleSmall.override(
-                                    font: GoogleFonts.interTight(
+                        Text(
+                          valueOrDefault<String>(
+                            _model.sahhaDebugGetStepsToday,
+                            'oops',
+                          ),
+                          style:
+                              FlutterFlowTheme.of(context).bodyMedium.override(
+                                    font: GoogleFonts.inter(
                                       fontWeight: FlutterFlowTheme.of(context)
-                                          .titleSmall
+                                          .bodyMedium
                                           .fontWeight,
                                       fontStyle: FlutterFlowTheme.of(context)
-                                          .titleSmall
+                                          .bodyMedium
                                           .fontStyle,
                                     ),
-                                    color: Colors.white,
                                     letterSpacing: 0.0,
                                     fontWeight: FlutterFlowTheme.of(context)
-                                        .titleSmall
+                                        .bodyMedium
                                         .fontWeight,
                                     fontStyle: FlutterFlowTheme.of(context)
-                                        .titleSmall
+                                        .bodyMedium
                                         .fontStyle,
                                   ),
-                          elevation: 0.0,
-                          borderRadius: BorderRadius.circular(8.0),
                         ),
-                      ),
-                      Text(
-                        valueOrDefault<String>(
-                          _model.sahhaDebugGetStepsToday,
-                          'oops',
-                        ),
-                        style: FlutterFlowTheme.of(context).bodyMedium.override(
-                              font: GoogleFonts.inter(
-                                fontWeight: FlutterFlowTheme.of(context)
-                                    .bodyMedium
-                                    .fontWeight,
-                                fontStyle: FlutterFlowTheme.of(context)
-                                    .bodyMedium
-                                    .fontStyle,
-                              ),
-                              letterSpacing: 0.0,
-                              fontWeight: FlutterFlowTheme.of(context)
-                                  .bodyMedium
-                                  .fontWeight,
-                              fontStyle: FlutterFlowTheme.of(context)
-                                  .bodyMedium
-                                  .fontStyle,
-                            ),
-                      ),
-                      Text(
-                        'Hello World',
-                        style: FlutterFlowTheme.of(context).bodyMedium.override(
-                              font: GoogleFonts.inter(
-                                fontWeight: FlutterFlowTheme.of(context)
-                                    .bodyMedium
-                                    .fontWeight,
-                                fontStyle: FlutterFlowTheme.of(context)
-                                    .bodyMedium
-                                    .fontStyle,
-                              ),
-                              letterSpacing: 0.0,
-                              fontWeight: FlutterFlowTheme.of(context)
-                                  .bodyMedium
-                                  .fontWeight,
-                              fontStyle: FlutterFlowTheme.of(context)
-                                  .bodyMedium
-                                  .fontStyle,
-                            ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
               ],
