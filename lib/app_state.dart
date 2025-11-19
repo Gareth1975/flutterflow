@@ -227,6 +227,12 @@ class FFAppState extends ChangeNotifier {
     _todaySteps = value;
   }
 
+  double _TodaySleepHours = 0.0;
+  double get TodaySleepHours => _TodaySleepHours;
+  set TodaySleepHours(double value) {
+    _TodaySleepHours = value;
+  }
+
   double _todayFloors = 0.0;
   double get todayFloors => _todayFloors;
   set todayFloors(double value) {
