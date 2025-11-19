@@ -517,15 +517,14 @@ class _YourActivityWidgetState extends State<YourActivityWidget>
                     child: FlutterFlowBarChart(
                       barData: [
                         FFBarChartData(
-                          yData: FFAppState()
-                              .stepsStats7d
-                              .map((e) => e.toString())
-                              .toList(),
+                          yData: FFAppState().stepsStats7d,
                           color: FlutterFlowTheme.of(context).primary,
                         )
                       ],
                       xLabels: FFAppState()
                           .stepsStats7d
+                          .map((e) => e)
+                          .toList()
                           .map((e) => e.toString())
                           .toList(),
                       barWidth: 16.0,
@@ -547,7 +546,7 @@ class _YourActivityWidgetState extends State<YourActivityWidget>
                         ),
                         showLabels: true,
                         labelInterval: 10.0,
-                        reservedSize: 28.0,
+                        reservedSize: 14.0,
                       ),
                       yAxisLabelInfo: AxisLabelInfo(
                         title: 'Number of Steps ',
@@ -555,6 +554,7 @@ class _YourActivityWidgetState extends State<YourActivityWidget>
                           fontSize: 14.0,
                         ),
                         showLabels: true,
+                        labelTextStyle: TextStyle(),
                         labelInterval: 10.0,
                         reservedSize: 42.0,
                       ),
