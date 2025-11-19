@@ -42,6 +42,15 @@ class FFAppState extends ChangeNotifier {
           await secureStorage.getString('ff_refreshToken') ?? _refreshToken;
     });
     await _safeInitAsync(() async {
+      _TodaySleepMinutes =
+          await secureStorage.getDouble('ff_TodaySleepMinutes') ??
+              _TodaySleepMinutes;
+    });
+    await _safeInitAsync(() async {
+      _todayFloors =
+          await secureStorage.getDouble('ff_todayFloors') ?? _todayFloors;
+    });
+    await _safeInitAsync(() async {
       _stepsStats7d = (await secureStorage.getStringList('ff_stepsStats7d'))
               ?.map(double.parse)
               .toList() ??
@@ -182,16 +191,26 @@ class FFAppState extends ChangeNotifier {
     _todaySteps = value;
   }
 
-  double _TodaySleepHours = 0.0;
-  double get TodaySleepHours => _TodaySleepHours;
-  set TodaySleepHours(double value) {
-    _TodaySleepHours = value;
+  double _TodaySleepMinutes = 0.0;
+  double get TodaySleepMinutes => _TodaySleepMinutes;
+  set TodaySleepMinutes(double value) {
+    _TodaySleepMinutes = value;
+    secureStorage.setDouble('ff_TodaySleepMinutes', value);
+  }
+
+  void deleteTodaySleepMinutes() {
+    secureStorage.delete(key: 'ff_TodaySleepMinutes');
   }
 
   double _todayFloors = 0.0;
   double get todayFloors => _todayFloors;
   set todayFloors(double value) {
     _todayFloors = value;
+    secureStorage.setDouble('ff_todayFloors', value);
+  }
+
+  void deleteTodayFloors() {
+    secureStorage.delete(key: 'ff_todayFloors');
   }
 
   List<double> _stepsStats7d = [];

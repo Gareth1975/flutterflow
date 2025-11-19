@@ -40,8 +40,9 @@ class _YourActivityWidgetState extends State<YourActivityWidget>
       FFAppState().stepsStats7d =
           _model.getStepsLast7days!.toList().cast<double>();
       safeSetState(() {});
-      _model.sahhaGetTodaySleep = await actions.sahhaGetTodaySleep();
-      FFAppState().TodaySleepHours = _model.sahhaGetTodaySleep!;
+      _model.todaySleepMinutes = await actions.sahhaGetTodaySleep();
+      FFAppState().TodaySleepMinutes = _model.todaySleepMinutes!;
+      safeSetState(() {});
     });
 
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
@@ -432,8 +433,9 @@ class _YourActivityWidgetState extends State<YourActivityWidget>
                                           children: [
                                             Text(
                                               valueOrDefault<String>(
-                                                _model.sahhaGetTodaySleep
-                                                    ?.toString(),
+                                                FFAppState()
+                                                    .TodaySleepMinutes
+                                                    .toString(),
                                                 '?',
                                               ),
                                               style: FlutterFlowTheme.of(
@@ -569,6 +571,37 @@ class _YourActivityWidgetState extends State<YourActivityWidget>
                         reservedSize: 42.0,
                       ),
                     ),
+                  ),
+                ),
+                Container(
+                  width: 100.0,
+                  height: 100.0,
+                  decoration: BoxDecoration(
+                    color: FlutterFlowTheme.of(context).secondaryBackground,
+                  ),
+                  child: Text(
+                    () {
+                      final mins = FFAppState().TodaySleepMinutes;
+                      final hours = (mins / 60).floor();
+                      final remainingMins = (mins % 60).round();
+                      return '$hours h ${remainingMins} m';
+                    }(),
+                    style: FlutterFlowTheme.of(context).bodyMedium.override(
+                          font: GoogleFonts.inter(
+                            fontWeight: FlutterFlowTheme.of(context)
+                                .bodyMedium
+                                .fontWeight,
+                            fontStyle: FlutterFlowTheme.of(context)
+                                .bodyMedium
+                                .fontStyle,
+                          ),
+                          letterSpacing: 0.0,
+                          fontWeight: FlutterFlowTheme.of(context)
+                              .bodyMedium
+                              .fontWeight,
+                          fontStyle:
+                              FlutterFlowTheme.of(context).bodyMedium.fontStyle,
+                        ),
                   ),
                 ),
               ],
