@@ -202,6 +202,16 @@ class _YourActivityWidgetState extends State<YourActivityWidget>
                                       decoration: BoxDecoration(
                                         color: FlutterFlowTheme.of(context)
                                             .secondaryBackground,
+                                        boxShadow: [
+                                          BoxShadow(
+                                            blurRadius: 4.0,
+                                            color: Color(0x33000000),
+                                            offset: Offset(
+                                              0.0,
+                                              2.0,
+                                            ),
+                                          )
+                                        ],
                                         borderRadius:
                                             BorderRadius.circular(8.0),
                                         border: Border.all(
@@ -522,8 +532,6 @@ class _YourActivityWidgetState extends State<YourActivityWidget>
                       ],
                       xLabels: FFAppState()
                           .stepsStats7d
-                          .map((e) => e)
-                          .toList()
                           .map((e) => e.toString())
                           .toList(),
                       barWidth: 16.0,
@@ -531,6 +539,7 @@ class _YourActivityWidgetState extends State<YourActivityWidget>
                       groupSpace: 8.0,
                       alignment: BarChartAlignment.spaceAround,
                       chartStylingInfo: ChartStylingInfo(
+                        enableTooltip: true,
                         backgroundColor:
                             FlutterFlowTheme.of(context).secondaryBackground,
                         showGrid: true,
