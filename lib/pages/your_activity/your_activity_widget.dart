@@ -522,8 +522,6 @@ class _YourActivityWidgetState extends State<YourActivityWidget>
                       ],
                       xLabels: FFAppState()
                           .stepsStats7d
-                          .map((e) => e)
-                          .toList()
                           .map((e) => e.toString())
                           .toList(),
                       barWidth: 16.0,
@@ -531,6 +529,7 @@ class _YourActivityWidgetState extends State<YourActivityWidget>
                       groupSpace: 8.0,
                       alignment: BarChartAlignment.spaceAround,
                       chartStylingInfo: ChartStylingInfo(
+                        enableTooltip: true,
                         backgroundColor:
                             FlutterFlowTheme.of(context).secondaryBackground,
                         showGrid: true,
