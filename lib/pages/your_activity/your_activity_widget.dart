@@ -40,6 +40,9 @@ class _YourActivityWidgetState extends State<YourActivityWidget>
       FFAppState().stepsStats7d =
           _model.getStepsLast7days!.toList().cast<double>();
       safeSetState(() {});
+      _model.sahhaGetTodaySleep = await actions.sahhaGetTodaySleep();
+      FFAppState().TodaySleepHours = FFAppState().TodaySleepHours;
+      safeSetState(() {});
     });
 
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
@@ -426,15 +429,9 @@ class _YourActivityWidgetState extends State<YourActivityWidget>
                                               CrossAxisAlignment.start,
                                           children: [
                                             Text(
-                                              valueOrDefault<String>(
-                                                getJsonField(
-                                                  FFAppState()
-                                                      .sleepStats7d
-                                                      .lastOrNull,
-                                                  r'''$.value''',
-                                                )?.toString(),
-                                                '?',
-                                              ),
+                                              FFAppState()
+                                                  .TodaySleepHours
+                                                  .toString(),
                                               style: FlutterFlowTheme.of(
                                                       context)
                                                   .displaySmall
@@ -523,23 +520,26 @@ class _YourActivityWidgetState extends State<YourActivityWidget>
                   child: Container(
                     width: 370.0,
                     height: 357.62,
-                    child: FlutterFlowBarChart(
-                      barData: [
-                        FFBarChartData(
+                    child: FlutterFlowLineChart(
+                      data: [
+                        FFLineChartData(
+                          xData: FFAppState().stepsStats7d,
                           yData: FFAppState().stepsStats7d,
-                          color: FlutterFlowTheme.of(context).primary,
+                          settings: LineChartBarData(
+                            color: FlutterFlowTheme.of(context).primary,
+                            barWidth: 2.0,
+                            isCurved: true,
+                            preventCurveOverShooting: true,
+                            belowBarData: BarAreaData(
+                              show: true,
+                              color: FlutterFlowTheme.of(context).accent1,
+                            ),
+                          ),
                         )
                       ],
-                      xLabels: FFAppState()
-                          .stepsStats7d
-                          .map((e) => e.toString())
-                          .toList(),
-                      barWidth: 16.0,
-                      barBorderRadius: BorderRadius.circular(8.0),
-                      groupSpace: 8.0,
-                      alignment: BarChartAlignment.spaceAround,
                       chartStylingInfo: ChartStylingInfo(
                         enableTooltip: true,
+                        tooltipBackgroundColor: Colors.white,
                         backgroundColor:
                             FlutterFlowTheme.of(context).secondaryBackground,
                         showGrid: true,
@@ -548,23 +548,12 @@ class _YourActivityWidgetState extends State<YourActivityWidget>
                       ),
                       axisBounds: AxisBounds(),
                       xAxisLabelInfo: AxisLabelInfo(
-                        title: 'Steps for the last 7 days ',
-                        titleTextStyle: TextStyle(
-                          fontSize: 14.0,
-                        ),
                         showLabels: true,
                         labelInterval: 10.0,
-                        reservedSize: 14.0,
+                        reservedSize: 32.0,
                       ),
                       yAxisLabelInfo: AxisLabelInfo(
-                        title: 'Number of Steps ',
-                        titleTextStyle: TextStyle(
-                          fontSize: 14.0,
-                        ),
-                        showLabels: true,
-                        labelTextStyle: TextStyle(),
-                        labelInterval: 10.0,
-                        reservedSize: 42.0,
+                        reservedSize: 40.0,
                       ),
                     ),
                   ),
