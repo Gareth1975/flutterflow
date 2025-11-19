@@ -6,10 +6,6 @@ import 'package:flutter/material.dart';
 // Begin custom action code
 // DO NOT REMOVE OR MODIFY THE CODE ABOVE!
 
-// Set your action name, define your arguments and return parameter,
-// and then add the boilerplate code using the green button on the right!
-import 'index.dart'; // Imports other custom actions
-
 import 'dart:convert';
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:sahha_flutter/sahha_flutter.dart';
@@ -20,25 +16,28 @@ import 'package:sahha_flutter/sahha_flutter.dart';
 Future<double> sahhaGetTodaySleep() async {
   if (kIsWeb) {
     // Sahha doesn't work on web; avoid crashes in FF web preview.
+    debugPrint('sahhaGetTodaySleep: running on web, returning 0.0');
     return 0.0;
   }
 
   try {
     final now = DateTime.now();
-    // Today from midnight to now
+    // Today from midnight local time to now
     final start = DateTime(now.year, now.month, now.day);
 
-    final dynamic raw = await SahhaFlutter.getStats(
+    final raw = await SahhaFlutter.getStats(
       sensor: SahhaSensor.sleep,
       startDateTime: start,
       endDateTime: now,
     );
 
+    debugPrint('sahhaGetTodaySleep raw stats: $raw');
+
     if (raw == null) {
+      debugPrint('sahhaGetTodaySleep: raw is null');
       return 0.0;
     }
 
-    // Normalise to List<dynamic>
     dynamic decoded = raw;
     if (raw is String) {
       decoded = jsonDecode(raw);
@@ -50,10 +49,12 @@ Future<double> sahhaGetTodaySleep() async {
     } else if (decoded is Map && decoded['stats'] is List) {
       statsList = decoded['stats'] as List;
     } else {
+      debugPrint('sahhaGetTodaySleep: unexpected JSON shape: $decoded');
       return 0.0;
     }
 
     if (statsList.isEmpty) {
+      debugPrint('sahhaGetTodaySleep: stats list is empty');
       return 0.0;
     }
 
@@ -61,22 +62,33 @@ Future<double> sahhaGetTodaySleep() async {
 
     for (final item in statsList) {
       if (item is Map) {
-        // Value can be under 'Value', 'value', 'count', 'minutes', etc.
-        final dynamic v = item['Value'] ??
-            item['value'] ??
-            item['Count'] ??
-            item['count'] ??
+        // Try a bunch of common sleep keys
+        final dynamic v = item['minutes'] ??
             item['Minutes'] ??
-            item['minutes'];
+            item['totalMinutes'] ??
+            item['total_minutes'] ??
+            item['totalMinutesAsleep'] ??
+            item['duration'] ??
+            item['durationMinutes'] ??
+            item['value'] ??
+            item['Value'] ??
+            item['count'] ??
+            item['Count'];
 
         if (v is num) {
           total += v.toDouble();
+        } else {
+          debugPrint(
+              'sahhaGetTodaySleep: item had no numeric value field: $item');
         }
       } else if (item is num) {
         total += item.toDouble();
+      } else {
+        debugPrint('sahhaGetTodaySleep: unexpected item type: $item');
       }
     }
 
+    debugPrint('sahhaGetTodaySleep: total=$total');
     return total;
   } catch (e, stack) {
     debugPrint('sahhaGetTodaySleep error: $e');
