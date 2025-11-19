@@ -41,8 +41,7 @@ class _YourActivityWidgetState extends State<YourActivityWidget>
           _model.getStepsLast7days!.toList().cast<double>();
       safeSetState(() {});
       _model.sahhaGetTodaySleep = await actions.sahhaGetTodaySleep();
-      FFAppState().TodaySleepHours = FFAppState().TodaySleepHours;
-      safeSetState(() {});
+      FFAppState().TodaySleepHours = _model.sahhaGetTodaySleep!;
     });
 
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
@@ -230,9 +229,12 @@ class _YourActivityWidgetState extends State<YourActivityWidget>
                                               CrossAxisAlignment.start,
                                           children: [
                                             Text(
-                                              FFAppState()
-                                                  .todaySteps
-                                                  .toString(),
+                                              valueOrDefault<String>(
+                                                FFAppState()
+                                                    .todaySteps
+                                                    .toString(),
+                                                '?',
+                                              ),
                                               style: FlutterFlowTheme.of(
                                                       context)
                                                   .displaySmall
@@ -429,9 +431,11 @@ class _YourActivityWidgetState extends State<YourActivityWidget>
                                               CrossAxisAlignment.start,
                                           children: [
                                             Text(
-                                              FFAppState()
-                                                  .TodaySleepHours
-                                                  .toString(),
+                                              valueOrDefault<String>(
+                                                _model.sahhaGetTodaySleep
+                                                    ?.toString(),
+                                                '?',
+                                              ),
                                               style: FlutterFlowTheme.of(
                                                       context)
                                                   .displaySmall
