@@ -9,3 +9,4 @@ export 'sahha_debug_get_steps_today.dart' show sahhaDebugGetStepsToday;
 export 'sahha_get_today_steps.dart' show sahhaGetTodaySteps;
 export 'get_steps_last7_days.dart' show getStepsLast7Days;
 export 'sahha_get_today_sleep.dart' show sahhaGetTodaySleep;
+export 'sahha_get_today_floors.dart' show sahhaGetTodayFloors;
