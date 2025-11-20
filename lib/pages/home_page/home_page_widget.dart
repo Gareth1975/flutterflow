@@ -236,50 +236,64 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                 ),
                               ].divide(SizedBox(height: 0.0)),
                             ),
-                            Column(
-                              mainAxisSize: MainAxisSize.max,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Expanded(
-                                  child: Align(
-                                    alignment: AlignmentDirectional(-1.0, 0.0),
-                                    child: Text(
-                                      'Your Activity \n\n',
-                                      maxLines: 1,
-                                      style: FlutterFlowTheme.of(context)
-                                          .bodyMedium
-                                          .override(
-                                            font: GoogleFonts.inter(
+                            Flexible(
+                              child: Column(
+                                mainAxisSize: MainAxisSize.max,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Expanded(
+                                    child: Align(
+                                      alignment:
+                                          AlignmentDirectional(-1.0, 0.0),
+                                      child: Text(
+                                        'Your Activity \n\n',
+                                        maxLines: 1,
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .override(
+                                              font: GoogleFonts.inter(
+                                                fontWeight: FontWeight.w600,
+                                                fontStyle:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyMedium
+                                                        .fontStyle,
+                                              ),
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .secondary,
+                                              fontSize: 28.0,
+                                              letterSpacing: 0.0,
                                               fontWeight: FontWeight.w600,
                                               fontStyle:
                                                   FlutterFlowTheme.of(context)
                                                       .bodyMedium
                                                       .fontStyle,
                                             ),
-                                            color: FlutterFlowTheme.of(context)
-                                                .secondary,
-                                            fontSize: 28.0,
-                                            letterSpacing: 0.0,
-                                            fontWeight: FontWeight.w600,
-                                            fontStyle:
-                                                FlutterFlowTheme.of(context)
-                                                    .bodyMedium
-                                                    .fontStyle,
-                                          ),
+                                      ),
                                     ),
                                   ),
-                                ),
-                                Align(
-                                  alignment: AlignmentDirectional(1.0, 0.0),
-                                  child: Padding(
-                                    padding: EdgeInsets.all(4.0),
-                                    child: AutoSizeText(
-                                      'View your steps, heart rate and\nsleep information.',
-                                      maxLines: 3,
-                                      style: FlutterFlowTheme.of(context)
-                                          .bodySmall
-                                          .override(
-                                            font: GoogleFonts.inter(
+                                  Align(
+                                    alignment: AlignmentDirectional(1.0, 0.0),
+                                    child: Padding(
+                                      padding: EdgeInsets.all(4.0),
+                                      child: AutoSizeText(
+                                        'View your steps, floors climbed and sleep information.',
+                                        maxLines: 3,
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodySmall
+                                            .override(
+                                              font: GoogleFonts.inter(
+                                                fontWeight:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodySmall
+                                                        .fontWeight,
+                                                fontStyle:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodySmall
+                                                        .fontStyle,
+                                              ),
+                                              fontSize: 16.0,
+                                              letterSpacing: 0.0,
                                               fontWeight:
                                                   FlutterFlowTheme.of(context)
                                                       .bodySmall
@@ -288,23 +302,13 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                   FlutterFlowTheme.of(context)
                                                       .bodySmall
                                                       .fontStyle,
+                                              lineHeight: 1.5,
                                             ),
-                                            fontSize: 16.0,
-                                            letterSpacing: 0.0,
-                                            fontWeight:
-                                                FlutterFlowTheme.of(context)
-                                                    .bodySmall
-                                                    .fontWeight,
-                                            fontStyle:
-                                                FlutterFlowTheme.of(context)
-                                                    .bodySmall
-                                                    .fontStyle,
-                                            lineHeight: 1.5,
-                                          ),
+                                      ),
                                     ),
                                   ),
-                                ),
-                              ],
+                                ],
+                              ),
                             ),
                           ],
                         ),
