@@ -11,6 +11,8 @@ class YourActivityModel extends FlutterFlowModel<YourActivityWidget> {
   List<double>? getStepsLast7days;
   // Stores action output result for [Custom Action - sahhaGetTodaySleep] action in YourActivity widget.
   double? todaySleepMinutes;
+  // Stores action output result for [Custom Action - sahhaGetTodayFloors] action in YourActivity widget.
+  double? sahhaGetTodayFloors;
 
   @override
   void initState(BuildContext context) {}
