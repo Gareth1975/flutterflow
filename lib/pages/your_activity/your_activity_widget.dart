@@ -243,44 +243,46 @@ class _YourActivityWidgetState extends State<YourActivityWidget>
                                             children: [
                                               Text(
                                                 valueOrDefault<String>(
-                                                  FFAppState()
-                                                      .todaySteps
-                                                      .toString(),
+                                                  () {
+                                                    final f =
+                                                        FFAppState().todaySteps;
+                                                    return f.toInt().toString();
+                                                  }(),
                                                   '?',
                                                 ),
-                                                style:
-                                                    FlutterFlowTheme.of(context)
-                                                        .displaySmall
-                                                        .override(
-                                                          font: GoogleFonts
-                                                              .interTight(
-                                                            fontWeight:
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .displaySmall
-                                                                    .fontWeight,
-                                                            fontStyle:
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .displaySmall
-                                                                    .fontStyle,
-                                                          ),
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
+                                                style: FlutterFlowTheme.of(
+                                                        context)
+                                                    .bodyMedium
+                                                    .override(
+                                                      font: GoogleFonts.inter(
+                                                        fontWeight:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyMedium
+                                                                .fontWeight,
+                                                        fontStyle:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyMedium
+                                                                .fontStyle,
+                                                      ),
+                                                      color:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
                                                               .secondary,
-                                                          fontSize: 36.0,
-                                                          letterSpacing: 0.0,
-                                                          fontWeight:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .displaySmall
-                                                                  .fontWeight,
-                                                          fontStyle:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .displaySmall
-                                                                  .fontStyle,
-                                                        ),
+                                                      fontSize: 34.0,
+                                                      letterSpacing: 0.0,
+                                                      fontWeight:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodyMedium
+                                                              .fontWeight,
+                                                      fontStyle:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodyMedium
+                                                              .fontStyle,
+                                                    ),
                                               ),
                                               Padding(
                                                 padding: EdgeInsetsDirectional
@@ -374,6 +376,7 @@ class _YourActivityWidgetState extends State<YourActivityWidget>
                                                           color: FlutterFlowTheme
                                                                   .of(context)
                                                               .secondary,
+                                                          fontSize: 34.0,
                                                           letterSpacing: 0.0,
                                                           fontWeight:
                                                               FlutterFlowTheme.of(
@@ -483,6 +486,7 @@ class _YourActivityWidgetState extends State<YourActivityWidget>
                                                           color: FlutterFlowTheme
                                                                   .of(context)
                                                               .secondary,
+                                                          fontSize: 34.0,
                                                           letterSpacing: 0.0,
                                                           fontWeight:
                                                               FlutterFlowTheme.of(
@@ -550,8 +554,8 @@ class _YourActivityWidgetState extends State<YourActivityWidget>
                     padding:
                         EdgeInsetsDirectional.fromSTEB(0.0, 30.0, 0.0, 0.0),
                     child: Container(
-                      width: 385.7,
-                      height: 362.98,
+                      width: 387.89,
+                      height: 363.0,
                       child: FlutterFlowBarChart(
                         barData: [
                           FFBarChartData(
@@ -592,10 +596,7 @@ class _YourActivityWidgetState extends State<YourActivityWidget>
                           titleTextStyle: TextStyle(
                             fontSize: 14.0,
                           ),
-                          showLabels: true,
-                          labelTextStyle: TextStyle(),
-                          labelInterval: 10.0,
-                          reservedSize: 42.0,
+                          reservedSize: 14.0,
                         ),
                       ),
                     ),
