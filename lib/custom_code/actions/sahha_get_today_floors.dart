@@ -14,6 +14,7 @@ import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:sahha_flutter/sahha_flutter.dart';
 
 /// Returns today's total floors climbed as a double.
+///
 /// If anything goes wrong, returns 0.0
 Future<double> sahhaGetTodayFloors() async {
   if (kIsWeb) {
@@ -28,14 +29,14 @@ Future<double> sahhaGetTodayFloors() async {
     dynamic raw;
     try {
       raw = await SahhaFlutter.getStats(
-        sensor: SahhaSensor.floors,
+        sensor: SahhaSensor.floors_climbed,
         startDateTime: start,
         endDateTime: now,
       );
     } catch (_) {
       // Fall back for SDKs that use floorsClimbed
       raw = await SahhaFlutter.getStats(
-        sensor: SahhaSensor.floorsClimbed,
+        sensor: SahhaSensor.floors_climbed,
         startDateTime: start,
         endDateTime: now,
       );
