@@ -171,7 +171,7 @@ class _LoginpageWidgetState extends State<LoginpageWidget>
                 Opacity(
                   opacity: 0.9,
                   child: Align(
-                    alignment: AlignmentDirectional(0.0, -30.0),
+                    alignment: AlignmentDirectional(0.0, -20.0),
                     child: Padding(
                       padding: EdgeInsets.all(8.0),
                       child: Container(
@@ -507,7 +507,6 @@ class _LoginpageWidgetState extends State<LoginpageWidget>
                                         )!;
                                         FFAppState().clientId =
                                             FFAppState().clientId;
-                                        safeSetState(() {});
 
                                         context.pushNamed(
                                             HomePageWidget.routeName);
