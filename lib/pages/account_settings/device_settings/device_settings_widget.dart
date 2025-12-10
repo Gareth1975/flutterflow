@@ -480,7 +480,9 @@ class _DeviceSettingsWidgetState extends State<DeviceSettingsWidget>
                                       unawaited(
                                         () async {
                                           _model.sahhaInitSandboxOut =
-                                              await actions.sahhaInitSandbox();
+                                              await actions.sahhaInitSandbox(
+                                            FFAppState().clientId,
+                                          );
                                         }(),
                                       );
 

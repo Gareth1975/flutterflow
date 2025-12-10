@@ -68,6 +68,9 @@ class FFAppState extends ChangeNotifier {
               }).toList() ??
               _sleepStats7d;
     });
+    await _safeInitAsync(() async {
+      _clientId = await secureStorage.getString('ff_clientId') ?? _clientId;
+    });
   }
 
   void update(VoidCallback callback) {
@@ -301,6 +304,17 @@ class FFAppState extends ChangeNotifier {
     sleepStats7d.insert(index, value);
     secureStorage.setStringList(
         'ff_sleepStats7d', _sleepStats7d.map((x) => jsonEncode(x)).toList());
+  }
+
+  String _clientId = '';
+  String get clientId => _clientId;
+  set clientId(String value) {
+    _clientId = value;
+    secureStorage.setString('ff_clientId', value);
+  }
+
+  void deleteClientId() {
+    secureStorage.delete(key: 'ff_clientId');
   }
 }
 

@@ -8,6 +8,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'package:webviewx_plus/webviewx_plus.dart';
 import 'loginpage_model.dart';
 export 'loginpage_model.dart';
@@ -91,6 +92,8 @@ class _LoginpageWidgetState extends State<LoginpageWidget>
 
   @override
   Widget build(BuildContext context) {
+    context.watch<FFAppState>();
+
     return Scaffold(
       key: scaffoldKey,
       body: Container(
@@ -502,6 +505,8 @@ class _LoginpageWidgetState extends State<LoginpageWidget>
                                             APIloginCall.forename(
                                           (_model.apiResultpri?.jsonBody ?? ''),
                                         )!;
+                                        FFAppState().clientId =
+                                            FFAppState().clientId;
                                         safeSetState(() {});
 
                                         context.pushNamed(
