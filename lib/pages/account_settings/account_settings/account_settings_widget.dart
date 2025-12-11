@@ -277,8 +277,15 @@ class _AccountSettingsWidgetState extends State<AccountSettingsWidget> {
                             hoverColor: Colors.transparent,
                             highlightColor: Colors.transparent,
                             onTap: () async {
-                              context
-                                  .pushNamed(PersonalDetailsWidget.routeName);
+                              context.pushNamed(
+                                PersonalDetailsWidget.routeName,
+                                extra: <String, dynamic>{
+                                  kTransitionInfoKey: TransitionInfo(
+                                    hasTransition: true,
+                                    transitionType: PageTransitionType.fade,
+                                  ),
+                                },
+                              );
                             },
                             child: Container(
                               width: double.infinity,
