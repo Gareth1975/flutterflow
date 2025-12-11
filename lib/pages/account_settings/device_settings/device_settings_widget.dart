@@ -254,15 +254,15 @@ class _DeviceSettingsWidgetState extends State<DeviceSettingsWidget>
 
                                           if ((_model.apiResultizl?.succeeded ??
                                               true)) {
-                                            FFAppState().profileToken =
+                                            FFAppState().profiletoken =
                                                 SahharegisterDeviceCall
                                                     .profiletoken(
                                               (_model.apiResultizl?.jsonBody ??
                                                   ''),
                                             )!;
                                             safeSetState(() {});
-                                            FFAppState().refreshToken =
-                                                FFAppState().refreshToken;
+                                            FFAppState().refreshtoken =
+                                                FFAppState().refreshtoken;
                                             safeSetState(() {});
                                           }
 
@@ -316,7 +316,7 @@ class _DeviceSettingsWidgetState extends State<DeviceSettingsWidget>
                                       alignment:
                                           AlignmentDirectional(-1.0, 0.0),
                                       child: Text(
-                                        FFAppState().profileToken,
+                                        FFAppState().profiletoken,
                                         textAlign: TextAlign.start,
                                         style: FlutterFlowTheme.of(context)
                                             .bodyMedium

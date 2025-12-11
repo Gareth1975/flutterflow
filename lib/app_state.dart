@@ -20,8 +20,8 @@ class FFAppState extends ChangeNotifier {
   Future initializePersistedState() async {
     secureStorage = FlutterSecureStorage();
     await _safeInitAsync(() async {
-      _profileToken =
-          await secureStorage.getString('ff_profileToken') ?? _profileToken;
+      _profiletoken =
+          await secureStorage.getString('ff_profiletoken') ?? _profiletoken;
     });
     await _safeInitAsync(() async {
       _Quote = await secureStorage.getString('ff_Quote') ?? _Quote;
@@ -38,8 +38,8 @@ class FFAppState extends ChangeNotifier {
           await secureStorage.getString('ff_avatarBase64') ?? _avatarBase64;
     });
     await _safeInitAsync(() async {
-      _refreshToken =
-          await secureStorage.getString('ff_refreshToken') ?? _refreshToken;
+      _refreshtoken =
+          await secureStorage.getString('ff_refreshtoken') ?? _refreshtoken;
     });
     await _safeInitAsync(() async {
       _TodaySleepMinutes =
@@ -90,15 +90,15 @@ class FFAppState extends ChangeNotifier {
 
   late FlutterSecureStorage secureStorage;
 
-  String _profileToken = '';
-  String get profileToken => _profileToken;
-  set profileToken(String value) {
-    _profileToken = value;
-    secureStorage.setString('ff_profileToken', value);
+  String _profiletoken = '';
+  String get profiletoken => _profiletoken;
+  set profiletoken(String value) {
+    _profiletoken = value;
+    secureStorage.setString('ff_profiletoken', value);
   }
 
-  void deleteProfileToken() {
-    secureStorage.delete(key: 'ff_profileToken');
+  void deleteProfiletoken() {
+    secureStorage.delete(key: 'ff_profiletoken');
   }
 
   String _Quote = '';
@@ -187,15 +187,15 @@ class FFAppState extends ChangeNotifier {
     _AccoountToken = value;
   }
 
-  String _refreshToken = '';
-  String get refreshToken => _refreshToken;
-  set refreshToken(String value) {
-    _refreshToken = value;
-    secureStorage.setString('ff_refreshToken', value);
+  String _refreshtoken = '';
+  String get refreshtoken => _refreshtoken;
+  set refreshtoken(String value) {
+    _refreshtoken = value;
+    secureStorage.setString('ff_refreshtoken', value);
   }
 
-  void deleteRefreshToken() {
-    secureStorage.delete(key: 'ff_refreshToken');
+  void deleteRefreshtoken() {
+    secureStorage.delete(key: 'ff_refreshtoken');
   }
 
   double _todaySteps = 0.0;

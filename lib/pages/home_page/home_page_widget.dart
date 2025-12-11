@@ -33,8 +33,8 @@ class _HomePageWidgetState extends State<HomePageWidget> {
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       await actions.sahhaAuthenticateWithToken(
-        FFAppState().profileToken,
-        FFAppState().refreshToken,
+        FFAppState().profiletoken,
+        FFAppState().refreshtoken,
       );
       await actions.sahhaEnableSensors();
       await actions.sahhaGetTodayStat(
