@@ -534,11 +534,11 @@ class _LoginpageWidgetState extends State<LoginpageWidget>
                                             (_model.apiResultpri?.jsonBody ??
                                                 ''),
                                           )!;
-                                          FFAppState().clientId = getJsonField(
+                                          FFAppState().clientId =
+                                              APIloginCall.clientId(
                                             (_model.apiResultpri?.jsonBody ??
                                                 ''),
-                                            r'''$.userid''',
-                                          ).toString();
+                                          )!;
 
                                           context.pushNamed(
                                               HomePageWidget.routeName);

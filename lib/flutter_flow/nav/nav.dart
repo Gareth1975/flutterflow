@@ -172,6 +172,13 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
             builder: (context, params) => NavBarPage(
                   initialPage: '',
                   page: DeviceSettingsWidget(),
+                )),
+        FFRoute(
+            name: PersonalDetailsWidget.routeName,
+            path: PersonalDetailsWidget.routePath,
+            builder: (context, params) => NavBarPage(
+                  initialPage: '',
+                  page: PersonalDetailsWidget(),
                 ))
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
       observers: [routeObserver],

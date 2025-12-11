@@ -71,6 +71,16 @@ class FFAppState extends ChangeNotifier {
     await _safeInitAsync(() async {
       _clientId = await secureStorage.getString('ff_clientId') ?? _clientId;
     });
+    await _safeInitAsync(() async {
+      if (await secureStorage.read(key: 'ff_userid') != null) {
+        try {
+          _userid =
+              jsonDecode(await secureStorage.getString('ff_userid') ?? '');
+        } catch (e) {
+          print("Can't decode persisted json. Error: $e.");
+        }
+      }
+    });
   }
 
   void update(VoidCallback callback) {
@@ -315,6 +325,17 @@ class FFAppState extends ChangeNotifier {
 
   void deleteClientId() {
     secureStorage.delete(key: 'ff_clientId');
+  }
+
+  dynamic _userid;
+  dynamic get userid => _userid;
+  set userid(dynamic value) {
+    _userid = value;
+    secureStorage.setString('ff_userid', jsonEncode(value));
+  }
+
+  void deleteUserid() {
+    secureStorage.delete(key: 'ff_userid');
   }
 }
 

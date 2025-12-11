@@ -19,3 +19,5 @@ export '/pages/account_settings/terms_and_conditions/terms_and_conditions_widget
     show TermsAndConditionsWidget;
 export '/pages/account_settings/device_settings/device_settings_widget.dart'
     show DeviceSettingsWidget;
+export '/pages/account_settings/personal_details/personal_details_widget.dart'
+    show PersonalDetailsWidget;
