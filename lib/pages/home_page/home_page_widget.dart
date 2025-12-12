@@ -220,23 +220,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                         Column(
                           mainAxisSize: MainAxisSize.max,
                           crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Align(
-                              alignment: AlignmentDirectional(-1.0, 0.0),
-                              child: Container(
-                                width: 100.0,
-                                height: 100.0,
-                                clipBehavior: Clip.antiAlias,
-                                decoration: BoxDecoration(
-                                  shape: BoxShape.circle,
-                                ),
-                                child: Image.network(
-                                  'https://images.unsplash.com/photo-1467139701929-18c0d27a7516?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NTYyMDF8MHwxfHNlYXJjaHwxM3x8YWN0aXZpdHl8ZW58MHx8fHwxNzU1NzAxMzkwfDA&ixlib=rb-4.1.0&q=80&w=1080',
-                                  fit: BoxFit.cover,
-                                ),
-                              ),
-                            ),
-                          ].divide(SizedBox(height: 0.0)),
+                          children: <Widget>[].divide(SizedBox(height: 0.0)),
                         ),
                         Flexible(
                           child: Column(
@@ -340,134 +324,6 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(20.0),
                     ),
-                    child: InkWell(
-                      splashColor: Colors.transparent,
-                      focusColor: Colors.transparent,
-                      hoverColor: Colors.transparent,
-                      highlightColor: Colors.transparent,
-                      onTap: () async {
-                        context.pushNamed(
-                          ScheduleWidget.routeName,
-                          extra: <String, dynamic>{
-                            kTransitionInfoKey: TransitionInfo(
-                              hasTransition: true,
-                              transitionType: PageTransitionType.leftToRight,
-                            ),
-                          },
-                        );
-                      },
-                      child: Row(
-                        mainAxisSize: MainAxisSize.max,
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          Column(
-                            mainAxisSize: MainAxisSize.max,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Align(
-                                alignment: AlignmentDirectional(-1.0, 0.0),
-                                child: Container(
-                                  width: 100.0,
-                                  height: 100.0,
-                                  clipBehavior: Clip.antiAlias,
-                                  decoration: BoxDecoration(
-                                    shape: BoxShape.circle,
-                                  ),
-                                  child: Image.network(
-                                    'https://images.unsplash.com/photo-1642359085898-d9fde39507c9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NTYyMDF8MHwxfHNlYXJjaHwzfHxzY2hlZHVsZXxlbnwwfHx8fDE3NTU3MDE0MTF8MA&ixlib=rb-4.1.0&q=80&w=1080',
-                                    fit: BoxFit.cover,
-                                  ),
-                                ),
-                              ),
-                            ].divide(SizedBox(height: 0.0)),
-                          ),
-                          Column(
-                            mainAxisSize: MainAxisSize.max,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Expanded(
-                                child: Align(
-                                  alignment: AlignmentDirectional(-1.0, 0.0),
-                                  child: Text(
-                                    'Your Schedule\n\n',
-                                    maxLines: 1,
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .override(
-                                          font: GoogleFonts.inter(
-                                            fontWeight: FontWeight.w600,
-                                            fontStyle:
-                                                FlutterFlowTheme.of(context)
-                                                    .bodyMedium
-                                                    .fontStyle,
-                                          ),
-                                          color: FlutterFlowTheme.of(context)
-                                              .secondary,
-                                          fontSize: 28.0,
-                                          letterSpacing: 0.0,
-                                          fontWeight: FontWeight.w600,
-                                          fontStyle:
-                                              FlutterFlowTheme.of(context)
-                                                  .bodyMedium
-                                                  .fontStyle,
-                                        ),
-                                  ),
-                                ),
-                              ),
-                              Align(
-                                alignment: AlignmentDirectional(1.0, 0.0),
-                                child: Padding(
-                                  padding: EdgeInsets.all(4.0),
-                                  child: AutoSizeText(
-                                    'View your schedule of engaging\nactivities and exercises.',
-                                    maxLines: 3,
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodySmall
-                                        .override(
-                                          font: GoogleFonts.inter(
-                                            fontWeight:
-                                                FlutterFlowTheme.of(context)
-                                                    .bodySmall
-                                                    .fontWeight,
-                                            fontStyle:
-                                                FlutterFlowTheme.of(context)
-                                                    .bodySmall
-                                                    .fontStyle,
-                                          ),
-                                          fontSize: 16.0,
-                                          letterSpacing: 0.0,
-                                          fontWeight:
-                                              FlutterFlowTheme.of(context)
-                                                  .bodySmall
-                                                  .fontWeight,
-                                          fontStyle:
-                                              FlutterFlowTheme.of(context)
-                                                  .bodySmall
-                                                  .fontStyle,
-                                          lineHeight: 1.5,
-                                        ),
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-              Opacity(
-                opacity: 0.0,
-                child: Padding(
-                  padding: EdgeInsets.all(10.0),
-                  child: Card(
-                    clipBehavior: Clip.antiAliasWithSaveLayer,
-                    color: FlutterFlowTheme.of(context).secondaryBackground,
-                    elevation: 0.0,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20.0),
-                    ),
                     child: Row(
                       mainAxisSize: MainAxisSize.max,
                       mainAxisAlignment: MainAxisAlignment.start,
@@ -475,28 +331,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                         Column(
                           mainAxisSize: MainAxisSize.max,
                           crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Align(
-                              alignment: AlignmentDirectional(0.0, 0.0),
-                              child: Container(
-                                width: 100.0,
-                                height: 100.0,
-                                clipBehavior: Clip.antiAlias,
-                                decoration: BoxDecoration(
-                                  shape: BoxShape.circle,
-                                ),
-                                child: Image.network(
-                                  'https://images.unsplash.com/photo-1617440168942-e4355a82b7fa?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NTYyMDF8MHwxfHNlYXJjaHwyM3x8ZW1vdGlvbnxlbnwwfHx8fDE3NTYzMDE3MDd8MA&ixlib=rb-4.1.0&q=80&w=400',
-                                  fit: BoxFit.cover,
-                                  errorBuilder: (context, error, stackTrace) =>
-                                      Image.asset(
-                                    'assets/images/error_image.jpg',
-                                    fit: BoxFit.cover,
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ].divide(SizedBox(height: 0.0)),
+                          children: <Widget>[].divide(SizedBox(height: 0.0)),
                         ),
                         Column(
                           mainAxisSize: MainAxisSize.max,
@@ -506,7 +341,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                               child: Align(
                                 alignment: AlignmentDirectional(-1.0, 0.0),
                                 child: Text(
-                                  'Take Our Mood Quiz\n\n',
+                                  'Your Schedule\n\n',
                                   maxLines: 1,
                                   style: FlutterFlowTheme.of(context)
                                       .bodyMedium
@@ -520,7 +355,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                         ),
                                         color: FlutterFlowTheme.of(context)
                                             .secondary,
-                                        fontSize: 24.0,
+                                        fontSize: 28.0,
                                         letterSpacing: 0.0,
                                         fontWeight: FontWeight.w600,
                                         fontStyle: FlutterFlowTheme.of(context)
@@ -530,31 +365,35 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                 ),
                               ),
                             ),
-                            Expanded(
+                            Align(
+                              alignment: AlignmentDirectional(1.0, 0.0),
                               child: Padding(
                                 padding: EdgeInsets.all(4.0),
-                                child: Text(
-                                  'Take our mood quiz ',
+                                child: AutoSizeText(
+                                  'View your schedule of engaging\nactivities and exercises.',
+                                  maxLines: 3,
                                   style: FlutterFlowTheme.of(context)
-                                      .bodyMedium
+                                      .bodySmall
                                       .override(
                                         font: GoogleFonts.inter(
                                           fontWeight:
                                               FlutterFlowTheme.of(context)
-                                                  .bodyMedium
+                                                  .bodySmall
                                                   .fontWeight,
                                           fontStyle:
                                               FlutterFlowTheme.of(context)
-                                                  .bodyMedium
+                                                  .bodySmall
                                                   .fontStyle,
                                         ),
+                                        fontSize: 16.0,
                                         letterSpacing: 0.0,
                                         fontWeight: FlutterFlowTheme.of(context)
-                                            .bodyMedium
+                                            .bodySmall
                                             .fontWeight,
                                         fontStyle: FlutterFlowTheme.of(context)
-                                            .bodyMedium
+                                            .bodySmall
                                             .fontStyle,
+                                        lineHeight: 1.5,
                                       ),
                                 ),
                               ),
