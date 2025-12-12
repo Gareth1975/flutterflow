@@ -539,6 +539,7 @@ class _LoginpageWidgetState extends State<LoginpageWidget>
                                             (_model.apiResultpri?.jsonBody ??
                                                 ''),
                                           )!;
+                                          safeSetState(() {});
 
                                           context.pushNamed(
                                               HomePageWidget.routeName);
