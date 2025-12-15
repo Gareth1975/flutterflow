@@ -21,3 +21,4 @@ export '/pages/account_settings/device_settings/device_settings_widget.dart'
     show DeviceSettingsWidget;
 export '/pages/account_settings/personal_details/personal_details_widget.dart'
     show PersonalDetailsWidget;
+export '/checkin/checkin_widget.dart' show CheckinWidget;
