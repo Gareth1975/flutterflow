@@ -155,6 +155,7 @@ class _NavBarPageState extends State<NavBarPage> {
     final tabs = {
       'HomePage': HomePageWidget(),
       'YourActivity': YourActivityWidget(),
+      'Checkin': CheckinWidget(),
       'Schedule': ScheduleWidget(),
       'AccountSettings': AccountSettingsWidget(),
     };
@@ -240,14 +241,14 @@ class _NavBarPageState extends State<NavBarPage> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Icon(
-                  Icons.calendar_month_outlined,
+                  Icons.check_circle_outline,
                   color: currentIndex == 2
                       ? FlutterFlowTheme.of(context).primary
                       : FlutterFlowTheme.of(context).secondaryText,
                   size: 24.0,
                 ),
                 Text(
-                  'Schedule',
+                  'Check-In',
                   overflow: TextOverflow.ellipsis,
                   style: TextStyle(
                     color: currentIndex == 2
@@ -264,8 +265,32 @@ class _NavBarPageState extends State<NavBarPage> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Icon(
-                  Icons.settings_suggest,
+                  Icons.calendar_month_outlined,
                   color: currentIndex == 3
+                      ? FlutterFlowTheme.of(context).primary
+                      : FlutterFlowTheme.of(context).secondaryText,
+                  size: 24.0,
+                ),
+                Text(
+                  'Schedule',
+                  overflow: TextOverflow.ellipsis,
+                  style: TextStyle(
+                    color: currentIndex == 3
+                        ? FlutterFlowTheme.of(context).primary
+                        : FlutterFlowTheme.of(context).secondaryText,
+                    fontSize: 11.0,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          FloatingNavbarItem(
+            customWidget: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Icon(
+                  Icons.settings_suggest,
+                  color: currentIndex == 4
                       ? FlutterFlowTheme.of(context).primary
                       : FlutterFlowTheme.of(context).secondaryText,
                   size: 24.0,
@@ -274,7 +299,7 @@ class _NavBarPageState extends State<NavBarPage> {
                   'Settings',
                   overflow: TextOverflow.ellipsis,
                   style: TextStyle(
-                    color: currentIndex == 3
+                    color: currentIndex == 4
                         ? FlutterFlowTheme.of(context).primary
                         : FlutterFlowTheme.of(context).secondaryText,
                     fontSize: 11.0,

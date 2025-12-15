@@ -1064,10 +1064,6 @@ class APIloginCall {
         response,
         r'''$.message''',
       ));
-  static String? clientID(dynamic response) => castToType<String>(getJsonField(
-        response,
-        r'''$.userId''',
-      ));
   static String? statuscode(dynamic response) =>
       castToType<String>(getJsonField(
         response,
@@ -1076,6 +1072,10 @@ class APIloginCall {
   static String? forename(dynamic response) => castToType<String>(getJsonField(
         response,
         r'''$.Forename''',
+      ));
+  static String? clientId(dynamic response) => castToType<String>(getJsonField(
+        response,
+        r'''$.userId''',
       ));
 }
 

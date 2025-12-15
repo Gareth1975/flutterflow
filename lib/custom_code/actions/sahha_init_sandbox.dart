@@ -11,7 +11,7 @@ import 'dart:async';
 import 'package:flutter/foundation.dart';
 import 'package:sahha_flutter/sahha_flutter.dart';
 
-Future<String?> sahhaInitSandbox() async {
+Future<String?> sahhaInitSandbox(String clientId) async {
   final log = StringBuffer();
   void add(String s) {
     debugPrint('[SahhaInitSandbox] $s');
@@ -22,7 +22,8 @@ Future<String?> sahhaInitSandbox() async {
   const appId = 'qIFCzHVb3XaQ8XEQ0HRQZoPyXxv0rbRc';
   const appSecret =
       '9MdBgudXVIfCjxUDmhjHwQ0I8Ez0ak0gxBPXTA1P5BgCmmmBDNSen1wAUa9MLtWB';
-  const externalId = '1001';
+  // ⬇️ NEW: passed in from FlutterFlow
+  final externalId = clientId;
 
   try {
     add('Configuring SDK (sandbox)…');

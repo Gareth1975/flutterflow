@@ -172,7 +172,21 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
             builder: (context, params) => NavBarPage(
                   initialPage: '',
                   page: DeviceSettingsWidget(),
-                ))
+                )),
+        FFRoute(
+            name: PersonalDetailsWidget.routeName,
+            path: PersonalDetailsWidget.routePath,
+            builder: (context, params) => NavBarPage(
+                  initialPage: '',
+                  page: PersonalDetailsWidget(),
+                )),
+        FFRoute(
+          name: CheckinWidget.routeName,
+          path: CheckinWidget.routePath,
+          builder: (context, params) => params.isEmpty
+              ? NavBarPage(initialPage: 'Checkin')
+              : CheckinWidget(),
+        )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
       observers: [routeObserver],
     );
