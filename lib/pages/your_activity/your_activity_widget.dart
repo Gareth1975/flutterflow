@@ -86,7 +86,7 @@ class _YourActivityWidgetState extends State<YourActivityWidget>
                     Align(
                       alignment: AlignmentDirectional(0.0, 0.0),
                       child: Text(
-                        'Ki Connect',
+                        'The Open Practice',
                         style: FlutterFlowTheme.of(context)
                             .headlineMedium
                             .override(

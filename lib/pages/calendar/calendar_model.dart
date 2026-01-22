@@ -1,10 +1,10 @@
 import '/backend/api_requests/api_calls.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/index.dart';
-import 'schedule_widget.dart' show ScheduleWidget;
+import 'calendar_widget.dart' show CalendarWidget;
 import 'package:flutter/material.dart';
 
-class ScheduleModel extends FlutterFlowModel<ScheduleWidget> {
+class CalendarModel extends FlutterFlowModel<CalendarWidget> {
   ///  Local state fields for this page.
 
   List<dynamic> activities = [];
@@ -18,7 +18,7 @@ class ScheduleModel extends FlutterFlowModel<ScheduleWidget> {
 
   ///  State fields for stateful widgets in this page.
 
-  // Stores action output result for [Backend Call - API (activities)] action in Schedule widget.
+  // Stores action output result for [Backend Call - API (activities)] action in Calendar widget.
   ApiCallResponse? apiResult1gx;
 
   @override

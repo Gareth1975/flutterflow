@@ -91,7 +91,12 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
                 ? NavBarPage(initialPage: 'HomePage')
                 : NavBarPage(
                     initialPage: 'HomePage',
-                    page: HomePageWidget(),
+                    page: HomePageWidget(
+                      goal: params.getParam(
+                        'goal',
+                        ParamType.String,
+                      ),
+                    ),
                   )),
         FFRoute(
           name: LoginpageWidget.routeName,
@@ -106,25 +111,28 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
             name: YourActivityWidget.routeName,
             path: YourActivityWidget.routePath,
-            builder: (context, params) => params.isEmpty
-                ? NavBarPage(initialPage: 'YourActivity')
-                : NavBarPage(
-                    initialPage: 'YourActivity',
-                    page: YourActivityWidget(),
-                  )),
+            builder: (context, params) => NavBarPage(
+                  initialPage: '',
+                  page: YourActivityWidget(),
+                )),
         FFRoute(
-          name: ScheduleWidget.routeName,
-          path: ScheduleWidget.routePath,
+          name: CalendarWidget.routeName,
+          path: CalendarWidget.routePath,
           builder: (context, params) => params.isEmpty
-              ? NavBarPage(initialPage: 'Schedule')
-              : ScheduleWidget(),
+              ? NavBarPage(initialPage: 'Calendar')
+              : CalendarWidget(),
         ),
         FFRoute(
             name: ActVideoDetails2Widget.routeName,
             path: ActVideoDetails2Widget.routePath,
             builder: (context, params) => NavBarPage(
                   initialPage: '',
-                  page: ActVideoDetails2Widget(),
+                  page: ActVideoDetails2Widget(
+                    video: params.getParam(
+                      'video',
+                      ParamType.String,
+                    ),
+                  ),
                 )),
         FFRoute(
             name: AccountSettingsWidget.routeName,
@@ -186,7 +194,16 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => params.isEmpty
               ? NavBarPage(initialPage: 'Checkin')
               : CheckinWidget(),
-        )
+        ),
+        FFRoute(
+            name: ProgramWidget.routeName,
+            path: ProgramWidget.routePath,
+            builder: (context, params) => params.isEmpty
+                ? NavBarPage(initialPage: 'Program')
+                : NavBarPage(
+                    initialPage: 'Program',
+                    page: ProgramWidget(),
+                  ))
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
       observers: [routeObserver],
     );

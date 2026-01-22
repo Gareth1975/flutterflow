@@ -114,7 +114,6 @@ class _MyAppState extends State<MyApp> {
       ],
       theme: ThemeData(
         brightness: Brightness.light,
-        useMaterial3: false,
       ),
       themeMode: _themeMode,
       routerConfig: _router,
@@ -154,9 +153,9 @@ class _NavBarPageState extends State<NavBarPage> {
   Widget build(BuildContext context) {
     final tabs = {
       'HomePage': HomePageWidget(),
-      'YourActivity': YourActivityWidget(),
+      'Program': ProgramWidget(),
       'Checkin': CheckinWidget(),
-      'Schedule': ScheduleWidget(),
+      'Calendar': CalendarWidget(),
       'AccountSettings': AccountSettingsWidget(),
     };
     final currentIndex = tabs.keys.toList().indexOf(_currentPageName);
@@ -224,7 +223,7 @@ class _NavBarPageState extends State<NavBarPage> {
                   size: 24.0,
                 ),
                 Text(
-                  'Activity',
+                  'Program',
                   overflow: TextOverflow.ellipsis,
                   style: TextStyle(
                     color: currentIndex == 1
@@ -245,7 +244,7 @@ class _NavBarPageState extends State<NavBarPage> {
                   color: currentIndex == 2
                       ? FlutterFlowTheme.of(context).primary
                       : FlutterFlowTheme.of(context).secondaryText,
-                  size: 24.0,
+                  size: 18.0,
                 ),
                 Text(
                   'Check-In',
@@ -272,7 +271,7 @@ class _NavBarPageState extends State<NavBarPage> {
                   size: 24.0,
                 ),
                 Text(
-                  'Schedule',
+                  'Calendar',
                   overflow: TextOverflow.ellipsis,
                   style: TextStyle(
                     color: currentIndex == 3
@@ -296,7 +295,7 @@ class _NavBarPageState extends State<NavBarPage> {
                   size: 24.0,
                 ),
                 Text(
-                  'Settings',
+                  'Profile',
                   overflow: TextOverflow.ellipsis,
                   style: TextStyle(
                     color: currentIndex == 4

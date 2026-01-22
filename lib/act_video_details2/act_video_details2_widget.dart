@@ -3,11 +3,17 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_youtube_player.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'act_video_details2_model.dart';
 export 'act_video_details2_model.dart';
 
 class ActVideoDetails2Widget extends StatefulWidget {
-  const ActVideoDetails2Widget({super.key});
+  const ActVideoDetails2Widget({
+    super.key,
+    required this.video,
+  });
+
+  final String? video;
 
   static String routeName = 'Act_Video_Details2';
   static String routePath = '/actVideoDetails2';
@@ -38,6 +44,8 @@ class _ActVideoDetails2WidgetState extends State<ActVideoDetails2Widget> {
 
   @override
   Widget build(BuildContext context) {
+    context.watch<FFAppState>();
+
     return YoutubeFullScreenWrapper(
       child: Scaffold(
         key: scaffoldKey,
@@ -58,7 +66,7 @@ class _ActVideoDetails2WidgetState extends State<ActVideoDetails2Widget> {
                     Align(
                       alignment: AlignmentDirectional(0.0, 0.0),
                       child: Text(
-                        'Ki Konnect',
+                        'The Open Practice',
                         style: FlutterFlowTheme.of(context)
                             .headlineMedium
                             .override(
@@ -101,23 +109,38 @@ class _ActVideoDetails2WidgetState extends State<ActVideoDetails2Widget> {
         ),
         body: SafeArea(
           top: true,
-          child: Container(
-            width: 393.0,
-            height: 380.1,
-            decoration: BoxDecoration(
-              color: FlutterFlowTheme.of(context).secondaryBackground,
-            ),
-            child: FlutterFlowYoutubePlayer(
-              url: 'v=GpXjU-ieAKU',
-              width: 393.0,
-              height: 380.0,
-              autoPlay: false,
-              looping: true,
-              mute: false,
-              showControls: true,
-              showFullScreen: true,
-              strictRelatedVideos: true,
-            ),
+          child: Row(
+            mainAxisSize: MainAxisSize.max,
+            children: [
+              Row(
+                mainAxisSize: MainAxisSize.max,
+                children: [
+                  Container(
+                    width: 393.0,
+                    height: 349.1,
+                    decoration: BoxDecoration(
+                      color: FlutterFlowTheme.of(context).secondaryBackground,
+                    ),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.max,
+                      children: [
+                        FlutterFlowYoutubePlayer(
+                          url: FFAppState().youtubelink,
+                          width: MediaQuery.sizeOf(context).width * 1.0,
+                          height: MediaQuery.sizeOf(context).height * 0.41,
+                          autoPlay: false,
+                          looping: true,
+                          mute: true,
+                          showControls: true,
+                          showFullScreen: true,
+                          strictRelatedVideos: true,
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ],
           ),
         ),
       ),
