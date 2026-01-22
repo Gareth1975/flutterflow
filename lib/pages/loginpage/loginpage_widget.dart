@@ -139,7 +139,7 @@ class _LoginpageWidgetState extends State<LoginpageWidget>
                         child: Padding(
                           padding: EdgeInsets.all(6.0),
                           child: Text(
-                            'Ki Konnect',
+                            'The Open Practice',
                             textAlign: TextAlign.center,
                             maxLines: 2,
                             style: FlutterFlowTheme.of(context)
@@ -467,10 +467,11 @@ class _LoginpageWidgetState extends State<LoginpageWidget>
                                               FlutterFlowTheme.of(context)
                                                   .primaryBackground,
                                           suffixIcon: InkWell(
-                                            onTap: () => safeSetState(
-                                              () => _model.passwordVisibility =
-                                                  !_model.passwordVisibility,
-                                            ),
+                                            onTap: () async {
+                                              safeSetState(() => _model
+                                                      .passwordVisibility =
+                                                  !_model.passwordVisibility);
+                                            },
                                             focusNode:
                                                 FocusNode(skipTraversal: true),
                                             child: Icon(
@@ -519,24 +520,28 @@ class _LoginpageWidgetState extends State<LoginpageWidget>
                                         0.0, 0.0, 0.0, 16.0),
                                     child: FFButtonWidget(
                                       onPressed: () async {
-                                        _model.apiResultpri =
-                                            await APIloginCall.call(
+                                        _model.apiloginiresult =
+                                            await ApiloginCall.call(
                                           emailaddress: _model
                                               .emailaddressTextController.text,
                                           password: _model
                                               .passwordTextController.text,
                                         );
 
-                                        if ((_model.apiResultpri?.succeeded ??
-                                            true)) {
+                                        if (ApiloginCall.statuscode(
+                                              (_model.apiloginiresult
+                                                      ?.jsonBody ??
+                                                  ''),
+                                            ) ==
+                                            '200') {
                                           FFAppState().Forename =
-                                              APIloginCall.forename(
-                                            (_model.apiResultpri?.jsonBody ??
+                                              ApiloginCall.forename(
+                                            (_model.apiloginiresult?.jsonBody ??
                                                 ''),
                                           )!;
                                           FFAppState().clientId =
-                                              APIloginCall.clientId(
-                                            (_model.apiResultpri?.jsonBody ??
+                                              ApiloginCall.clientId(
+                                            (_model.apiloginiresult?.jsonBody ??
                                                 ''),
                                           )!;
                                           safeSetState(() {});
@@ -549,14 +554,14 @@ class _LoginpageWidgetState extends State<LoginpageWidget>
                                             builder: (alertDialogContext) {
                                               return WebViewAware(
                                                 child: AlertDialog(
-                                                  title:
-                                                      Text('Login Unsucessful'),
-                                                  content: Text(getJsonField(
-                                                    (_model.apiResultpri
+                                                  title: Text(
+                                                      'Login Unsuccessful'),
+                                                  content:
+                                                      Text(ApiloginCall.message(
+                                                    (_model.apiloginiresult
                                                             ?.jsonBody ??
                                                         ''),
-                                                    r'''$.message''',
-                                                  ).toString()),
+                                                  )!),
                                                   actions: [
                                                     TextButton(
                                                       onPressed: () =>

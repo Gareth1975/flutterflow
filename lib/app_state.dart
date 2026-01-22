@@ -20,6 +20,12 @@ class FFAppState extends ChangeNotifier {
   Future initializePersistedState() async {
     secureStorage = FlutterSecureStorage();
     await _safeInitAsync(() async {
+      _Forename = await secureStorage.getString('ff_Forename') ?? _Forename;
+    });
+    await _safeInitAsync(() async {
+      _clientId = await secureStorage.getString('ff_clientId') ?? _clientId;
+    });
+    await _safeInitAsync(() async {
       _profiletoken =
           await secureStorage.getString('ff_profiletoken') ?? _profiletoken;
     });
@@ -29,9 +35,6 @@ class FFAppState extends ChangeNotifier {
     await _safeInitAsync(() async {
       _Currentuser =
           await secureStorage.getString('ff_Currentuser') ?? _Currentuser;
-    });
-    await _safeInitAsync(() async {
-      _Forename = await secureStorage.getString('ff_Forename') ?? _Forename;
     });
     await _safeInitAsync(() async {
       _avatarBase64 =
@@ -69,17 +72,20 @@ class FFAppState extends ChangeNotifier {
               _sleepStats7d;
     });
     await _safeInitAsync(() async {
-      _clientId = await secureStorage.getString('ff_clientId') ?? _clientId;
+      _goaltitle = await secureStorage.getString('ff_goaltitle') ?? _goaltitle;
     });
     await _safeInitAsync(() async {
-      if (await secureStorage.read(key: 'ff_userid') != null) {
-        try {
-          _userid =
-              jsonDecode(await secureStorage.getString('ff_userid') ?? '');
-        } catch (e) {
-          print("Can't decode persisted json. Error: $e.");
-        }
-      }
+      _goaldescription = await secureStorage.getString('ff_goaldescription') ??
+          _goaldescription;
+    });
+    await _safeInitAsync(() async {
+      _youtubelink =
+          await secureStorage.getString('ff_youtubelink') ?? _youtubelink;
+    });
+    await _safeInitAsync(() async {
+      _checkinpainscore =
+          await secureStorage.getDouble('ff_checkinpainscore') ??
+              _checkinpainscore;
     });
   }
 
@@ -89,6 +95,28 @@ class FFAppState extends ChangeNotifier {
   }
 
   late FlutterSecureStorage secureStorage;
+
+  String _Forename = '';
+  String get Forename => _Forename;
+  set Forename(String value) {
+    _Forename = value;
+    secureStorage.setString('ff_Forename', value);
+  }
+
+  void deleteForename() {
+    secureStorage.delete(key: 'ff_Forename');
+  }
+
+  String _clientId = '';
+  String get clientId => _clientId;
+  set clientId(String value) {
+    _clientId = value;
+    secureStorage.setString('ff_clientId', value);
+  }
+
+  void deleteClientId() {
+    secureStorage.delete(key: 'ff_clientId');
+  }
 
   String _profiletoken = '';
   String get profiletoken => _profiletoken;
@@ -121,17 +149,6 @@ class FFAppState extends ChangeNotifier {
 
   void deleteCurrentuser() {
     secureStorage.delete(key: 'ff_Currentuser');
-  }
-
-  String _Forename = '';
-  String get Forename => _Forename;
-  set Forename(String value) {
-    _Forename = value;
-    secureStorage.setString('ff_Forename', value);
-  }
-
-  void deleteForename() {
-    secureStorage.delete(key: 'ff_Forename');
   }
 
   List<dynamic> _activities = [];
@@ -316,26 +333,48 @@ class FFAppState extends ChangeNotifier {
         'ff_sleepStats7d', _sleepStats7d.map((x) => jsonEncode(x)).toList());
   }
 
-  String _clientId = '';
-  String get clientId => _clientId;
-  set clientId(String value) {
-    _clientId = value;
-    secureStorage.setString('ff_clientId', value);
+  String _goaltitle = 'not provided';
+  String get goaltitle => _goaltitle;
+  set goaltitle(String value) {
+    _goaltitle = value;
+    secureStorage.setString('ff_goaltitle', value);
   }
 
-  void deleteClientId() {
-    secureStorage.delete(key: 'ff_clientId');
+  void deleteGoaltitle() {
+    secureStorage.delete(key: 'ff_goaltitle');
   }
 
-  dynamic _userid;
-  dynamic get userid => _userid;
-  set userid(dynamic value) {
-    _userid = value;
-    secureStorage.setString('ff_userid', jsonEncode(value));
+  String _goaldescription = 'not provided';
+  String get goaldescription => _goaldescription;
+  set goaldescription(String value) {
+    _goaldescription = value;
+    secureStorage.setString('ff_goaldescription', value);
   }
 
-  void deleteUserid() {
-    secureStorage.delete(key: 'ff_userid');
+  void deleteGoaldescription() {
+    secureStorage.delete(key: 'ff_goaldescription');
+  }
+
+  String _youtubelink = '';
+  String get youtubelink => _youtubelink;
+  set youtubelink(String value) {
+    _youtubelink = value;
+    secureStorage.setString('ff_youtubelink', value);
+  }
+
+  void deleteYoutubelink() {
+    secureStorage.delete(key: 'ff_youtubelink');
+  }
+
+  double _checkinpainscore = 0.0;
+  double get checkinpainscore => _checkinpainscore;
+  set checkinpainscore(double value) {
+    _checkinpainscore = value;
+    secureStorage.setDouble('ff_checkinpainscore', value);
+  }
+
+  void deleteCheckinpainscore() {
+    secureStorage.delete(key: 'ff_checkinpainscore');
   }
 }
 

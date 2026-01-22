@@ -1,4 +1,3 @@
-import '/auth/custom_auth/auth_util.dart';
 import '/backend/api_requests/api_calls.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -7,36 +6,34 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'schedule_model.dart';
-export 'schedule_model.dart';
+import 'package:provider/provider.dart';
+import 'calendar_model.dart';
+export 'calendar_model.dart';
 
-class ScheduleWidget extends StatefulWidget {
-  const ScheduleWidget({super.key});
+class CalendarWidget extends StatefulWidget {
+  const CalendarWidget({super.key});
 
-  static String routeName = 'Schedule';
-  static String routePath = '/schedule';
+  static String routeName = 'Calendar';
+  static String routePath = '/calendar';
 
   @override
-  State<ScheduleWidget> createState() => _ScheduleWidgetState();
+  State<CalendarWidget> createState() => _CalendarWidgetState();
 }
 
-class _ScheduleWidgetState extends State<ScheduleWidget> {
-  late ScheduleModel _model;
+class _CalendarWidgetState extends State<CalendarWidget> {
+  late CalendarModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => ScheduleModel());
+    _model = createModel(context, () => CalendarModel());
 
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       _model.apiResult1gx = await ActivitiesCall.call(
-        clientID: valueOrDefault<String>(
-          currentUserUid,
-          '1020',
-        ),
+        clientID: FFAppState().clientId,
       );
 
       if ((_model.apiResult1gx?.succeeded ?? true)) {
@@ -65,6 +62,8 @@ class _ScheduleWidgetState extends State<ScheduleWidget> {
 
   @override
   Widget build(BuildContext context) {
+    context.watch<FFAppState>();
+
     return Scaffold(
       key: scaffoldKey,
       backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
@@ -80,7 +79,7 @@ class _ScheduleWidgetState extends State<ScheduleWidget> {
               child: Align(
                 alignment: AlignmentDirectional(-1.0, 0.0),
                 child: Text(
-                  'ki Konnect',
+                  'The Open Practice',
                   style: FlutterFlowTheme.of(context).headlineMedium.override(
                         font: GoogleFonts.interTight(
                           fontWeight: FlutterFlowTheme.of(context)
@@ -91,7 +90,7 @@ class _ScheduleWidgetState extends State<ScheduleWidget> {
                               .fontStyle,
                         ),
                         color: Colors.white,
-                        fontSize: 22.0,
+                        fontSize: 32.0,
                         letterSpacing: 0.0,
                         fontWeight: FlutterFlowTheme.of(context)
                             .headlineMedium
@@ -168,7 +167,8 @@ class _ScheduleWidgetState extends State<ScheduleWidget> {
                       mainAxisSize: MainAxisSize.max,
                       children: [
                         Text(
-                          'Your upcoming activities',
+                          _model.activities
+                              .containsMap(<String, dynamic>{}).toString(),
                           style:
                               FlutterFlowTheme.of(context).bodyMedium.override(
                                     font: GoogleFonts.inter(
@@ -217,32 +217,34 @@ class _ScheduleWidgetState extends State<ScheduleWidget> {
                         decoration: BoxDecoration(),
                         child: Padding(
                           padding: EdgeInsetsDirectional.fromSTEB(
-                              20.0, 0.0, 20.0, 0.0),
-                          child: Card(
-                            clipBehavior: Clip.antiAliasWithSaveLayer,
-                            color:
-                                FlutterFlowTheme.of(context).primaryBackground,
-                            elevation: 0.0,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(0.0),
-                            ),
-                            child: InkWell(
-                              splashColor: Colors.transparent,
-                              focusColor: Colors.transparent,
-                              hoverColor: Colors.transparent,
-                              highlightColor: Colors.transparent,
-                              onTap: () async {
-                                context.pushNamed(
-                                  ActVideoDetails2Widget.routeName,
-                                  extra: <String, dynamic>{
-                                    kTransitionInfoKey: TransitionInfo(
-                                      hasTransition: true,
-                                      transitionType:
-                                          PageTransitionType.rightToLeft,
-                                    ),
-                                  },
-                                );
-                              },
+                              10.0, 0.0, 10.0, 0.0),
+                          child: InkWell(
+                            splashColor: Colors.transparent,
+                            focusColor: Colors.transparent,
+                            hoverColor: Colors.transparent,
+                            highlightColor: Colors.transparent,
+                            onTap: () async {
+                              context.pushNamed(
+                                ActVideoDetails2Widget.routeName,
+                                queryParameters: {
+                                  'video': serializeParam(
+                                    getJsonField(
+                                      activitieslistItem,
+                                      r'''$..hdl_youtubelink''',
+                                    ).toString(),
+                                    ParamType.String,
+                                  ),
+                                }.withoutNulls,
+                              );
+                            },
+                            child: Card(
+                              clipBehavior: Clip.antiAliasWithSaveLayer,
+                              color: FlutterFlowTheme.of(context)
+                                  .primaryBackground,
+                              elevation: 0.0,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(0.0),
+                              ),
                               child: Row(
                                 mainAxisSize: MainAxisSize.max,
                                 mainAxisAlignment: MainAxisAlignment.start,
@@ -424,6 +426,46 @@ class _ScheduleWidgetState extends State<ScheduleWidget> {
                                                   r'''$..hdl_activitycategory''',
                                                 ).toString(),
                                                 maxLines: 3,
+                                                style:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyMedium
+                                                        .override(
+                                                          font:
+                                                              GoogleFonts.inter(
+                                                            fontWeight:
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyMedium
+                                                                    .fontWeight,
+                                                            fontStyle:
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyMedium
+                                                                    .fontStyle,
+                                                          ),
+                                                          letterSpacing: 0.0,
+                                                          fontWeight:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .bodyMedium
+                                                                  .fontWeight,
+                                                          fontStyle:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .bodyMedium
+                                                                  .fontStyle,
+                                                        ),
+                                              ),
+                                            ],
+                                          ),
+                                          Row(
+                                            mainAxisSize: MainAxisSize.max,
+                                            children: [
+                                              Text(
+                                                getJsonField(
+                                                  activitieslistItem,
+                                                  r'''$..hdl_youtubelink''',
+                                                ).toString(),
                                                 style:
                                                     FlutterFlowTheme.of(context)
                                                         .bodyMedium

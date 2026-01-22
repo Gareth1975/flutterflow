@@ -58,7 +58,7 @@ class _PersonalDetailsWidgetState extends State<PersonalDetailsWidget> {
                   Align(
                     alignment: AlignmentDirectional(0.0, 0.0),
                     child: Text(
-                      'Ki Konnect',
+                      'The Open Practice',
                       style:
                           FlutterFlowTheme.of(context).headlineMedium.override(
                                 font: GoogleFonts.interTight(

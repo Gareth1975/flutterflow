@@ -3,7 +3,7 @@ export '/pages/home_page/home_page_widget.dart' show HomePageWidget;
 export '/pages/loginpage/loginpage_widget.dart' show LoginpageWidget;
 export '/pages/old/messages/messages_widget.dart' show MessagesWidget;
 export '/pages/your_activity/your_activity_widget.dart' show YourActivityWidget;
-export '/pages/schedule/schedule_widget.dart' show ScheduleWidget;
+export '/pages/calendar/calendar_widget.dart' show CalendarWidget;
 export '/act_video_details2/act_video_details2_widget.dart'
     show ActVideoDetails2Widget;
 export '/pages/account_settings/account_settings/account_settings_widget.dart'
@@ -22,3 +22,4 @@ export '/pages/account_settings/device_settings/device_settings_widget.dart'
 export '/pages/account_settings/personal_details/personal_details_widget.dart'
     show PersonalDetailsWidget;
 export '/checkin/checkin_widget.dart' show CheckinWidget;
+export '/pages/program/program_widget.dart' show ProgramWidget;

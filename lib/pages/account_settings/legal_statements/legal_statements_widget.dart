@@ -57,7 +57,7 @@ class _LegalStatementsWidgetState extends State<LegalStatementsWidget> {
                   Align(
                     alignment: AlignmentDirectional(0.0, 0.0),
                     child: Text(
-                      'Ki Konnect',
+                      'The Open Practice',
                       style:
                           FlutterFlowTheme.of(context).headlineMedium.override(
                                 font: GoogleFonts.interTight(
