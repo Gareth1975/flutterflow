@@ -112,33 +112,48 @@ class _ActVideoDetails2WidgetState extends State<ActVideoDetails2Widget> {
           child: Row(
             mainAxisSize: MainAxisSize.max,
             children: [
-              Row(
-                mainAxisSize: MainAxisSize.max,
-                children: [
-                  Container(
-                    width: 393.0,
-                    height: 349.1,
-                    decoration: BoxDecoration(
-                      color: FlutterFlowTheme.of(context).secondaryBackground,
+              Container(
+                width: 393.0,
+                height: 349.1,
+                decoration: BoxDecoration(
+                  color: FlutterFlowTheme.of(context).secondaryBackground,
+                ),
+                child: Row(
+                  mainAxisSize: MainAxisSize.max,
+                  children: [
+                    Text(
+                      FFAppState().activitycategory,
+                      style: FlutterFlowTheme.of(context).bodyMedium.override(
+                            font: GoogleFonts.inter(
+                              fontWeight: FlutterFlowTheme.of(context)
+                                  .bodyMedium
+                                  .fontWeight,
+                              fontStyle: FlutterFlowTheme.of(context)
+                                  .bodyMedium
+                                  .fontStyle,
+                            ),
+                            letterSpacing: 0.0,
+                            fontWeight: FlutterFlowTheme.of(context)
+                                .bodyMedium
+                                .fontWeight,
+                            fontStyle: FlutterFlowTheme.of(context)
+                                .bodyMedium
+                                .fontStyle,
+                          ),
                     ),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.max,
-                      children: [
-                        FlutterFlowYoutubePlayer(
-                          url: FFAppState().youtubelink,
-                          width: MediaQuery.sizeOf(context).width * 1.0,
-                          height: MediaQuery.sizeOf(context).height * 0.41,
-                          autoPlay: false,
-                          looping: true,
-                          mute: true,
-                          showControls: true,
-                          showFullScreen: true,
-                          strictRelatedVideos: true,
-                        ),
-                      ],
+                    FlutterFlowYoutubePlayer(
+                      url: FFAppState().youtubelink,
+                      width: MediaQuery.sizeOf(context).width * 1.0,
+                      height: MediaQuery.sizeOf(context).height * 0.602,
+                      autoPlay: false,
+                      looping: true,
+                      mute: true,
+                      showControls: true,
+                      showFullScreen: true,
+                      strictRelatedVideos: true,
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ],
           ),

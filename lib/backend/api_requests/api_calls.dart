@@ -141,16 +141,24 @@ class ActivitiesCall {
           .map((x) => castToType<String>(x))
           .withoutNulls
           .toList();
-  static int? activitycategory(dynamic response) =>
-      castToType<int>(getJsonField(
-        response,
-        r'''$..hdl_activitycategory''',
-      ));
-  static List? youtubelink(dynamic response) => getJsonField(
+  static List<String>? youtubelink(dynamic response) => (getJsonField(
         response,
         r'''$.data[:].hdl_youtubelink''',
         true,
-      ) as List?;
+      ) as List?)
+          ?.withoutNulls
+          .map((x) => castToType<String>(x))
+          .withoutNulls
+          .toList();
+  static List<String>? activitycategory1(dynamic response) => (getJsonField(
+        response,
+        r'''$.data[:].hdl_activitycategory1''',
+        true,
+      ) as List?)
+          ?.withoutNulls
+          .map((x) => castToType<String>(x))
+          .withoutNulls
+          .toList();
 }
 
 class GoalapiCall {
