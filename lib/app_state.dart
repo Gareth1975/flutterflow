@@ -376,6 +376,12 @@ class FFAppState extends ChangeNotifier {
   void deleteCheckinpainscore() {
     secureStorage.delete(key: 'ff_checkinpainscore');
   }
+
+  String _activitycategory = '';
+  String get activitycategory => _activitycategory;
+  set activitycategory(String value) {
+    _activitycategory = value;
+  }
 }
 
 void _safeInit(Function() initializeField) {
