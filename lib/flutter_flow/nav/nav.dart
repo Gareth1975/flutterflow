@@ -118,16 +118,14 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: CalendarWidget.routeName,
           path: CalendarWidget.routePath,
-          builder: (context, params) => params.isEmpty
-              ? NavBarPage(initialPage: 'Calendar')
-              : CalendarWidget(),
+          builder: (context, params) => CalendarWidget(),
         ),
         FFRoute(
-            name: ActVideoDetails2Widget.routeName,
-            path: ActVideoDetails2Widget.routePath,
+            name: YoutubeplayWidget.routeName,
+            path: YoutubeplayWidget.routePath,
             builder: (context, params) => NavBarPage(
                   initialPage: '',
-                  page: ActVideoDetails2Widget(
+                  page: YoutubeplayWidget(
                     video: params.getParam(
                       'video',
                       ParamType.String,
@@ -203,7 +201,19 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
                 : NavBarPage(
                     initialPage: 'Program',
                     page: ProgramWidget(),
-                  ))
+                  )),
+        FFRoute(
+            name: VideoplayWidget.routeName,
+            path: VideoplayWidget.routePath,
+            builder: (context, params) => NavBarPage(
+                  initialPage: '',
+                  page: VideoplayWidget(
+                    video: params.getParam(
+                      'video',
+                      ParamType.String,
+                    ),
+                  ),
+                ))
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
       observers: [routeObserver],
     );

@@ -269,7 +269,7 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                       child: Padding(
                                         padding: EdgeInsets.all(2.0),
                                         child: Text(
-                                          'Your goal',
+                                          'Your intentions',
                                           style: FlutterFlowTheme.of(context)
                                               .bodyMedium
                                               .override(
@@ -526,13 +526,20 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                                 );
                                               }
 
-                                              return ListView.builder(
-                                                padding: EdgeInsets.zero,
+                                              return ListView.separated(
+                                                padding: EdgeInsets.fromLTRB(
+                                                  0,
+                                                  5.0,
+                                                  0,
+                                                  5.0,
+                                                ),
                                                 primary: false,
                                                 shrinkWrap: true,
                                                 scrollDirection: Axis.vertical,
                                                 itemCount:
                                                     activitieslist.length,
+                                                separatorBuilder: (_, __) =>
+                                                    SizedBox(height: 5.0),
                                                 itemBuilder: (context,
                                                     activitieslistIndex) {
                                                   final activitieslistItem =
@@ -551,7 +558,6 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                                                   0.0,
                                                                   5.0),
                                                       child: Container(
-                                                        height: 97.91,
                                                         decoration:
                                                             BoxDecoration(
                                                           borderRadius:
@@ -559,6 +565,9 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                                                   .circular(
                                                                       0.0),
                                                         ),
+                                                        alignment:
+                                                            AlignmentDirectional(
+                                                                -1.0, -1.0),
                                                         child: Padding(
                                                           padding:
                                                               EdgeInsetsDirectional
@@ -585,6 +594,16 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                                                 r'''$..hdl_youtubelink''',
                                                               ).toString();
                                                               FFAppState()
+                                                                      .hdlvideolink =
+                                                                  valueOrDefault<
+                                                                      String>(
+                                                                activitieslistItem
+                                                                    .toString(),
+                                                                '\$..hdl_videolink',
+                                                              );
+                                                              safeSetState(
+                                                                  () {});
+                                                              FFAppState()
                                                                       .activitycategory =
                                                                   getJsonField(
                                                                 activitieslistItem,
@@ -592,23 +611,60 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                                               ).toString();
                                                               safeSetState(
                                                                   () {});
+                                                              FFAppState()
+                                                                      .selectedtitle =
+                                                                  getJsonField(
+                                                                activitieslistItem,
+                                                                r'''$..hdl_title''',
+                                                              ).toString();
+                                                              safeSetState(
+                                                                  () {});
+                                                              FFAppState()
+                                                                      .selectedescription =
+                                                                  getJsonField(
+                                                                activitieslistItem,
+                                                                r'''$..hdl_description''',
+                                                              ).toString();
+                                                              safeSetState(
+                                                                  () {});
                                                               if (FFAppState()
                                                                       .activitycategory ==
                                                                   'Watch Video') {
-                                                                context
-                                                                    .pushNamed(
-                                                                  ActVideoDetails2Widget
-                                                                      .routeName,
-                                                                  queryParameters:
-                                                                      {
-                                                                    'video':
-                                                                        serializeParam(
-                                                                      '',
-                                                                      ParamType
-                                                                          .String,
-                                                                    ),
-                                                                  }.withoutNulls,
-                                                                );
+                                                                if (getJsonField(
+                                                                      activitieslistItem,
+                                                                      r'''$..hdl_youtubelink''',
+                                                                    ) !=
+                                                                    null) {
+                                                                  context
+                                                                      .pushNamed(
+                                                                    YoutubeplayWidget
+                                                                        .routeName,
+                                                                    queryParameters:
+                                                                        {
+                                                                      'video':
+                                                                          serializeParam(
+                                                                        '',
+                                                                        ParamType
+                                                                            .String,
+                                                                      ),
+                                                                    }.withoutNulls,
+                                                                  );
+                                                                } else {
+                                                                  context
+                                                                      .pushNamed(
+                                                                    VideoplayWidget
+                                                                        .routeName,
+                                                                    queryParameters:
+                                                                        {
+                                                                      'video':
+                                                                          serializeParam(
+                                                                        '',
+                                                                        ParamType
+                                                                            .String,
+                                                                      ),
+                                                                    }.withoutNulls,
+                                                                  );
+                                                                }
                                                               } else {
                                                                 context.pushNamed(
                                                                     CheckinWidget
@@ -629,197 +685,211 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                                                         .circular(
                                                                             0.0),
                                                               ),
-                                                              child: Row(
-                                                                mainAxisSize:
-                                                                    MainAxisSize
-                                                                        .max,
-                                                                mainAxisAlignment:
-                                                                    MainAxisAlignment
-                                                                        .start,
-                                                                crossAxisAlignment:
-                                                                    CrossAxisAlignment
-                                                                        .center,
-                                                                children: [
-                                                                  Align(
-                                                                    alignment:
-                                                                        AlignmentDirectional(
-                                                                            -1.0,
-                                                                            -1.0),
-                                                                    child:
-                                                                        Container(
-                                                                      width:
-                                                                          16.0,
-                                                                      height:
-                                                                          16.0,
-                                                                      decoration:
-                                                                          BoxDecoration(
-                                                                        color: FlutterFlowTheme.of(context)
-                                                                            .secondary,
-                                                                        shape: BoxShape
-                                                                            .circle,
-                                                                      ),
-                                                                    ),
-                                                                  ),
-                                                                  Align(
-                                                                    alignment:
-                                                                        AlignmentDirectional(
-                                                                            -1.0,
-                                                                            0.0),
-                                                                    child:
-                                                                        Padding(
-                                                                      padding:
-                                                                          EdgeInsets.all(
-                                                                              2.0),
+                                                              child:
+                                                                  IntrinsicHeight(
+                                                                child: Row(
+                                                                  mainAxisSize:
+                                                                      MainAxisSize
+                                                                          .max,
+                                                                  mainAxisAlignment:
+                                                                      MainAxisAlignment
+                                                                          .start,
+                                                                  crossAxisAlignment:
+                                                                      CrossAxisAlignment
+                                                                          .start,
+                                                                  children: [
+                                                                    Align(
+                                                                      alignment: AlignmentDirectional(
+                                                                          -1.0,
+                                                                          -1.0),
                                                                       child:
                                                                           Container(
                                                                         width:
-                                                                            2.0,
+                                                                            16.0,
                                                                         height:
-                                                                            110.0,
+                                                                            16.0,
                                                                         decoration:
                                                                             BoxDecoration(
                                                                           color:
-                                                                              FlutterFlowTheme.of(context).secondaryText,
-                                                                          borderRadius:
-                                                                              BorderRadius.only(
-                                                                            bottomLeft:
-                                                                                Radius.circular(0.0),
-                                                                            bottomRight:
-                                                                                Radius.circular(0.0),
-                                                                            topLeft:
-                                                                                Radius.circular(0.0),
-                                                                            topRight:
-                                                                                Radius.circular(0.0),
-                                                                          ),
+                                                                              FlutterFlowTheme.of(context).secondary,
                                                                           shape:
-                                                                              BoxShape.rectangle,
+                                                                              BoxShape.circle,
                                                                         ),
                                                                       ),
                                                                     ),
-                                                                  ),
-                                                                  Flexible(
-                                                                    child:
-                                                                        Align(
+                                                                    Align(
                                                                       alignment:
                                                                           AlignmentDirectional(
                                                                               -1.0,
                                                                               0.0),
                                                                       child:
                                                                           Padding(
-                                                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                                                            20.0,
-                                                                            0.0,
-                                                                            0.0,
+                                                                        padding:
+                                                                            EdgeInsets.all(2.0),
+                                                                        child:
+                                                                            Container(
+                                                                          width:
+                                                                              2.0,
+                                                                          height:
+                                                                              110.0,
+                                                                          decoration:
+                                                                              BoxDecoration(
+                                                                            color:
+                                                                                FlutterFlowTheme.of(context).secondaryText,
+                                                                            borderRadius:
+                                                                                BorderRadius.only(
+                                                                              bottomLeft: Radius.circular(0.0),
+                                                                              bottomRight: Radius.circular(0.0),
+                                                                              topLeft: Radius.circular(0.0),
+                                                                              topRight: Radius.circular(0.0),
+                                                                            ),
+                                                                            shape:
+                                                                                BoxShape.rectangle,
+                                                                          ),
+                                                                        ),
+                                                                      ),
+                                                                    ),
+                                                                    Flexible(
+                                                                      child:
+                                                                          Align(
+                                                                        alignment: AlignmentDirectional(
+                                                                            -1.0,
                                                                             0.0),
                                                                         child:
-                                                                            Column(
-                                                                          mainAxisSize:
-                                                                              MainAxisSize.min,
-                                                                          mainAxisAlignment:
-                                                                              MainAxisAlignment.spaceBetween,
-                                                                          crossAxisAlignment:
-                                                                              CrossAxisAlignment.start,
-                                                                          children: [
-                                                                            Row(
-                                                                              mainAxisSize: MainAxisSize.max,
-                                                                              children: [
-                                                                                Text(
-                                                                                  getJsonField(
-                                                                                    activitieslistItem,
-                                                                                    r'''$..hdl_date_display''',
-                                                                                  ).toString(),
-                                                                                  style: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                                                        font: GoogleFonts.inter(
+                                                                            Padding(
+                                                                          padding: EdgeInsetsDirectional.fromSTEB(
+                                                                              20.0,
+                                                                              0.0,
+                                                                              0.0,
+                                                                              0.0),
+                                                                          child:
+                                                                              Column(
+                                                                            mainAxisSize:
+                                                                                MainAxisSize.min,
+                                                                            mainAxisAlignment:
+                                                                                MainAxisAlignment.spaceBetween,
+                                                                            crossAxisAlignment:
+                                                                                CrossAxisAlignment.start,
+                                                                            children: [
+                                                                              Row(
+                                                                                mainAxisSize: MainAxisSize.max,
+                                                                                children: [
+                                                                                  AutoSizeText(
+                                                                                    getJsonField(
+                                                                                      activitieslistItem,
+                                                                                      r'''$..hdl_date_display''',
+                                                                                    ).toString(),
+                                                                                    style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                                                          font: GoogleFonts.inter(
+                                                                                            fontWeight: FontWeight.w500,
+                                                                                            fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
+                                                                                          ),
+                                                                                          fontSize: 12.0,
+                                                                                          letterSpacing: 0.0,
                                                                                           fontWeight: FontWeight.w500,
                                                                                           fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
                                                                                         ),
-                                                                                        fontSize: 14.0,
-                                                                                        letterSpacing: 0.0,
-                                                                                        fontWeight: FontWeight.w500,
-                                                                                        fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
-                                                                                      ),
-                                                                                ),
-                                                                              ],
-                                                                            ),
-                                                                            Row(
-                                                                              mainAxisSize: MainAxisSize.max,
-                                                                              mainAxisAlignment: MainAxisAlignment.start,
-                                                                              children: [
-                                                                                Expanded(
-                                                                                  child: Wrap(
-                                                                                    spacing: 0.0,
-                                                                                    runSpacing: 0.0,
-                                                                                    alignment: WrapAlignment.start,
-                                                                                    crossAxisAlignment: WrapCrossAlignment.start,
-                                                                                    direction: Axis.horizontal,
-                                                                                    runAlignment: WrapAlignment.start,
-                                                                                    verticalDirection: VerticalDirection.down,
-                                                                                    clipBehavior: Clip.none,
-                                                                                    children: [
-                                                                                      Wrap(
-                                                                                        spacing: 0.0,
-                                                                                        runSpacing: 0.0,
-                                                                                        alignment: WrapAlignment.start,
-                                                                                        crossAxisAlignment: WrapCrossAlignment.start,
-                                                                                        direction: Axis.horizontal,
-                                                                                        runAlignment: WrapAlignment.start,
-                                                                                        verticalDirection: VerticalDirection.down,
-                                                                                        clipBehavior: Clip.none,
-                                                                                        children: [
-                                                                                          Align(
-                                                                                            alignment: AlignmentDirectional(-1.0, 0.0),
-                                                                                            child: Text(
-                                                                                              getJsonField(
-                                                                                                activitieslistItem,
-                                                                                                r'''$..hdl_title''',
-                                                                                              ).toString(),
-                                                                                              maxLines: 3,
-                                                                                              style: FlutterFlowTheme.of(context).titleMedium.override(
-                                                                                                    font: GoogleFonts.interTight(
+                                                                                  ),
+                                                                                ],
+                                                                              ),
+                                                                              Row(
+                                                                                mainAxisSize: MainAxisSize.max,
+                                                                                mainAxisAlignment: MainAxisAlignment.start,
+                                                                                children: [
+                                                                                  Expanded(
+                                                                                    child: Wrap(
+                                                                                      spacing: 0.0,
+                                                                                      runSpacing: 0.0,
+                                                                                      alignment: WrapAlignment.start,
+                                                                                      crossAxisAlignment: WrapCrossAlignment.start,
+                                                                                      direction: Axis.horizontal,
+                                                                                      runAlignment: WrapAlignment.start,
+                                                                                      verticalDirection: VerticalDirection.down,
+                                                                                      clipBehavior: Clip.none,
+                                                                                      children: [
+                                                                                        Wrap(
+                                                                                          spacing: 0.0,
+                                                                                          runSpacing: 0.0,
+                                                                                          alignment: WrapAlignment.start,
+                                                                                          crossAxisAlignment: WrapCrossAlignment.start,
+                                                                                          direction: Axis.horizontal,
+                                                                                          runAlignment: WrapAlignment.start,
+                                                                                          verticalDirection: VerticalDirection.down,
+                                                                                          clipBehavior: Clip.none,
+                                                                                          children: [
+                                                                                            Align(
+                                                                                              alignment: AlignmentDirectional(-1.0, 0.0),
+                                                                                              child: AnimatedDefaultTextStyle(
+                                                                                                style: FlutterFlowTheme.of(context).titleMedium.override(
+                                                                                                      font: GoogleFonts.interTight(
+                                                                                                        fontWeight: FontWeight.w500,
+                                                                                                        fontStyle: FlutterFlowTheme.of(context).titleMedium.fontStyle,
+                                                                                                      ),
+                                                                                                      fontSize: 12.0,
+                                                                                                      letterSpacing: 0.0,
                                                                                                       fontWeight: FontWeight.w500,
                                                                                                       fontStyle: FlutterFlowTheme.of(context).titleMedium.fontStyle,
                                                                                                     ),
-                                                                                                    fontSize: 14.0,
+                                                                                                duration: Duration(milliseconds: 600),
+                                                                                                curve: Curves.easeIn,
+                                                                                                child: Text(
+                                                                                                  getJsonField(
+                                                                                                    activitieslistItem,
+                                                                                                    r'''$..hdl_title''',
+                                                                                                  ).toString(),
+                                                                                                  maxLines: 3,
+                                                                                                ),
+                                                                                              ),
+                                                                                            ),
+                                                                                            AutoSizeText(
+                                                                                              getJsonField(
+                                                                                                activitieslistItem,
+                                                                                                r'''$..hdl_description''',
+                                                                                              ).toString(),
+                                                                                              textAlign: TextAlign.start,
+                                                                                              style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                                                                    font: GoogleFonts.inter(
+                                                                                                      fontWeight: FontWeight.normal,
+                                                                                                      fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
+                                                                                                    ),
+                                                                                                    fontSize: 12.0,
                                                                                                     letterSpacing: 0.0,
-                                                                                                    fontWeight: FontWeight.w500,
-                                                                                                    fontStyle: FlutterFlowTheme.of(context).titleMedium.fontStyle,
+                                                                                                    fontWeight: FontWeight.normal,
+                                                                                                    fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
                                                                                                   ),
                                                                                             ),
-                                                                                          ),
-                                                                                          Padding(
-                                                                                            padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
-                                                                                            child: Text(
+                                                                                            AutoSizeText(
                                                                                               getJsonField(
                                                                                                 activitieslistItem,
                                                                                                 r'''$..hdl_activitycategory1''',
                                                                                               ).toString(),
                                                                                               style: FlutterFlowTheme.of(context).bodyMedium.override(
                                                                                                     font: GoogleFonts.inter(
-                                                                                                      fontWeight: FontWeight.w500,
+                                                                                                      fontWeight: FontWeight.normal,
                                                                                                       fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
                                                                                                     ),
-                                                                                                    fontSize: 14.0,
+                                                                                                    fontSize: 12.0,
                                                                                                     letterSpacing: 0.0,
-                                                                                                    fontWeight: FontWeight.w500,
+                                                                                                    fontWeight: FontWeight.normal,
                                                                                                     fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
                                                                                                   ),
                                                                                             ),
-                                                                                          ),
-                                                                                        ],
-                                                                                      ),
-                                                                                    ],
+                                                                                          ],
+                                                                                        ),
+                                                                                      ],
+                                                                                    ),
                                                                                   ),
-                                                                                ),
-                                                                              ],
-                                                                            ),
-                                                                          ],
+                                                                                ],
+                                                                              ),
+                                                                            ],
+                                                                          ),
                                                                         ),
                                                                       ),
                                                                     ),
-                                                                  ),
-                                                                ].divide(SizedBox(
-                                                                    width:
-                                                                        0.0)),
+                                                                  ].divide(SizedBox(
+                                                                      width:
+                                                                          0.0)),
+                                                                ),
                                                               ),
                                                             ),
                                                           ),

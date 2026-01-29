@@ -225,7 +225,7 @@ class _CalendarWidgetState extends State<CalendarWidget> {
                             highlightColor: Colors.transparent,
                             onTap: () async {
                               context.pushNamed(
-                                ActVideoDetails2Widget.routeName,
+                                YoutubeplayWidget.routeName,
                                 queryParameters: {
                                   'video': serializeParam(
                                     getJsonField(
