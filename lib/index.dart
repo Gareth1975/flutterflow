@@ -4,8 +4,7 @@ export '/pages/loginpage/loginpage_widget.dart' show LoginpageWidget;
 export '/pages/old/messages/messages_widget.dart' show MessagesWidget;
 export '/pages/your_activity/your_activity_widget.dart' show YourActivityWidget;
 export '/pages/calendar/calendar_widget.dart' show CalendarWidget;
-export '/act_video_details2/act_video_details2_widget.dart'
-    show ActVideoDetails2Widget;
+export '/youtubeplay/youtubeplay_widget.dart' show YoutubeplayWidget;
 export '/pages/account_settings/account_settings/account_settings_widget.dart'
     show AccountSettingsWidget;
 export '/pages/old/setting_delete/setting_delete_widget.dart'
@@ -23,3 +22,4 @@ export '/pages/account_settings/personal_details/personal_details_widget.dart'
     show PersonalDetailsWidget;
 export '/checkin/checkin_widget.dart' show CheckinWidget;
 export '/pages/program/program_widget.dart' show ProgramWidget;
+export '/videoplay/videoplay_widget.dart' show VideoplayWidget;

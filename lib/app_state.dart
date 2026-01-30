@@ -382,6 +382,24 @@ class FFAppState extends ChangeNotifier {
   set activitycategory(String value) {
     _activitycategory = value;
   }
+
+  String _selectedtitle = '';
+  String get selectedtitle => _selectedtitle;
+  set selectedtitle(String value) {
+    _selectedtitle = value;
+  }
+
+  String _selectedescription = '';
+  String get selectedescription => _selectedescription;
+  set selectedescription(String value) {
+    _selectedescription = value;
+  }
+
+  String _hdlvideolink = '';
+  String get hdlvideolink => _hdlvideolink;
+  set hdlvideolink(String value) {
+    _hdlvideolink = value;
+  }
 }
 
 void _safeInit(Function() initializeField) {
