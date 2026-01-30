@@ -172,15 +172,62 @@ class _VideoplayWidgetState extends State<VideoplayWidget> {
                                     color: FlutterFlowTheme.of(context)
                                         .secondaryBackground,
                                   ),
-                                  child: Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        10.0, 0.0, 10.0, 10.0),
-                                    child: AutoSizeText(
-                                      FFAppState().selectedescription,
-                                      style: FlutterFlowTheme.of(context)
-                                          .bodyMedium
-                                          .override(
-                                            font: GoogleFonts.inter(
+                                  child: Row(
+                                    mainAxisSize: MainAxisSize.max,
+                                    children: [
+                                      Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            10.0, 0.0, 10.0, 10.0),
+                                        child: AutoSizeText(
+                                          FFAppState().selectedescription,
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyMedium
+                                              .override(
+                                                font: GoogleFonts.inter(
+                                                  fontWeight:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .bodyMedium
+                                                          .fontWeight,
+                                                  fontStyle:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .bodyMedium
+                                                          .fontStyle,
+                                                ),
+                                                fontSize: 10.0,
+                                                letterSpacing: 0.0,
+                                                fontWeight:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyMedium
+                                                        .fontWeight,
+                                                fontStyle:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyMedium
+                                                        .fontStyle,
+                                              ),
+                                          overflow: TextOverflow.clip,
+                                        ),
+                                      ),
+                                      Text(
+                                        valueOrDefault<String>(
+                                          widget.video,
+                                          'link to video',
+                                        ),
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .override(
+                                              font: GoogleFonts.inter(
+                                                fontWeight:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyMedium
+                                                        .fontWeight,
+                                                fontStyle:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyMedium
+                                                        .fontStyle,
+                                              ),
+                                              letterSpacing: 0.0,
                                               fontWeight:
                                                   FlutterFlowTheme.of(context)
                                                       .bodyMedium
@@ -190,19 +237,8 @@ class _VideoplayWidgetState extends State<VideoplayWidget> {
                                                       .bodyMedium
                                                       .fontStyle,
                                             ),
-                                            fontSize: 10.0,
-                                            letterSpacing: 0.0,
-                                            fontWeight:
-                                                FlutterFlowTheme.of(context)
-                                                    .bodyMedium
-                                                    .fontWeight,
-                                            fontStyle:
-                                                FlutterFlowTheme.of(context)
-                                                    .bodyMedium
-                                                    .fontStyle,
-                                          ),
-                                      overflow: TextOverflow.clip,
-                                    ),
+                                      ),
+                                    ],
                                   ),
                                 ),
                               ),
@@ -237,11 +273,11 @@ class _VideoplayWidgetState extends State<VideoplayWidget> {
                         videoPlayerBuilder: (path) => FlutterFlowVideoPlayer(
                           path: path,
                           width: 300.0,
-                          autoPlay: false,
+                          autoPlay: true,
                           looping: true,
                           showControls: true,
                           allowFullScreen: true,
-                          allowPlaybackSpeedMenu: false,
+                          allowPlaybackSpeedMenu: true,
                         ),
                       ),
                     ],
