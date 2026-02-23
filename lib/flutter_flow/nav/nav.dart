@@ -213,7 +213,16 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
                       ParamType.String,
                     ),
                   ),
-                ))
+                )),
+        FFRoute(
+            name: PowerpointviewWidget.routeName,
+            path: PowerpointviewWidget.routePath,
+            builder: (context, params) => params.isEmpty
+                ? NavBarPage(initialPage: 'powerpointview')
+                : NavBarPage(
+                    initialPage: 'powerpointview',
+                    page: PowerpointviewWidget(),
+                  ))
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
       observers: [routeObserver],
     );
