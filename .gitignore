@@ -1,0 +1,76 @@
+# Your existing ignores
+.idea/
+flutterflow/
+
+# Flutter/Dart build & tool files
+.dart_tool/
+.packages
+.pub-cache/
+.flutter-plugins
+.flutter-plugins-dependencies
+generated_plugins/
+
+# Flutter build outputs
+build/
+**/build/
+
+# Android
+# Ignore Gradle artifacts
+android/.gradle/
+android/.idea/
+android/local.properties
+android/**/*.iml
+
+# Ignore Android generated folders
+android/app/build/
+android/app/intermediates/
+android/app/generated/
+android/app/outputs/
+android/app/.cxx/
+
+# Ignore accidental case-sensitive folder issue
+android/app/src/main/Kotlin/   # <- WRONG (capital K)
+# DO NOT ignore correct kotlin folder:
+# android/app/src/main/kotlin/
+
+# Ignore signing files (never commit keystores)
+*.jks
+*.keystore
+key.properties
+
+# iOS
+ios/Pods/
+ios/Flutter/Flutter.framework
+ios/Flutter/Flutter.podspec
+ios/.symlinks/
+ios/Flutter/ephemeral/
+ios/Flutter/App.framework
+ios/Flutter/engine/
+ios/Flutter/Generated.xcconfig
+ios/Flutter/flutter_export_environment.sh
+ios/Runner/GeneratedPluginRegistrant.*
+
+# Xcode
+*.xcuserstate
+*.xcworkspace/
+*.xcuserdata/
+*.moved-aside
+DerivedData/
+.idea/
+
+# VS Code
+.vscode/
+
+# Editor temporary files
+*.swp
+*.swo
+*.log
+
+# OS metadata
+.DS_Store
+Thumbs.db
+
+# Web (if ever used)
+web/.dart_tool/
+web/.dart_tool/
+
