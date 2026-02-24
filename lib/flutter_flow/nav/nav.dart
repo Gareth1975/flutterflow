@@ -126,8 +126,8 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
             builder: (context, params) => NavBarPage(
                   initialPage: '',
                   page: YoutubeplayWidget(
-                    video: params.getParam(
-                      'video',
+                    youtubstring: params.getParam(
+                      'youtubstring',
                       ParamType.String,
                     ),
                   ),

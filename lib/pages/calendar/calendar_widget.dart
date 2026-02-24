@@ -227,10 +227,10 @@ class _CalendarWidgetState extends State<CalendarWidget> {
                               context.pushNamed(
                                 YoutubeplayWidget.routeName,
                                 queryParameters: {
-                                  'video': serializeParam(
+                                  'youtubstring': serializeParam(
                                     getJsonField(
                                       activitieslistItem,
-                                      r'''$..hdl_youtubelink''',
+                                      r'''$.hdl_youtubelink''',
                                     ).toString(),
                                     ParamType.String,
                                   ),
