@@ -38,6 +38,7 @@ dependencies:
   device_info_plus: 11.5.0
   device_info_plus_platform_interface: 7.0.3
   equatable: 2.0.7
+  expandable: ^5.0.1
   file_picker: 10.1.9
   fl_chart: 1.0.0
   floating_bottom_navigation_bar: 1.5.2
