@@ -42,11 +42,7 @@
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 
-	<key>NSCameraUsageDescription</key>
-    <string>camers please :</string>
-	<key>NSPhotoLibraryUsageDescription</key>
-    <string>Ki Konnect Needs permission to access your camera
-</string>
+
 	<key>PermissionGroupNotification</key>
     <string>notifications </string>
 	<key>NSLocationWhenInUseUsageDescription</key>

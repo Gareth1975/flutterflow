@@ -1,10 +1,12 @@
 import '/backend/api_requests/api_calls.dart';
+import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/index.dart';
 import 'package:expandable/expandable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'program_model.dart';
@@ -20,10 +22,13 @@ class ProgramWidget extends StatefulWidget {
   State<ProgramWidget> createState() => _ProgramWidgetState();
 }
 
-class _ProgramWidgetState extends State<ProgramWidget> {
+class _ProgramWidgetState extends State<ProgramWidget>
+    with TickerProviderStateMixin {
   late ProgramModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
+
+  final animationsMap = <String, AnimationInfo>{};
 
   @override
   void initState() {
@@ -37,6 +42,21 @@ class _ProgramWidgetState extends State<ProgramWidget> {
       );
 
       safeSetState(() {});
+    });
+
+    animationsMap.addAll({
+      'listViewOnPageLoadAnimation': AnimationInfo(
+        trigger: AnimationTrigger.onPageLoad,
+        effectsBuilder: () => [
+          FadeEffect(
+            curve: Curves.easeIn,
+            delay: 0.0.ms,
+            duration: 2000.0.ms,
+            begin: 0.0,
+            end: 1.0,
+          ),
+        ],
+      ),
     });
 
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
@@ -178,6 +198,13 @@ class _ProgramWidgetState extends State<ProgramWidget> {
                           (_model.apiprogram?.jsonBody ?? ''),
                           r'''$.programmes''',
                         ).toList();
+                        if (programmes.isEmpty) {
+                          return Image.asset(
+                            'assets/images/ChatGPT_Image_Feb_24,_2026,_03_11_44_PM.png',
+                            width: MediaQuery.sizeOf(context).width * 0.3,
+                            height: MediaQuery.sizeOf(context).height * 0.2,
+                          );
+                        }
 
                         return ListView.separated(
                           padding: EdgeInsets.symmetric(vertical: 10.0),
@@ -952,7 +979,8 @@ class _ProgramWidgetState extends State<ProgramWidget> {
                               ),
                             );
                           },
-                        );
+                        ).animateOnPageLoad(
+                            animationsMap['listViewOnPageLoadAnimation']!);
                       },
                     ),
                   ),
