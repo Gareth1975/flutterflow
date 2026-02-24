@@ -3,6 +3,7 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_youtube_player.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -33,6 +34,12 @@ class _YoutubeplayWidgetState extends State<YoutubeplayWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => YoutubeplayModel());
+
+    // On page load action.
+    SchedulerBinding.instance.addPostFrameCallback((_) async {
+      FFAppState().youtubelink = '';
+      safeSetState(() {});
+    });
 
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
@@ -136,7 +143,10 @@ class _YoutubeplayWidgetState extends State<YoutubeplayWidget> {
                                 padding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 10.0, 0.0, 10.0),
                                 child: AutoSizeText(
-                                  FFAppState().selectedtitle,
+                                  valueOrDefault<String>(
+                                    widget.video,
+                                    'vdieo',
+                                  ),
                                   textAlign: TextAlign.start,
                                   style: FlutterFlowTheme.of(context)
                                       .bodyMedium
@@ -176,38 +186,6 @@ class _YoutubeplayWidgetState extends State<YoutubeplayWidget> {
                                       color: FlutterFlowTheme.of(context)
                                           .secondaryBackground,
                                     ),
-                                    child: Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          10.0, 0.0, 10.0, 10.0),
-                                      child: AutoSizeText(
-                                        FFAppState().selectedescription,
-                                        style: FlutterFlowTheme.of(context)
-                                            .bodyMedium
-                                            .override(
-                                              font: GoogleFonts.inter(
-                                                fontWeight:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMedium
-                                                        .fontWeight,
-                                                fontStyle:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMedium
-                                                        .fontStyle,
-                                              ),
-                                              fontSize: 10.0,
-                                              letterSpacing: 0.0,
-                                              fontWeight:
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyMedium
-                                                      .fontWeight,
-                                              fontStyle:
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyMedium
-                                                      .fontStyle,
-                                            ),
-                                        overflow: TextOverflow.clip,
-                                      ),
-                                    ),
                                   ),
                                 ),
                               ],
@@ -233,7 +211,7 @@ class _YoutubeplayWidgetState extends State<YoutubeplayWidget> {
                           height: MediaQuery.sizeOf(context).height * 0.584,
                           autoPlay: false,
                           looping: true,
-                          mute: true,
+                          mute: false,
                           showControls: true,
                           showFullScreen: true,
                           strictRelatedVideos: true,

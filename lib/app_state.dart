@@ -37,6 +37,29 @@ class FFAppState extends ChangeNotifier {
           await secureStorage.getString('ff_Currentuser') ?? _Currentuser;
     });
     await _safeInitAsync(() async {
+      _program = (await secureStorage.getStringList('ff_program'))?.map((x) {
+            try {
+              return jsonDecode(x);
+            } catch (e) {
+              print("Can't decode persisted json. Error: $e.");
+              return {};
+            }
+          }).toList() ??
+          _program;
+    });
+    await _safeInitAsync(() async {
+      _sleepStats7d =
+          (await secureStorage.getStringList('ff_sleepStats7d'))?.map((x) {
+                try {
+                  return jsonDecode(x);
+                } catch (e) {
+                  print("Can't decode persisted json. Error: $e.");
+                  return {};
+                }
+              }).toList() ??
+              _sleepStats7d;
+    });
+    await _safeInitAsync(() async {
       _avatarBase64 =
           await secureStorage.getString('ff_avatarBase64') ?? _avatarBase64;
     });
@@ -58,18 +81,6 @@ class FFAppState extends ChangeNotifier {
               ?.map(double.parse)
               .toList() ??
           _stepsStats7d;
-    });
-    await _safeInitAsync(() async {
-      _sleepStats7d =
-          (await secureStorage.getStringList('ff_sleepStats7d'))?.map((x) {
-                try {
-                  return jsonDecode(x);
-                } catch (e) {
-                  print("Can't decode persisted json. Error: $e.");
-                  return {};
-                }
-              }).toList() ??
-              _sleepStats7d;
     });
     await _safeInitAsync(() async {
       _goaltitle = await secureStorage.getString('ff_goaltitle') ?? _goaltitle;
@@ -180,6 +191,96 @@ class FFAppState extends ChangeNotifier {
     activities.insert(index, value);
   }
 
+  List<dynamic> _program = [];
+  List<dynamic> get program => _program;
+  set program(List<dynamic> value) {
+    _program = value;
+    secureStorage.setStringList(
+        'ff_program', value.map((x) => jsonEncode(x)).toList());
+  }
+
+  void deleteProgram() {
+    secureStorage.delete(key: 'ff_program');
+  }
+
+  void addToProgram(dynamic value) {
+    program.add(value);
+    secureStorage.setStringList(
+        'ff_program', _program.map((x) => jsonEncode(x)).toList());
+  }
+
+  void removeFromProgram(dynamic value) {
+    program.remove(value);
+    secureStorage.setStringList(
+        'ff_program', _program.map((x) => jsonEncode(x)).toList());
+  }
+
+  void removeAtIndexFromProgram(int index) {
+    program.removeAt(index);
+    secureStorage.setStringList(
+        'ff_program', _program.map((x) => jsonEncode(x)).toList());
+  }
+
+  void updateProgramAtIndex(
+    int index,
+    dynamic Function(dynamic) updateFn,
+  ) {
+    program[index] = updateFn(_program[index]);
+    secureStorage.setStringList(
+        'ff_program', _program.map((x) => jsonEncode(x)).toList());
+  }
+
+  void insertAtIndexInProgram(int index, dynamic value) {
+    program.insert(index, value);
+    secureStorage.setStringList(
+        'ff_program', _program.map((x) => jsonEncode(x)).toList());
+  }
+
+  List<dynamic> _sleepStats7d = [];
+  List<dynamic> get sleepStats7d => _sleepStats7d;
+  set sleepStats7d(List<dynamic> value) {
+    _sleepStats7d = value;
+    secureStorage.setStringList(
+        'ff_sleepStats7d', value.map((x) => jsonEncode(x)).toList());
+  }
+
+  void deleteSleepStats7d() {
+    secureStorage.delete(key: 'ff_sleepStats7d');
+  }
+
+  void addToSleepStats7d(dynamic value) {
+    sleepStats7d.add(value);
+    secureStorage.setStringList(
+        'ff_sleepStats7d', _sleepStats7d.map((x) => jsonEncode(x)).toList());
+  }
+
+  void removeFromSleepStats7d(dynamic value) {
+    sleepStats7d.remove(value);
+    secureStorage.setStringList(
+        'ff_sleepStats7d', _sleepStats7d.map((x) => jsonEncode(x)).toList());
+  }
+
+  void removeAtIndexFromSleepStats7d(int index) {
+    sleepStats7d.removeAt(index);
+    secureStorage.setStringList(
+        'ff_sleepStats7d', _sleepStats7d.map((x) => jsonEncode(x)).toList());
+  }
+
+  void updateSleepStats7dAtIndex(
+    int index,
+    dynamic Function(dynamic) updateFn,
+  ) {
+    sleepStats7d[index] = updateFn(_sleepStats7d[index]);
+    secureStorage.setStringList(
+        'ff_sleepStats7d', _sleepStats7d.map((x) => jsonEncode(x)).toList());
+  }
+
+  void insertAtIndexInSleepStats7d(int index, dynamic value) {
+    sleepStats7d.insert(index, value);
+    secureStorage.setStringList(
+        'ff_sleepStats7d', _sleepStats7d.map((x) => jsonEncode(x)).toList());
+  }
+
   String _accountToken = '';
   String get accountToken => _accountToken;
   set accountToken(String value) {
@@ -286,51 +387,6 @@ class FFAppState extends ChangeNotifier {
     stepsStats7d.insert(index, value);
     secureStorage.setStringList(
         'ff_stepsStats7d', _stepsStats7d.map((x) => x.toString()).toList());
-  }
-
-  List<dynamic> _sleepStats7d = [];
-  List<dynamic> get sleepStats7d => _sleepStats7d;
-  set sleepStats7d(List<dynamic> value) {
-    _sleepStats7d = value;
-    secureStorage.setStringList(
-        'ff_sleepStats7d', value.map((x) => jsonEncode(x)).toList());
-  }
-
-  void deleteSleepStats7d() {
-    secureStorage.delete(key: 'ff_sleepStats7d');
-  }
-
-  void addToSleepStats7d(dynamic value) {
-    sleepStats7d.add(value);
-    secureStorage.setStringList(
-        'ff_sleepStats7d', _sleepStats7d.map((x) => jsonEncode(x)).toList());
-  }
-
-  void removeFromSleepStats7d(dynamic value) {
-    sleepStats7d.remove(value);
-    secureStorage.setStringList(
-        'ff_sleepStats7d', _sleepStats7d.map((x) => jsonEncode(x)).toList());
-  }
-
-  void removeAtIndexFromSleepStats7d(int index) {
-    sleepStats7d.removeAt(index);
-    secureStorage.setStringList(
-        'ff_sleepStats7d', _sleepStats7d.map((x) => jsonEncode(x)).toList());
-  }
-
-  void updateSleepStats7dAtIndex(
-    int index,
-    dynamic Function(dynamic) updateFn,
-  ) {
-    sleepStats7d[index] = updateFn(_sleepStats7d[index]);
-    secureStorage.setStringList(
-        'ff_sleepStats7d', _sleepStats7d.map((x) => jsonEncode(x)).toList());
-  }
-
-  void insertAtIndexInSleepStats7d(int index, dynamic value) {
-    sleepStats7d.insert(index, value);
-    secureStorage.setStringList(
-        'ff_sleepStats7d', _sleepStats7d.map((x) => jsonEncode(x)).toList());
   }
 
   String _goaltitle = 'not provided';

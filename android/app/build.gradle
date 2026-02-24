@@ -16,20 +16,15 @@ if (keystorePropertiesFile.exists()) {
 
 android {
     namespace "com.mycompany.kikonnect"
-    compileSdkVersion 35
-    ndkVersion "27.0.12077973"
+    compileSdkVersion 36
+    ndkVersion "28.2.13676358"
 
     defaultConfig {
         applicationId "com.mycompany.kikonnect"
         minSdkVersion 26
-        targetSdkVersion 35
-
-        // Bump these before each Play upload
-        versionCode 17
-        versionName "1.0.1"
-
-        // Force-pack arm64 engine when producing APKs locally (kept harmless for AABs)
-        ndk { abiFilters "arm64-v8a" }
+        targetSdkVersion 36
+        versionCode flutterVersionCode.toInteger()
+        versionName flutterVersionName
     }
 
     compileOptions {
@@ -72,6 +67,11 @@ android {
     }
 
     sourceSets { main.java.srcDirs += 'src/main/kotlin' }
+
+    lintOptions {
+        disable 'InvalidPackage'
+        checkReleaseBuilds false
+    }
 }
 
 dependencies {

@@ -348,6 +348,65 @@ class CheckinCall {
   }
 }
 
+class GetProgramCall {
+  static Future<ApiCallResponse> call({
+    String? clientid = '',
+  }) async {
+    final ffApiRequestBody = '''
+{
+  "ClientID": "${escapeStringForJson(clientid)}"
+}''';
+    return ApiManager.instance.makeApiCall(
+      callName: 'getProgram',
+      apiUrl:
+          'https://9b92f9eb2f6ce295b1fc31d7492246.ad.environment.api.powerplatform.com:443/powerautomate/automations/direct/workflows/ad59b5c223cc4908a828eac97db83b5e/triggers/manual/paths/invoke?api-version=1&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=3MhiFuYHk99rvGpfF9t9Nrzqy38b7MteAm8wGc-KiFc',
+      callType: ApiCallType.POST,
+      headers: {
+        'Content-Type': 'application/JSON',
+      },
+      params: {},
+      body: ffApiRequestBody,
+      bodyType: BodyType.JSON,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      isStreamingApi: false,
+      alwaysAllowBody: false,
+    );
+  }
+
+  static List? headers(dynamic response) => getJsonField(
+        response,
+        r'''$.programmes[:].header''',
+        true,
+      ) as List?;
+  static List? programmes(dynamic response) => getJsonField(
+        response,
+        r'''$.programmes''',
+        true,
+      ) as List?;
+  static List? programmeweeks(dynamic response) => getJsonField(
+        response,
+        r'''$.programmes[:].weeks''',
+        true,
+      ) as List?;
+  static List<String>? programmetitles(dynamic response) => (getJsonField(
+        response,
+        r'''$.programmes[:].header.hdl_programmetitle''',
+        true,
+      ) as List?)
+          ?.withoutNulls
+          .map((x) => castToType<String>(x))
+          .withoutNulls
+          .toList();
+  static List? activities(dynamic response) => getJsonField(
+        response,
+        r'''$.programmes[:].weeks[:].activities''',
+        true,
+      ) as List?;
+}
+
 class ApiPagingParams {
   int nextPageNumber = 0;
   int numItems = 0;

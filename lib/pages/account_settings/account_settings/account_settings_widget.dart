@@ -280,7 +280,7 @@ class _AccountSettingsWidgetState extends State<AccountSettingsWidget> {
                               context.pushNamed(
                                 PersonalDetailsWidget.routeName,
                                 extra: <String, dynamic>{
-                                  kTransitionInfoKey: TransitionInfo(
+                                  '__transition_info__': TransitionInfo(
                                     hasTransition: true,
                                     transitionType: PageTransitionType.fade,
                                   ),
@@ -356,7 +356,7 @@ class _AccountSettingsWidgetState extends State<AccountSettingsWidget> {
                                 context.pushNamed(
                                   DeviceSettingsWidget.routeName,
                                   extra: <String, dynamic>{
-                                    kTransitionInfoKey: TransitionInfo(
+                                    '__transition_info__': TransitionInfo(
                                       hasTransition: true,
                                       transitionType:
                                           PageTransitionType.leftToRight,
@@ -378,7 +378,7 @@ class _AccountSettingsWidgetState extends State<AccountSettingsWidget> {
                                       context.pushNamed(
                                         DeviceSettingsWidget.routeName,
                                         extra: <String, dynamic>{
-                                          kTransitionInfoKey: TransitionInfo(
+                                          '__transition_info__': TransitionInfo(
                                             hasTransition: true,
                                             transitionType:
                                                 PageTransitionType.leftToRight,
@@ -627,7 +627,7 @@ class _AccountSettingsWidgetState extends State<AccountSettingsWidget> {
                                   context.pushNamed(
                                     LegalStatementsWidget.routeName,
                                     extra: <String, dynamic>{
-                                      kTransitionInfoKey: TransitionInfo(
+                                      '__transition_info__': TransitionInfo(
                                         hasTransition: true,
                                         transitionType:
                                             PageTransitionType.leftToRight,

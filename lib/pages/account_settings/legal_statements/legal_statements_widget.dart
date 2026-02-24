@@ -155,7 +155,7 @@ class _LegalStatementsWidgetState extends State<LegalStatementsWidget> {
                         context.pushNamed(
                           PrivacypolicyWidget.routeName,
                           extra: <String, dynamic>{
-                            kTransitionInfoKey: TransitionInfo(
+                            '__transition_info__': TransitionInfo(
                               hasTransition: true,
                               transitionType: PageTransitionType.leftToRight,
                             ),

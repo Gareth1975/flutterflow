@@ -514,14 +514,8 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                                       .toList();
                                               if (activitieslist.isEmpty) {
                                                 return Center(
-                                                  child: ClipRRect(
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            2.0),
-                                                    child: Image.asset(
-                                                      'assets/images/no_events.png',
-                                                      fit: BoxFit.fill,
-                                                    ),
+                                                  child: Image.asset(
+                                                    '',
                                                   ),
                                                 );
                                               }
@@ -597,8 +591,10 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                                                       .hdlvideolink =
                                                                   valueOrDefault<
                                                                       String>(
-                                                                activitieslistItem
-                                                                    .toString(),
+                                                                getJsonField(
+                                                                  activitieslistItem,
+                                                                  r'''$..hdl_videolink''',
+                                                                )?.toString(),
                                                                 '\$..hdl_videolink',
                                                               );
                                                               safeSetState(
@@ -667,7 +663,7 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                                                 }
                                                               } else {
                                                                 context.pushNamed(
-                                                                    CheckinWidget
+                                                                    PowerpointviewWidget
                                                                         .routeName);
                                                               }
                                                             },
@@ -943,6 +939,8 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                   child: Align(
                                     alignment: AlignmentDirectional(0.0, 0.0),
                                     child: Container(
+                                      width: MediaQuery.sizeOf(context).width *
+                                          1.0,
                                       height: 100.0,
                                       decoration: BoxDecoration(
                                         color: FlutterFlowTheme.of(context)
@@ -955,18 +953,18 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                           mainAxisAlignment:
                                               MainAxisAlignment.spaceBetween,
                                           crossAxisAlignment:
-                                              CrossAxisAlignment.center,
+                                              CrossAxisAlignment.stretch,
                                           children: [
                                             Expanded(
                                               child: Padding(
                                                 padding: EdgeInsetsDirectional
                                                     .fromSTEB(
-                                                        5.0, 0.0, 5.0, 0.0),
+                                                        2.0, 0.0, 2.0, 0.0),
                                                 child: ListView(
                                                   padding: EdgeInsets.fromLTRB(
-                                                    0.0,
+                                                    10.0,
                                                     0,
-                                                    0.0,
+                                                    10.0,
                                                     0,
                                                   ),
                                                   primary: false,
@@ -983,7 +981,11 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                                                   8.0,
                                                                   0.0),
                                                       child: Container(
-                                                        width: 120.0,
+                                                        width:
+                                                            MediaQuery.sizeOf(
+                                                                        context)
+                                                                    .width *
+                                                                0.25,
                                                         decoration:
                                                             BoxDecoration(
                                                           color: FlutterFlowTheme
@@ -1007,7 +1009,7 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                                           border: Border.all(
                                                             color: Color(
                                                                 0xFFE0E3E7),
-                                                            width: 2.0,
+                                                            width: 1.0,
                                                           ),
                                                         ),
                                                         child: Padding(
@@ -1113,7 +1115,11 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                                                   5.0,
                                                                   0.0),
                                                       child: Container(
-                                                        width: 120.0,
+                                                        width:
+                                                            MediaQuery.sizeOf(
+                                                                        context)
+                                                                    .width *
+                                                                0.25,
                                                         decoration:
                                                             BoxDecoration(
                                                           color: FlutterFlowTheme
@@ -1126,7 +1132,7 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                                           border: Border.all(
                                                             color: Color(
                                                                 0xFFE0E3E7),
-                                                            width: 2.0,
+                                                            width: 1.0,
                                                           ),
                                                         ),
                                                         child: Padding(
@@ -1232,7 +1238,11 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                                                   5.0,
                                                                   0.0),
                                                       child: Container(
-                                                        width: 106.79,
+                                                        width:
+                                                            MediaQuery.sizeOf(
+                                                                        context)
+                                                                    .width *
+                                                                0.25,
                                                         decoration:
                                                             BoxDecoration(
                                                           color: FlutterFlowTheme
@@ -1245,7 +1255,7 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                                           border: Border.all(
                                                             color: Color(
                                                                 0xFFE0E3E7),
-                                                            width: 2.0,
+                                                            width: 1.0,
                                                           ),
                                                         ),
                                                         child: Padding(
@@ -1347,7 +1357,7 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                                       ),
                                                     ),
                                                   ].divide(
-                                                      SizedBox(width: 0.0)),
+                                                      SizedBox(width: 10.0)),
                                                 ),
                                               ),
                                             ),

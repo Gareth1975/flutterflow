@@ -1,39 +1,33 @@
-import '/flutter_flow/flutter_flow_media_display.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_video_player.dart';
+import '/flutter_flow/flutter_flow_web_view.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'videoplay_model.dart';
-export 'videoplay_model.dart';
+import 'powerpointview_model.dart';
+export 'powerpointview_model.dart';
 
-class VideoplayWidget extends StatefulWidget {
-  const VideoplayWidget({
-    super.key,
-    required this.video,
-  });
+class PowerpointviewWidget extends StatefulWidget {
+  const PowerpointviewWidget({super.key});
 
-  final String? video;
-
-  static String routeName = 'videoplay';
-  static String routePath = '/videoplay';
+  static String routeName = 'powerpointview';
+  static String routePath = '/powerpointview';
 
   @override
-  State<VideoplayWidget> createState() => _VideoplayWidgetState();
+  State<PowerpointviewWidget> createState() => _PowerpointviewWidgetState();
 }
 
-class _VideoplayWidgetState extends State<VideoplayWidget> {
-  late VideoplayModel _model;
+class _PowerpointviewWidgetState extends State<PowerpointviewWidget> {
+  late PowerpointviewModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => VideoplayModel());
+    _model = createModel(context, () => PowerpointviewModel());
 
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
@@ -115,7 +109,7 @@ class _VideoplayWidgetState extends State<VideoplayWidget> {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 Expanded(
                   child: Container(
@@ -221,35 +215,23 @@ class _VideoplayWidgetState extends State<VideoplayWidget> {
                   ),
                 ),
                 Container(
+                  width: MediaQuery.sizeOf(context).width * 1.0,
                   height: MediaQuery.sizeOf(context).height * 0.3,
                   decoration: BoxDecoration(
                     color: FlutterFlowTheme.of(context).secondaryBackground,
                     borderRadius: BorderRadius.circular(0.0),
                   ),
                   child: Row(
-                    mainAxisSize: MainAxisSize.max,
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    mainAxisSize: MainAxisSize.min,
+                    mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      FlutterFlowMediaDisplay(
-                        path: FFAppState().hdlvideolink,
-                        imageBuilder: (path) => ClipRRect(
-                          borderRadius: BorderRadius.circular(8.0),
-                          child: Image.network(
-                            path,
-                            width: MediaQuery.sizeOf(context).width * 1.0,
-                            height: 300.0,
-                            fit: BoxFit.cover,
-                          ),
-                        ),
-                        videoPlayerBuilder: (path) => FlutterFlowVideoPlayer(
-                          path: path,
-                          width: 300.0,
-                          autoPlay: false,
-                          looping: true,
-                          showControls: true,
-                          allowFullScreen: true,
-                          allowPlaybackSpeedMenu: false,
-                        ),
+                      FlutterFlowWebView(
+                        content:
+                            'https://hilltopdigitallab0.sharepoint.com/sites/HDLabsTeam2/_layouts/15/Doc.aspx?sourcedoc=%7B9B75649F-87D5-4116-9162-F35C39557CCC%7D&action=embedview\n',
+                        width: MediaQuery.sizeOf(context).width * 1.0,
+                        height: MediaQuery.sizeOf(context).height * 1.0,
+                        verticalScroll: true,
+                        horizontalScroll: true,
                       ),
                     ],
                   ),
