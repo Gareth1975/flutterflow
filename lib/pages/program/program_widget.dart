@@ -178,6 +178,13 @@ class _ProgramWidgetState extends State<ProgramWidget> {
                           (_model.apiprogram?.jsonBody ?? ''),
                           r'''$.programmes''',
                         ).toList();
+                        if (programmes.isEmpty) {
+                          return Image.asset(
+                            'assets/images/ChatGPT_Image_Feb_24,_2026,_03_11_44_PM.png',
+                            width: MediaQuery.sizeOf(context).width * 0.3,
+                            height: MediaQuery.sizeOf(context).height * 0.2,
+                          );
+                        }
 
                         return ListView.separated(
                           padding: EdgeInsets.symmetric(vertical: 10.0),

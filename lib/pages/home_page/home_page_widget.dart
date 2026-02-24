@@ -515,7 +515,11 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                               if (activitieslist.isEmpty) {
                                                 return Center(
                                                   child: Image.asset(
-                                                    '',
+                                                    'assets/images/ChatGPT_Image_Feb_24,_2026,_03_11_44_PM.png',
+                                                    width: MediaQuery.sizeOf(
+                                                                context)
+                                                            .width *
+                                                        0.3,
                                                   ),
                                                 );
                                               }

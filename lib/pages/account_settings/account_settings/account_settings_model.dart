@@ -8,9 +8,6 @@ class AccountSettingsModel extends FlutterFlowModel<AccountSettingsWidget> {
 
   // Stores action output result for [Custom Action - getAppVersionInfo] action in AccountSettings widget.
   String? getAppVersionInfo;
-  bool isDataUploading_uploadData9bn = false;
-  FFUploadedFile uploadedLocalFile_uploadData9bn =
-      FFUploadedFile(bytes: Uint8List.fromList([]), originalFilename: '');
 
   @override
   void initState(BuildContext context) {}
