@@ -897,7 +897,7 @@ class _ProgramWidgetState extends State<ProgramWidget>
                                                                                                           context.pushNamed(
                                                                                                             YoutubeplayWidget.routeName,
                                                                                                             queryParameters: {
-                                                                                                              'video': serializeParam(
+                                                                                                              'youtubstring': serializeParam(
                                                                                                                 getJsonField(
                                                                                                                   activitiesItem,
                                                                                                                   r'''$.hdl_youtubelink''',

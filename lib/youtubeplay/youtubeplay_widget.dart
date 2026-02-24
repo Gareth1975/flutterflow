@@ -13,10 +13,10 @@ export 'youtubeplay_model.dart';
 class YoutubeplayWidget extends StatefulWidget {
   const YoutubeplayWidget({
     super.key,
-    required this.video,
+    required this.youtubstring,
   });
 
-  final String? video;
+  final String? youtubstring;
 
   static String routeName = 'Youtubeplay';
   static String routePath = '/youtubeplay';
@@ -144,8 +144,8 @@ class _YoutubeplayWidgetState extends State<YoutubeplayWidget> {
                                     0.0, 10.0, 0.0, 10.0),
                                 child: AutoSizeText(
                                   valueOrDefault<String>(
-                                    widget.video,
-                                    'vdieo',
+                                    widget.youtubstring,
+                                    'test',
                                   ),
                                   textAlign: TextAlign.start,
                                   style: FlutterFlowTheme.of(context)
@@ -206,7 +206,7 @@ class _YoutubeplayWidgetState extends State<YoutubeplayWidget> {
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
                         FlutterFlowYoutubePlayer(
-                          url: FFAppState().youtubelink,
+                          url: 'Ky0oB3INcM4',
                           width: MediaQuery.sizeOf(context).width * 2.027,
                           height: MediaQuery.sizeOf(context).height * 0.584,
                           autoPlay: false,
