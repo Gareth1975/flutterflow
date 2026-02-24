@@ -136,36 +136,33 @@ class _LoginpageWidgetState extends State<LoginpageWidget>
                       alignment: AlignmentDirectional(0.0, 0.0),
                       child: Align(
                         alignment: AlignmentDirectional(0.0, -1.0),
-                        child: Padding(
-                          padding: EdgeInsets.all(6.0),
-                          child: Text(
-                            'The Open Practice',
-                            textAlign: TextAlign.center,
-                            maxLines: 2,
-                            style: FlutterFlowTheme.of(context)
-                                .headlineMedium
-                                .override(
-                                  font: GoogleFonts.interTight(
-                                    fontWeight: FlutterFlowTheme.of(context)
-                                        .headlineMedium
-                                        .fontWeight,
-                                    fontStyle: FlutterFlowTheme.of(context)
-                                        .headlineMedium
-                                        .fontStyle,
-                                  ),
-                                  color: FlutterFlowTheme.of(context)
-                                      .secondaryBackground,
-                                  fontSize: 36.0,
-                                  letterSpacing: 2.5,
+                        child: Text(
+                          'The Open Practice',
+                          textAlign: TextAlign.center,
+                          maxLines: 2,
+                          style: FlutterFlowTheme.of(context)
+                              .headlineMedium
+                              .override(
+                                font: GoogleFonts.interTight(
                                   fontWeight: FlutterFlowTheme.of(context)
                                       .headlineMedium
                                       .fontWeight,
                                   fontStyle: FlutterFlowTheme.of(context)
                                       .headlineMedium
                                       .fontStyle,
-                                  lineHeight: 1.0,
                                 ),
-                          ),
+                                color: FlutterFlowTheme.of(context)
+                                    .secondaryBackground,
+                                fontSize: 36.0,
+                                letterSpacing: 2.5,
+                                fontWeight: FlutterFlowTheme.of(context)
+                                    .headlineMedium
+                                    .fontWeight,
+                                fontStyle: FlutterFlowTheme.of(context)
+                                    .headlineMedium
+                                    .fontStyle,
+                                lineHeight: 1.0,
+                              ),
                         ),
                       ),
                     ),
