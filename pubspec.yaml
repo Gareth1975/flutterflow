@@ -32,6 +32,7 @@ dependencies:
   cached_network_image_platform_interface: 4.1.1
   cached_network_image_web: 1.3.1
   collection: 1.19.1
+  chewie: ^1.8.1
   csslib: 1.0.2
   csv: 6.0.0
   device_info_plus: 11.5.0
@@ -43,6 +44,7 @@ dependencies:
   flutter_animate: 4.5.0
   flutter_cache_manager: 3.4.1
   flutter_plugin_android_lifecycle: 2.0.28
+  flutter_rating_bar: ^4.0.1
   flutter_secure_storage: 10.0.0-beta.4
   flutter_secure_storage_linux: 2.0.1
   flutter_secure_storage_macos: 4.0.0
@@ -87,7 +89,7 @@ dependencies:
   pointer_interceptor_platform_interface: 0.10.0+1
   pointer_interceptor_web: 0.10.2+1
   provider: 6.1.5
-  sahha_flutter: ^1.2.5
+  sahha_flutter: ^1.3.3
   shared_preferences: 2.5.3
   shared_preferences_android: 2.4.10
   shared_preferences_foundation: 2.5.4
