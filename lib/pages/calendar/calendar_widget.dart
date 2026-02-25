@@ -234,6 +234,10 @@ class _CalendarWidgetState extends State<CalendarWidget> {
                                     ).toString(),
                                     ParamType.String,
                                   ),
+                                  'youtubetitle': serializeParam(
+                                    '',
+                                    ParamType.String,
+                                  ),
                                 }.withoutNulls,
                               );
                             },
