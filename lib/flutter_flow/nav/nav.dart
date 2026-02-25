@@ -130,6 +130,10 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
                       'youtubstring',
                       ParamType.String,
                     ),
+                    youtubetitle: params.getParam(
+                      'youtubetitle',
+                      ParamType.String,
+                    ),
                   ),
                 )),
         FFRoute(
