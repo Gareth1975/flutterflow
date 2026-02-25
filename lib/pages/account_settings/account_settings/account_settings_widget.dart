@@ -144,21 +144,6 @@ class _AccountSettingsWidgetState extends State<AccountSettingsWidget> {
                                     .secondaryBackground,
                                 shape: BoxShape.circle,
                               ),
-                              child: Opacity(
-                                opacity: 0.0,
-                                child: Padding(
-                                  padding: EdgeInsets.all(2.0),
-                                  child: ClipRRect(
-                                    borderRadius: BorderRadius.circular(80.0),
-                                    child: Image.asset(
-                                      'assets/images/photo-1633332755192-727a05c4013d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8dXNlcnxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=900&q=60',
-                                      width: 153.32,
-                                      height: 123.2,
-                                      fit: BoxFit.cover,
-                                    ),
-                                  ),
-                                ),
-                              ),
                             ),
                           ),
                         ),

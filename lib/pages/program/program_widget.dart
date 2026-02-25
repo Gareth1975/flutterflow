@@ -1,12 +1,12 @@
 import '/backend/api_requests/api_calls.dart';
-import '/flutter_flow/flutter_flow_animations.dart';
+import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/index.dart';
 import 'package:expandable/expandable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:flutter_animate/flutter_animate.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'program_model.dart';
@@ -22,13 +22,10 @@ class ProgramWidget extends StatefulWidget {
   State<ProgramWidget> createState() => _ProgramWidgetState();
 }
 
-class _ProgramWidgetState extends State<ProgramWidget>
-    with TickerProviderStateMixin {
+class _ProgramWidgetState extends State<ProgramWidget> {
   late ProgramModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
-
-  final animationsMap = <String, AnimationInfo>{};
 
   @override
   void initState() {
@@ -42,21 +39,6 @@ class _ProgramWidgetState extends State<ProgramWidget>
       );
 
       safeSetState(() {});
-    });
-
-    animationsMap.addAll({
-      'listViewOnPageLoadAnimation': AnimationInfo(
-        trigger: AnimationTrigger.onPageLoad,
-        effectsBuilder: () => [
-          FadeEffect(
-            curve: Curves.easeIn,
-            delay: 0.0.ms,
-            duration: 2000.0.ms,
-            begin: 0.0,
-            end: 1.0,
-          ),
-        ],
-      ),
     });
 
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
@@ -756,7 +738,6 @@ class _ProgramWidgetState extends State<ProgramWidget>
                                                                                     ),
                                                                                   ),
                                                                                   Container(
-                                                                                    height: 200.0,
                                                                                     child: Builder(
                                                                                       builder: (context) {
                                                                                         final activities = getJsonField(
@@ -787,7 +768,7 @@ class _ProgramWidgetState extends State<ProgramWidget>
                                                                                                       children: [
                                                                                                         Expanded(
                                                                                                           child: Text(
-                                                                                                            'Activities',
+                                                                                                            'Activity',
                                                                                                             style: FlutterFlowTheme.of(context).bodyMedium.override(
                                                                                                                   font: GoogleFonts.inter(
                                                                                                                     fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
@@ -804,127 +785,120 @@ class _ProgramWidgetState extends State<ProgramWidget>
                                                                                                       ],
                                                                                                     ),
                                                                                                   ),
-                                                                                                  Row(
-                                                                                                    mainAxisSize: MainAxisSize.max,
-                                                                                                    children: [
-                                                                                                      Text(
-                                                                                                        'Title:',
-                                                                                                        style: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                                                                              font: GoogleFonts.inter(
-                                                                                                                fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
-                                                                                                                fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
+                                                                                                  Expanded(
+                                                                                                    child: Row(
+                                                                                                      mainAxisSize: MainAxisSize.max,
+                                                                                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                                                                      children: [
+                                                                                                        Align(
+                                                                                                          alignment: AlignmentDirectional(0.0, 0.0),
+                                                                                                          child: Column(
+                                                                                                            mainAxisSize: MainAxisSize.max,
+                                                                                                            children: [
+                                                                                                              FaIcon(
+                                                                                                                FontAwesomeIcons.youtube,
+                                                                                                                color: Color(0xFFF21232),
+                                                                                                                size: 24.0,
                                                                                                               ),
-                                                                                                              fontSize: 12.0,
-                                                                                                              letterSpacing: 0.0,
-                                                                                                              fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
-                                                                                                              fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
-                                                                                                            ),
-                                                                                                      ),
-                                                                                                      Text(
-                                                                                                        getJsonField(
-                                                                                                          activitiesItem,
-                                                                                                          r'''$.hdl_title''',
-                                                                                                        ).toString(),
-                                                                                                        style: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                                                                              font: GoogleFonts.inter(
-                                                                                                                fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
-                                                                                                                fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
-                                                                                                              ),
-                                                                                                              fontSize: 12.0,
-                                                                                                              letterSpacing: 0.0,
-                                                                                                              fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
-                                                                                                              fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
-                                                                                                            ),
-                                                                                                      ),
-                                                                                                    ],
-                                                                                                  ),
-                                                                                                  Row(
-                                                                                                    mainAxisSize: MainAxisSize.max,
-                                                                                                    children: [
-                                                                                                      Text(
-                                                                                                        'Type:',
-                                                                                                        style: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                                                                              font: GoogleFonts.inter(
-                                                                                                                fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
-                                                                                                                fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
-                                                                                                              ),
-                                                                                                              fontSize: 12.0,
-                                                                                                              letterSpacing: 0.0,
-                                                                                                              fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
-                                                                                                              fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
-                                                                                                            ),
-                                                                                                      ),
-                                                                                                      Text(
-                                                                                                        getJsonField(
-                                                                                                          activitiesItem,
-                                                                                                          r'''$.hdl_activitycategory1''',
-                                                                                                        ).toString(),
-                                                                                                        style: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                                                                              font: GoogleFonts.inter(
-                                                                                                                fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
-                                                                                                                fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
-                                                                                                              ),
-                                                                                                              fontSize: 12.0,
-                                                                                                              letterSpacing: 0.0,
-                                                                                                              fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
-                                                                                                              fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
-                                                                                                            ),
-                                                                                                      ),
-                                                                                                    ],
-                                                                                                  ),
-                                                                                                  Row(
-                                                                                                    mainAxisSize: MainAxisSize.max,
-                                                                                                    children: [
-                                                                                                      Text(
-                                                                                                        'Link:',
-                                                                                                        style: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                                                                              font: GoogleFonts.inter(
-                                                                                                                fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
-                                                                                                                fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
-                                                                                                              ),
-                                                                                                              fontSize: 12.0,
-                                                                                                              letterSpacing: 0.0,
-                                                                                                              fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
-                                                                                                              fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
-                                                                                                            ),
-                                                                                                      ),
-                                                                                                      InkWell(
-                                                                                                        splashColor: Colors.transparent,
-                                                                                                        focusColor: Colors.transparent,
-                                                                                                        hoverColor: Colors.transparent,
-                                                                                                        highlightColor: Colors.transparent,
-                                                                                                        onTap: () async {
-                                                                                                          context.pushNamed(
-                                                                                                            YoutubeplayWidget.routeName,
-                                                                                                            queryParameters: {
-                                                                                                              'video': serializeParam(
-                                                                                                                getJsonField(
-                                                                                                                  activitiesItem,
-                                                                                                                  r'''$.hdl_youtubelink''',
-                                                                                                                ).toString(),
-                                                                                                                ParamType.String,
-                                                                                                              ),
-                                                                                                            }.withoutNulls,
-                                                                                                          );
-                                                                                                        },
-                                                                                                        child: Text(
-                                                                                                          getJsonField(
-                                                                                                            activitiesItem,
-                                                                                                            r'''$.hdl_youtubelink''',
-                                                                                                          ).toString(),
-                                                                                                          style: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                                                                                font: GoogleFonts.inter(
-                                                                                                                  fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
-                                                                                                                  fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
-                                                                                                                ),
-                                                                                                                fontSize: 12.0,
-                                                                                                                letterSpacing: 0.0,
-                                                                                                                fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
-                                                                                                                fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
-                                                                                                              ),
+                                                                                                            ],
+                                                                                                          ),
                                                                                                         ),
-                                                                                                      ),
-                                                                                                    ],
+                                                                                                        Expanded(
+                                                                                                          child: Padding(
+                                                                                                            padding: EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 10.0, 0.0),
+                                                                                                            child: Column(
+                                                                                                              mainAxisSize: MainAxisSize.max,
+                                                                                                              children: [
+                                                                                                                Expanded(
+                                                                                                                  child: Align(
+                                                                                                                    alignment: AlignmentDirectional(-1.0, 0.0),
+                                                                                                                    child: Row(
+                                                                                                                      mainAxisSize: MainAxisSize.max,
+                                                                                                                      mainAxisAlignment: MainAxisAlignment.start,
+                                                                                                                      children: [
+                                                                                                                        Text(
+                                                                                                                          getJsonField(
+                                                                                                                            activitiesItem,
+                                                                                                                            r'''$.hdl_title''',
+                                                                                                                          ).toString(),
+                                                                                                                          style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                                                                                                font: GoogleFonts.inter(
+                                                                                                                                  fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
+                                                                                                                                  fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
+                                                                                                                                ),
+                                                                                                                                fontSize: 12.0,
+                                                                                                                                letterSpacing: 0.0,
+                                                                                                                                fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
+                                                                                                                                fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
+                                                                                                                              ),
+                                                                                                                        ),
+                                                                                                                      ],
+                                                                                                                    ),
+                                                                                                                  ),
+                                                                                                                ),
+                                                                                                                Row(
+                                                                                                                  mainAxisSize: MainAxisSize.max,
+                                                                                                                  children: [
+                                                                                                                    Text(
+                                                                                                                      getJsonField(
+                                                                                                                        activitiesItem,
+                                                                                                                        r'''$.hdl_activitycategory1''',
+                                                                                                                      ).toString(),
+                                                                                                                      style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                                                                                            font: GoogleFonts.inter(
+                                                                                                                              fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
+                                                                                                                              fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
+                                                                                                                            ),
+                                                                                                                            fontSize: 12.0,
+                                                                                                                            letterSpacing: 0.0,
+                                                                                                                            fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
+                                                                                                                            fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
+                                                                                                                          ),
+                                                                                                                    ),
+                                                                                                                  ],
+                                                                                                                ),
+                                                                                                              ],
+                                                                                                            ),
+                                                                                                          ),
+                                                                                                        ),
+                                                                                                        Column(
+                                                                                                          mainAxisSize: MainAxisSize.max,
+                                                                                                          children: [
+                                                                                                            FlutterFlowIconButton(
+                                                                                                              borderRadius: 8.0,
+                                                                                                              buttonSize: 40.0,
+                                                                                                              fillColor: FlutterFlowTheme.of(context).secondary,
+                                                                                                              icon: FaIcon(
+                                                                                                                FontAwesomeIcons.eye,
+                                                                                                                color: FlutterFlowTheme.of(context).secondaryBackground,
+                                                                                                                size: 20.0,
+                                                                                                              ),
+                                                                                                              onPressed: () async {
+                                                                                                                context.pushNamed(
+                                                                                                                  YoutubeplayWidget.routeName,
+                                                                                                                  queryParameters: {
+                                                                                                                    'youtubstring': serializeParam(
+                                                                                                                      getJsonField(
+                                                                                                                        activitiesItem,
+                                                                                                                        r'''$.hdl_youtubelink''',
+                                                                                                                      ).toString(),
+                                                                                                                      ParamType.String,
+                                                                                                                    ),
+                                                                                                                    'youtubetitle': serializeParam(
+                                                                                                                      getJsonField(
+                                                                                                                        activitiesItem,
+                                                                                                                        r'''$.hdl_title''',
+                                                                                                                      ).toString(),
+                                                                                                                      ParamType.String,
+                                                                                                                    ),
+                                                                                                                  }.withoutNulls,
+                                                                                                                );
+                                                                                                              },
+                                                                                                            ),
+                                                                                                          ],
+                                                                                                        ),
+                                                                                                      ],
+                                                                                                    ),
                                                                                                   ),
                                                                                                 ],
                                                                                               ),
@@ -979,8 +953,7 @@ class _ProgramWidgetState extends State<ProgramWidget>
                               ),
                             );
                           },
-                        ).animateOnPageLoad(
-                            animationsMap['listViewOnPageLoadAnimation']!);
+                        );
                       },
                     ),
                   ),
