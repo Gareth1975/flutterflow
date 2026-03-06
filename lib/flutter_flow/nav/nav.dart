@@ -111,10 +111,12 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
             name: YourActivityWidget.routeName,
             path: YourActivityWidget.routePath,
-            builder: (context, params) => NavBarPage(
-                  initialPage: '',
-                  page: YourActivityWidget(),
-                )),
+            builder: (context, params) => params.isEmpty
+                ? NavBarPage(initialPage: 'YourActivity')
+                : NavBarPage(
+                    initialPage: 'YourActivity',
+                    page: YourActivityWidget(),
+                  )),
         FFRoute(
           name: CalendarWidget.routeName,
           path: CalendarWidget.routePath,
@@ -200,12 +202,10 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
             name: ProgramWidget.routeName,
             path: ProgramWidget.routePath,
-            builder: (context, params) => params.isEmpty
-                ? NavBarPage(initialPage: 'Program')
-                : NavBarPage(
-                    initialPage: 'Program',
-                    page: ProgramWidget(),
-                  )),
+            builder: (context, params) => NavBarPage(
+                  initialPage: '',
+                  page: ProgramWidget(),
+                )),
         FFRoute(
             name: VideoplayWidget.routeName,
             path: VideoplayWidget.routePath,
@@ -216,6 +216,10 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
                       'video',
                       ParamType.String,
                     ),
+                    videotitle: params.getParam(
+                      'videotitle',
+                      ParamType.String,
+                    ),
                   ),
                 )),
         FFRoute(
@@ -224,6 +228,27 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
             builder: (context, params) => NavBarPage(
                   initialPage: '',
                   page: PowerpointviewWidget(),
+                )),
+        FFRoute(
+            name: ProgrammmeWidget.routeName,
+            path: ProgrammmeWidget.routePath,
+            builder: (context, params) => params.isEmpty
+                ? NavBarPage(initialPage: 'Programmme')
+                : NavBarPage(
+                    initialPage: 'Programmme',
+                    page: ProgrammmeWidget(),
+                  )),
+        FFRoute(
+            name: WeeksActivitiesWidget.routeName,
+            path: WeeksActivitiesWidget.routePath,
+            builder: (context, params) => NavBarPage(
+                  initialPage: '',
+                  page: WeeksActivitiesWidget(
+                    programmeId: params.getParam(
+                      'programmeId',
+                      ParamType.String,
+                    ),
+                  ),
                 ))
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
       observers: [routeObserver],

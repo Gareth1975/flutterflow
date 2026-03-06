@@ -20,6 +20,27 @@ class FFAppState extends ChangeNotifier {
   Future initializePersistedState() async {
     secureStorage = FlutterSecureStorage();
     await _safeInitAsync(() async {
+      if (await secureStorage.read(key: 'ff_clientprogrammes') != null) {
+        try {
+          _clientprogrammes = jsonDecode(
+              await secureStorage.getString('ff_clientprogrammes') ?? '');
+        } catch (e) {
+          print("Can't decode persisted json. Error: $e.");
+        }
+      }
+    });
+    await _safeInitAsync(() async {
+      _program = (await secureStorage.getStringList('ff_program'))?.map((x) {
+            try {
+              return jsonDecode(x);
+            } catch (e) {
+              print("Can't decode persisted json. Error: $e.");
+              return {};
+            }
+          }).toList() ??
+          _program;
+    });
+    await _safeInitAsync(() async {
       _Forename = await secureStorage.getString('ff_Forename') ?? _Forename;
     });
     await _safeInitAsync(() async {
@@ -35,17 +56,6 @@ class FFAppState extends ChangeNotifier {
     await _safeInitAsync(() async {
       _Currentuser =
           await secureStorage.getString('ff_Currentuser') ?? _Currentuser;
-    });
-    await _safeInitAsync(() async {
-      _program = (await secureStorage.getStringList('ff_program'))?.map((x) {
-            try {
-              return jsonDecode(x);
-            } catch (e) {
-              print("Can't decode persisted json. Error: $e.");
-              return {};
-            }
-          }).toList() ??
-          _program;
     });
     await _safeInitAsync(() async {
       _sleepStats7d =
@@ -106,6 +116,62 @@ class FFAppState extends ChangeNotifier {
   }
 
   late FlutterSecureStorage secureStorage;
+
+  dynamic _clientprogrammes;
+  dynamic get clientprogrammes => _clientprogrammes;
+  set clientprogrammes(dynamic value) {
+    _clientprogrammes = value;
+    secureStorage.setString('ff_clientprogrammes', jsonEncode(value));
+  }
+
+  void deleteClientprogrammes() {
+    secureStorage.delete(key: 'ff_clientprogrammes');
+  }
+
+  List<dynamic> _program = [];
+  List<dynamic> get program => _program;
+  set program(List<dynamic> value) {
+    _program = value;
+    secureStorage.setStringList(
+        'ff_program', value.map((x) => jsonEncode(x)).toList());
+  }
+
+  void deleteProgram() {
+    secureStorage.delete(key: 'ff_program');
+  }
+
+  void addToProgram(dynamic value) {
+    program.add(value);
+    secureStorage.setStringList(
+        'ff_program', _program.map((x) => jsonEncode(x)).toList());
+  }
+
+  void removeFromProgram(dynamic value) {
+    program.remove(value);
+    secureStorage.setStringList(
+        'ff_program', _program.map((x) => jsonEncode(x)).toList());
+  }
+
+  void removeAtIndexFromProgram(int index) {
+    program.removeAt(index);
+    secureStorage.setStringList(
+        'ff_program', _program.map((x) => jsonEncode(x)).toList());
+  }
+
+  void updateProgramAtIndex(
+    int index,
+    dynamic Function(dynamic) updateFn,
+  ) {
+    program[index] = updateFn(_program[index]);
+    secureStorage.setStringList(
+        'ff_program', _program.map((x) => jsonEncode(x)).toList());
+  }
+
+  void insertAtIndexInProgram(int index, dynamic value) {
+    program.insert(index, value);
+    secureStorage.setStringList(
+        'ff_program', _program.map((x) => jsonEncode(x)).toList());
+  }
 
   String _Forename = '';
   String get Forename => _Forename;
@@ -189,51 +255,6 @@ class FFAppState extends ChangeNotifier {
 
   void insertAtIndexInActivities(int index, dynamic value) {
     activities.insert(index, value);
-  }
-
-  List<dynamic> _program = [];
-  List<dynamic> get program => _program;
-  set program(List<dynamic> value) {
-    _program = value;
-    secureStorage.setStringList(
-        'ff_program', value.map((x) => jsonEncode(x)).toList());
-  }
-
-  void deleteProgram() {
-    secureStorage.delete(key: 'ff_program');
-  }
-
-  void addToProgram(dynamic value) {
-    program.add(value);
-    secureStorage.setStringList(
-        'ff_program', _program.map((x) => jsonEncode(x)).toList());
-  }
-
-  void removeFromProgram(dynamic value) {
-    program.remove(value);
-    secureStorage.setStringList(
-        'ff_program', _program.map((x) => jsonEncode(x)).toList());
-  }
-
-  void removeAtIndexFromProgram(int index) {
-    program.removeAt(index);
-    secureStorage.setStringList(
-        'ff_program', _program.map((x) => jsonEncode(x)).toList());
-  }
-
-  void updateProgramAtIndex(
-    int index,
-    dynamic Function(dynamic) updateFn,
-  ) {
-    program[index] = updateFn(_program[index]);
-    secureStorage.setStringList(
-        'ff_program', _program.map((x) => jsonEncode(x)).toList());
-  }
-
-  void insertAtIndexInProgram(int index, dynamic value) {
-    program.insert(index, value);
-    secureStorage.setStringList(
-        'ff_program', _program.map((x) => jsonEncode(x)).toList());
   }
 
   List<dynamic> _sleepStats7d = [];
