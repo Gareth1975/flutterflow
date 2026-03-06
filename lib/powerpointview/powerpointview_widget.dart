@@ -225,13 +225,15 @@ class _PowerpointviewWidgetState extends State<PowerpointviewWidget> {
                     mainAxisSize: MainAxisSize.min,
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      FlutterFlowWebView(
-                        content:
-                            'https://hilltopdigitallab0.sharepoint.com/sites/HDLabsTeam2/_layouts/15/Doc.aspx?sourcedoc=%7B9B75649F-87D5-4116-9162-F35C39557CCC%7D&action=embedview\n',
-                        width: MediaQuery.sizeOf(context).width * 1.0,
-                        height: MediaQuery.sizeOf(context).height * 1.0,
-                        verticalScroll: true,
-                        horizontalScroll: true,
+                      Expanded(
+                        child: FlutterFlowWebView(
+                          content:
+                              'https://hilltopdigitallab0.sharepoint.com/sites/HDLabsTeam2/_layouts/15/Doc.aspx?sourcedoc=%7B9B75649F-87D5-4116-9162-F35C39557CCC%7D&action=embedview\n',
+                          width: MediaQuery.sizeOf(context).width * 1.0,
+                          height: MediaQuery.sizeOf(context).height * 1.0,
+                          verticalScroll: true,
+                          horizontalScroll: true,
+                        ),
                       ),
                     ],
                   ),

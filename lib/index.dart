@@ -21,6 +21,9 @@ export '/pages/account_settings/device_settings/device_settings_widget.dart'
 export '/pages/account_settings/personal_details/personal_details_widget.dart'
     show PersonalDetailsWidget;
 export '/checkin/checkin_widget.dart' show CheckinWidget;
-export '/pages/program/program_widget.dart' show ProgramWidget;
+export '/pages/old/program/program_widget.dart' show ProgramWidget;
 export '/videoplay/videoplay_widget.dart' show VideoplayWidget;
 export '/powerpointview/powerpointview_widget.dart' show PowerpointviewWidget;
+export '/pages/programmme/programmme_widget.dart' show ProgrammmeWidget;
+export '/pages/weeks_activities/weeks_activities_widget.dart'
+    show WeeksActivitiesWidget;

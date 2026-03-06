@@ -14,15 +14,12 @@
   <!-- (Optional) Floors climbed if you’ll read it -->
   <uses-permission android:name="android.permission.health.READ_FLOORS_CLIMBED"/>
   <application
-    android:name="${applicationName}"
-	android:label="kiKonnect"
+    android:label="kiKonnect"
     tools:replace="android:label"
     android:icon="@mipmap/ic_launcher"
     android:requestLegacyExternalStorage="true"
-	android:extractNativeLibs="true"
   >
-    <activity android:name=".MainActivity"
-	android:exported="true" android:launchMode="singleTop" android:theme="@style/LaunchTheme" android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode" android:hardwareAccelerated="true" android:windowSoftInputMode="adjustResize">
+    <activity android:name=".MainActivity" android:exported="true" android:launchMode="singleTop" android:theme="@style/LaunchTheme" android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode" android:hardwareAccelerated="true" android:windowSoftInputMode="adjustResize">
       <!-- Specifies an Android theme to apply to this Activity as soon as
                  the Android process has started. This theme is visible to the user
                  while the Flutter UI initializes. After that, this theme continues
@@ -42,7 +39,8 @@
       <meta-data android:name="flutter_deeplinking_enabled" android:value="true"/>
       <intent-filter android:autoVerify="true">
         <action android:name="android.intent.action.VIEW"/>
-         <category android:name="android.intent.category.LAUNCHER" />
+        <category android:name="android.intent.category.DEFAULT"/>
+        <category android:name="android.intent.category.BROWSABLE"/>
         <data android:scheme="kikonnect" android:host="kikonnect.com"/>
       </intent-filter>
     </activity>

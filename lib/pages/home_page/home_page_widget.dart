@@ -634,23 +634,7 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                                                       activitieslistItem,
                                                                       r'''$..hdl_youtubelink''',
                                                                     ) !=
-                                                                    null) {
-                                                                } else {
-                                                                  context
-                                                                      .pushNamed(
-                                                                    VideoplayWidget
-                                                                        .routeName,
-                                                                    queryParameters:
-                                                                        {
-                                                                      'video':
-                                                                          serializeParam(
-                                                                        '',
-                                                                        ParamType
-                                                                            .String,
-                                                                      ),
-                                                                    }.withoutNulls,
-                                                                  );
-                                                                }
+                                                                    null) {}
                                                               } else {
                                                                 context.pushNamed(
                                                                     PowerpointviewWidget
@@ -957,7 +941,7 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                                           AlignmentDirectional(
                                                               -1.0, 0.0),
                                                       child: Text(
-                                                        'Today\'s activity',
+                                                        'Today\'s activity ',
                                                         style:
                                                             FlutterFlowTheme.of(
                                                                     context)
@@ -992,6 +976,52 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                                                       .fontStyle,
                                                                 ),
                                                       ),
+                                                    ),
+                                                  ),
+                                                  InkWell(
+                                                    splashColor:
+                                                        Colors.transparent,
+                                                    focusColor:
+                                                        Colors.transparent,
+                                                    hoverColor:
+                                                        Colors.transparent,
+                                                    highlightColor:
+                                                        Colors.transparent,
+                                                    onTap: () async {
+                                                      context.pushNamed(
+                                                          DeviceSettingsWidget
+                                                              .routeName);
+                                                    },
+                                                    child: Text(
+                                                      'Add your device ',
+                                                      style:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodyMedium
+                                                              .override(
+                                                                font:
+                                                                    GoogleFonts
+                                                                        .inter(
+                                                                  fontWeight: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyMedium
+                                                                      .fontWeight,
+                                                                  fontStyle: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyMedium
+                                                                      .fontStyle,
+                                                                ),
+                                                                letterSpacing:
+                                                                    0.0,
+                                                                fontWeight: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyMedium
+                                                                    .fontWeight,
+                                                                fontStyle: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyMedium
+                                                                    .fontStyle,
+                                                              ),
                                                     ),
                                                   ),
                                                 ],
