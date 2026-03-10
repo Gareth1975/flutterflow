@@ -672,14 +672,22 @@ class _ProgrammmeWidgetState extends State<ProgrammmeWidget> {
                                                             WeeksActivitiesWidget
                                                                 .routeName,
                                                             queryParameters: {
-                                                              'programmeId':
+                                                              'programmetitle':
                                                                   serializeParam(
                                                                 getJsonField(
                                                                   clientprogrammesItem,
-                                                                  r'''$.header.hdl_client_programmeid''',
+                                                                  r'''$.header.hdl_programmetitle''',
                                                                 ).toString(),
                                                                 ParamType
                                                                     .String,
+                                                              ),
+                                                              'weeksJson':
+                                                                  serializeParam(
+                                                                getJsonField(
+                                                                  clientprogrammesItem,
+                                                                  r'''$.weeks''',
+                                                                ),
+                                                                ParamType.JSON,
                                                               ),
                                                             }.withoutNulls,
                                                           );

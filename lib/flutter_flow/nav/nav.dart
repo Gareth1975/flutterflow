@@ -244,9 +244,13 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
             builder: (context, params) => NavBarPage(
                   initialPage: '',
                   page: WeeksActivitiesWidget(
-                    programmeId: params.getParam(
-                      'programmeId',
+                    programmetitle: params.getParam(
+                      'programmetitle',
                       ParamType.String,
+                    ),
+                    weeksJson: params.getParam(
+                      'weeksJson',
+                      ParamType.JSON,
                     ),
                   ),
                 ))
