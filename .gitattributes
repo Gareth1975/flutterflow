@@ -4,7 +4,7 @@ android/build.gradle              merge=ours
 android/settings.gradle           merge=ours
 android/gradle.properties         merge=ours
 pubspec.yaml 			merge=ours
-android/app/src/main/kotlin/com/example/my_project/MainActivity.kt merge=ours
+android/app/src/main/kotlin/com/mycompany/kikonnect/MainActivity.kt merge=ours
 
 ios/Runner/Info.plist             merge=ours
 ios/Runner.xcodeproj/project.pbxproj merge=ours
