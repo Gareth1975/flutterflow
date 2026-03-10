@@ -13,12 +13,12 @@ class DeviceSettingsModel extends FlutterFlowModel<DeviceSettingsWidget> {
   int get tabBarPreviousIndex =>
       tabBarController != null ? tabBarController!.previousIndex : 0;
 
-  // Stores action output result for [Backend Call - API (SahharegisterDevice)] action in Button widget.
-  ApiCallResponse? apiResultizl;
-  // Stores action output result for [Custom Action - sahhaPing] action in sahhaimport widget.
+  // Stores action output result for [Custom Action - sahhaPing] action in Button widget.
   String? sahhaPingOut;
   // Stores action output result for [Custom Action - sahhaInitSandbox] action in Button widget.
   String? sahhaInitSandboxOut;
+  // Stores action output result for [Backend Call - API (SahharegisterDevice)] action in Button widget.
+  ApiCallResponse? apiResultizl;
 
   @override
   void initState(BuildContext context) {}

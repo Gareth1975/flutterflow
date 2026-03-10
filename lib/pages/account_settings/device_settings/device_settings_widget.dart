@@ -232,110 +232,121 @@ class _DeviceSettingsWidgetState extends State<DeviceSettingsWidget>
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   crossAxisAlignment: CrossAxisAlignment.center,
                                   children: [
-                                    Opacity(
-                                      opacity: 0.0,
-                                      child: Container(
-                                        width: 341.2,
-                                        height: 27.79,
-                                        decoration: BoxDecoration(
-                                          color: FlutterFlowTheme.of(context)
-                                              .secondaryBackground,
+                                    Align(
+                                      alignment:
+                                          AlignmentDirectional(0.0, -1.0),
+                                      child: Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            0.0, 30.0, 0.0, 30.0),
+                                        child: FFButtonWidget(
+                                          onPressed: () async {
+                                            _model.sahhaPingOut =
+                                                await actions.sahhaPing();
+                                            ScaffoldMessenger.of(context)
+                                                .showSnackBar(
+                                              SnackBar(
+                                                content: Text(
+                                                  _model.sahhaPingOut!,
+                                                  style: TextStyle(
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .primaryText,
+                                                  ),
+                                                ),
+                                                duration: Duration(
+                                                    milliseconds: 4000),
+                                                backgroundColor:
+                                                    FlutterFlowTheme.of(context)
+                                                        .secondary,
+                                              ),
+                                            );
+                                            unawaited(
+                                              () async {
+                                                _model.sahhaInitSandboxOut =
+                                                    await actions
+                                                        .sahhaInitSandbox(
+                                                  FFAppState().clientId,
+                                                );
+                                              }(),
+                                            );
+                                            _model.apiResultizl =
+                                                await SahharegisterDeviceCall
+                                                    .call();
+
+                                            if ((_model
+                                                    .apiResultizl?.succeeded ??
+                                                true)) {
+                                              FFAppState().profiletoken =
+                                                  SahharegisterDeviceCall
+                                                      .profiletoken(
+                                                (_model.apiResultizl
+                                                        ?.jsonBody ??
+                                                    ''),
+                                              )!;
+                                              safeSetState(() {});
+                                              FFAppState().refreshtoken =
+                                                  FFAppState().refreshtoken;
+                                              safeSetState(() {});
+                                            }
+
+                                            safeSetState(() {});
+                                          },
+                                          text: 'Add  My Device',
+                                          options: FFButtonOptions(
+                                            height: 51.01,
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    16.0, 0.0, 16.0, 0.0),
+                                            iconPadding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    0.0, 0.0, 0.0, 0.0),
+                                            color: FlutterFlowTheme.of(context)
+                                                .primary,
+                                            textStyle: FlutterFlowTheme.of(
+                                                    context)
+                                                .titleSmall
+                                                .override(
+                                                  font: GoogleFonts.interTight(
+                                                    fontWeight:
+                                                        FlutterFlowTheme.of(
+                                                                context)
+                                                            .titleSmall
+                                                            .fontWeight,
+                                                    fontStyle:
+                                                        FlutterFlowTheme.of(
+                                                                context)
+                                                            .titleSmall
+                                                            .fontStyle,
+                                                  ),
+                                                  color: Colors.white,
+                                                  letterSpacing: 0.0,
+                                                  fontWeight:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .titleSmall
+                                                          .fontWeight,
+                                                  fontStyle:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .titleSmall
+                                                          .fontStyle,
+                                                ),
+                                            elevation: 0.0,
+                                            borderRadius:
+                                                BorderRadius.circular(8.0),
+                                          ),
                                         ),
                                       ),
                                     ),
                                     Align(
-                                      alignment:
-                                          AlignmentDirectional(0.0, -1.0),
-                                      child: FFButtonWidget(
-                                        onPressed: () async {
-                                          _model.apiResultizl =
-                                              await SahharegisterDeviceCall
-                                                  .call();
-
-                                          if ((_model.apiResultizl?.succeeded ??
-                                              true)) {
-                                            FFAppState().profiletoken =
-                                                SahharegisterDeviceCall
-                                                    .profiletoken(
-                                              (_model.apiResultizl?.jsonBody ??
-                                                  ''),
-                                            )!;
-                                            safeSetState(() {});
-                                            FFAppState().refreshtoken =
-                                                FFAppState().refreshtoken;
-                                            safeSetState(() {});
-                                          }
-
-                                          safeSetState(() {});
-                                        },
-                                        text: 'Add  My Device',
-                                        options: FFButtonOptions(
-                                          height: 51.01,
-                                          padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  16.0, 0.0, 16.0, 0.0),
-                                          iconPadding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  0.0, 0.0, 0.0, 0.0),
-                                          color: FlutterFlowTheme.of(context)
-                                              .primary,
-                                          textStyle: FlutterFlowTheme.of(
-                                                  context)
-                                              .titleSmall
-                                              .override(
-                                                font: GoogleFonts.interTight(
-                                                  fontWeight:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .titleSmall
-                                                          .fontWeight,
-                                                  fontStyle:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .titleSmall
-                                                          .fontStyle,
-                                                ),
-                                                color: Colors.white,
-                                                letterSpacing: 0.0,
-                                                fontWeight:
-                                                    FlutterFlowTheme.of(context)
-                                                        .titleSmall
-                                                        .fontWeight,
-                                                fontStyle:
-                                                    FlutterFlowTheme.of(context)
-                                                        .titleSmall
-                                                        .fontStyle,
-                                              ),
-                                          elevation: 0.0,
-                                          borderRadius:
-                                              BorderRadius.circular(8.0),
-                                        ),
-                                      ),
-                                    ),
-                                    Opacity(
-                                      opacity: 0.0,
-                                      child: Align(
-                                        alignment:
-                                            AlignmentDirectional(-1.0, 0.0),
-                                        child: Text(
-                                          FFAppState().profiletoken,
-                                          textAlign: TextAlign.start,
-                                          style: FlutterFlowTheme.of(context)
-                                              .bodyMedium
-                                              .override(
-                                                font: GoogleFonts.inter(
-                                                  fontWeight:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .bodyMedium
-                                                          .fontWeight,
-                                                  fontStyle:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .bodyMedium
-                                                          .fontStyle,
-                                                ),
-                                                letterSpacing: 0.0,
+                                      alignment: AlignmentDirectional(0.0, 0.0),
+                                      child: Text(
+                                        FFAppState().profiletoken,
+                                        textAlign: TextAlign.start,
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .override(
+                                              font: GoogleFonts.inter(
                                                 fontWeight:
                                                     FlutterFlowTheme.of(context)
                                                         .bodyMedium
@@ -345,7 +356,16 @@ class _DeviceSettingsWidgetState extends State<DeviceSettingsWidget>
                                                         .bodyMedium
                                                         .fontStyle,
                                               ),
-                                        ),
+                                              letterSpacing: 0.0,
+                                              fontWeight:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyMedium
+                                                      .fontWeight,
+                                              fontStyle:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyMedium
+                                                      .fontStyle,
+                                            ),
                                       ),
                                     ),
                                   ],
@@ -386,33 +406,7 @@ class _DeviceSettingsWidgetState extends State<DeviceSettingsWidget>
                                     ),
                                   ),
                                   FFButtonWidget(
-                                    onPressed: () async {
-                                      _model.sahhaPingOut =
-                                          await actions.sahhaPing();
-                                      ScaffoldMessenger.of(context)
-                                          .showSnackBar(
-                                        SnackBar(
-                                          content: Text(
-                                            valueOrDefault<String>(
-                                              _model.sahhaPingOut,
-                                              'null',
-                                            ),
-                                            style: TextStyle(
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .primaryText,
-                                            ),
-                                          ),
-                                          duration:
-                                              Duration(milliseconds: 4000),
-                                          backgroundColor:
-                                              FlutterFlowTheme.of(context)
-                                                  .secondary,
-                                        ),
-                                      );
-
-                                      safeSetState(() {});
-                                    },
+                                    onPressed: () async {},
                                     text: 'sahha import check',
                                     options: FFButtonOptions(
                                       height: 49.0,
@@ -483,15 +477,8 @@ class _DeviceSettingsWidgetState extends State<DeviceSettingsWidget>
                                   FFButtonWidget(
                                     onPressed: () async {
                                       unawaited(
-                                        () async {
-                                          _model.sahhaInitSandboxOut =
-                                              await actions.sahhaInitSandbox(
-                                            FFAppState().clientId,
-                                          );
-                                        }(),
+                                        () async {}(),
                                       );
-
-                                      safeSetState(() {});
                                     },
                                     text: 'Button',
                                     options: FFButtonOptions(

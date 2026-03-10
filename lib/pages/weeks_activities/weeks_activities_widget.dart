@@ -1,4 +1,3 @@
-import '/backend/api_requests/api_calls.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
@@ -15,10 +14,12 @@ export 'weeks_activities_model.dart';
 class WeeksActivitiesWidget extends StatefulWidget {
   const WeeksActivitiesWidget({
     super.key,
-    required this.programmeId,
+    required this.programmetitle,
+    required this.weeksJson,
   });
 
-  final String? programmeId;
+  final String? programmetitle;
+  final dynamic weeksJson;
 
   static String routeName = 'WeeksActivities';
   static String routePath = '/WeeksActivities';
@@ -38,14 +39,7 @@ class _WeeksActivitiesWidgetState extends State<WeeksActivitiesWidget> {
     _model = createModel(context, () => WeeksActivitiesModel());
 
     // On page load action.
-    SchedulerBinding.instance.addPostFrameCallback((_) async {
-      _model.apiprogram = await GetProgramCall.call(
-        clientid: FFAppState().clientId,
-      );
-
-      FFAppState().clientprogrammes = (_model.apiprogram?.jsonBody ?? '');
-      FFAppState().update(() {});
-    });
+    SchedulerBinding.instance.addPostFrameCallback((_) async {});
 
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
@@ -167,7 +161,34 @@ class _WeeksActivitiesWidgetState extends State<WeeksActivitiesWidget> {
                   ),
                   Row(
                     mainAxisSize: MainAxisSize.max,
-                    children: [],
+                    children: [
+                      Expanded(
+                        child: Text(
+                          valueOrDefault<String>(
+                            widget.weeksJson?.toString(),
+                            'weeks',
+                          ),
+                          style:
+                              FlutterFlowTheme.of(context).bodyMedium.override(
+                                    font: GoogleFonts.inter(
+                                      fontWeight: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .fontWeight,
+                                      fontStyle: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .fontStyle,
+                                    ),
+                                    letterSpacing: 0.0,
+                                    fontWeight: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .fontWeight,
+                                    fontStyle: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .fontStyle,
+                                  ),
+                        ),
+                      ),
+                    ],
                   ),
                 ],
               ),
@@ -185,10 +206,8 @@ class _WeeksActivitiesWidgetState extends State<WeeksActivitiesWidget> {
                     children: [
                       Builder(
                         builder: (context) {
-                          final clientprogrammes = getJsonField(
-                            FFAppState().clientprogrammes,
-                            r'''$.programmes''',
-                          ).toList();
+                          final clientprogrammes =
+                              FFAppState().clientprogrammes.toList();
 
                           return ListView.separated(
                             padding: EdgeInsets.zero,
