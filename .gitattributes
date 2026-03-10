@@ -1,5 +1,5 @@
 android/app/src/main/AndroidManifest.xml merge=ours
-android/app/build.gradle          merge=ours
+android/app/build.gradle 	merge=ours
 android/build.gradle              merge=ours
 android/settings.gradle           merge=ours
 android/gradle.properties         merge=ours
