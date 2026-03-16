@@ -41,6 +41,8 @@ class _ProgrammmeWidgetState extends State<ProgrammmeWidget> {
 
       FFAppState().clientprogrammes = (_model.apiprogram?.jsonBody ?? '');
       FFAppState().update(() {});
+
+      safeSetState(() {});
     });
 
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
@@ -688,6 +690,15 @@ class _ProgrammmeWidgetState extends State<ProgrammmeWidget> {
                                                                   r'''$.weeks''',
                                                                 ),
                                                                 ParamType.JSON,
+                                                              ),
+                                                              'prorammeid':
+                                                                  serializeParam(
+                                                                getJsonField(
+                                                                  clientprogrammesItem,
+                                                                  r'''$.header.hdl_client_programmeid''',
+                                                                ).toString(),
+                                                                ParamType
+                                                                    .String,
                                                               ),
                                                             }.withoutNulls,
                                                           );
