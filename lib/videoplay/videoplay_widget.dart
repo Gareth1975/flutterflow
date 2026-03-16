@@ -5,7 +5,6 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_video_player.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:auto_size_text/auto_size_text.dart';
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -427,12 +426,8 @@ class _VideoplayWidgetState extends State<VideoplayWidget> {
                                         imageBuilder: (path) => ClipRRect(
                                           borderRadius:
                                               BorderRadius.circular(8.0),
-                                          child: CachedNetworkImage(
-                                            fadeInDuration:
-                                                Duration(milliseconds: 500),
-                                            fadeOutDuration:
-                                                Duration(milliseconds: 500),
-                                            imageUrl: path,
+                                          child: Image.network(
+                                            path,
                                             width: MediaQuery.sizeOf(context)
                                                     .width *
                                                 1.0,
