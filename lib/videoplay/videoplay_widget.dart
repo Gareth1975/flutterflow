@@ -240,10 +240,10 @@ class _VideoplayWidgetState extends State<VideoplayWidget> {
                                                   children: [
                                                     FlutterFlowVideoPlayer(
                                                       path:
-                                                          'https://hilltopdigitallab0.sharepoint.com/sites/HDLabsTeam2/Shared%20Documents/External/The%20Open%20Practice/Videos%20Curated%20for%20AHS/evolutionofthebrain.mp4',
+                                                          'https://hilltopdigitallab0.sharepoint.com/sites/HDLabsTeam2/Shared%20Documents/External/The%20Open%20Practice/Videos%20Curated%20for%20AHS/evolutionofthebrain.mp4?download=1',
                                                       videoType:
                                                           VideoType.network,
-                                                      autoPlay: false,
+                                                      autoPlay: true,
                                                       looping: true,
                                                       showControls: true,
                                                       allowFullScreen: true,
