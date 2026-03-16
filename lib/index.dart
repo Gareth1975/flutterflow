@@ -3,7 +3,7 @@ export '/pages/home_page/home_page_widget.dart' show HomePageWidget;
 export '/pages/loginpage/loginpage_widget.dart' show LoginpageWidget;
 export '/pages/old/messages/messages_widget.dart' show MessagesWidget;
 export '/pages/your_activity/your_activity_widget.dart' show YourActivityWidget;
-export '/pages/calendar/calendar_widget.dart' show CalendarWidget;
+export '/pages/old/calendar/calendar_widget.dart' show CalendarWidget;
 export '/youtubeplay/youtubeplay_widget.dart' show YoutubeplayWidget;
 export '/pages/account_settings/account_settings/account_settings_widget.dart'
     show AccountSettingsWidget;

@@ -136,6 +136,10 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
                       'youtubetitle',
                       ParamType.String,
                     ),
+                    description: params.getParam(
+                      'description',
+                      ParamType.String,
+                    ),
                   ),
                 )),
         FFRoute(
@@ -251,6 +255,10 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
                     weeksJson: params.getParam(
                       'weeksJson',
                       ParamType.JSON,
+                    ),
+                    prorammeid: params.getParam(
+                      'prorammeid',
+                      ParamType.String,
                     ),
                   ),
                 ))

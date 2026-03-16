@@ -108,6 +108,21 @@ class FFAppState extends ChangeNotifier {
           await secureStorage.getDouble('ff_checkinpainscore') ??
               _checkinpainscore;
     });
+    await _safeInitAsync(() async {
+      if (await secureStorage.read(key: 'ff_clientweeks') != null) {
+        try {
+          _clientweeks =
+              jsonDecode(await secureStorage.getString('ff_clientweeks') ?? '');
+        } catch (e) {
+          print("Can't decode persisted json. Error: $e.");
+        }
+      }
+    });
+    await _safeInitAsync(() async {
+      _activitydescription =
+          await secureStorage.getString('ff_activitydescription') ??
+              _activitydescription;
+    });
   }
 
   void update(VoidCallback callback) {
@@ -476,6 +491,28 @@ class FFAppState extends ChangeNotifier {
   String get hdlvideolink => _hdlvideolink;
   set hdlvideolink(String value) {
     _hdlvideolink = value;
+  }
+
+  dynamic _clientweeks;
+  dynamic get clientweeks => _clientweeks;
+  set clientweeks(dynamic value) {
+    _clientweeks = value;
+    secureStorage.setString('ff_clientweeks', jsonEncode(value));
+  }
+
+  void deleteClientweeks() {
+    secureStorage.delete(key: 'ff_clientweeks');
+  }
+
+  String _activitydescription = '';
+  String get activitydescription => _activitydescription;
+  set activitydescription(String value) {
+    _activitydescription = value;
+    secureStorage.setString('ff_activitydescription', value);
+  }
+
+  void deleteActivitydescription() {
+    secureStorage.delete(key: 'ff_activitydescription');
   }
 }
 
