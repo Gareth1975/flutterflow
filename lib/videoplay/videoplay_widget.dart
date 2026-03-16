@@ -238,6 +238,18 @@ class _VideoplayWidgetState extends State<VideoplayWidget> {
                                                   crossAxisAlignment:
                                                       CrossAxisAlignment.start,
                                                   children: [
+                                                    FlutterFlowVideoPlayer(
+                                                      path:
+                                                          'https://hilltopdigitallab0.sharepoint.com/sites/HDLabsTeam2/Shared%20Documents/External/The%20Open%20Practice/Videos%20Curated%20for%20AHS/evolutionofthebrain.mp4',
+                                                      videoType:
+                                                          VideoType.network,
+                                                      autoPlay: false,
+                                                      looping: true,
+                                                      showControls: true,
+                                                      allowFullScreen: true,
+                                                      allowPlaybackSpeedMenu:
+                                                          false,
+                                                    ),
                                                     Expanded(
                                                       child: Align(
                                                         alignment:
@@ -346,25 +358,41 @@ class _VideoplayWidgetState extends State<VideoplayWidget> {
                                                         MainAxisSize.max,
                                                     children: [
                                                       Flexible(
-                                                        child: Padding(
-                                                          padding:
-                                                              EdgeInsetsDirectional
-                                                                  .fromSTEB(
-                                                                      10.0,
-                                                                      5.0,
-                                                                      10.0,
-                                                                      0.0),
-                                                          child: Text(
-                                                            '\nPlease watch the full video before submitting your rating.\nTry to focus without distractions - this time is for you.\n',
-                                                            textAlign: TextAlign
-                                                                .center,
-                                                            style: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .bodyMedium
-                                                                .override(
-                                                                  font:
-                                                                      GoogleFonts
-                                                                          .inter(
+                                                        child: Align(
+                                                          alignment:
+                                                              AlignmentDirectional(
+                                                                  0.0, 0.0),
+                                                          child: Padding(
+                                                            padding:
+                                                                EdgeInsetsDirectional
+                                                                    .fromSTEB(
+                                                                        10.0,
+                                                                        5.0,
+                                                                        10.0,
+                                                                        0.0),
+                                                            child: Text(
+                                                              '\nPlease watch the full video before submitting your rating.\nTry to focus without distractions - this time is for you.\n',
+                                                              textAlign:
+                                                                  TextAlign
+                                                                      .center,
+                                                              style: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .bodyMedium
+                                                                  .override(
+                                                                    font: GoogleFonts
+                                                                        .inter(
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .w600,
+                                                                      fontStyle: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .bodyMedium
+                                                                          .fontStyle,
+                                                                    ),
+                                                                    fontSize:
+                                                                        12.0,
+                                                                    letterSpacing:
+                                                                        0.0,
                                                                     fontWeight:
                                                                         FontWeight
                                                                             .w600,
@@ -373,18 +401,7 @@ class _VideoplayWidgetState extends State<VideoplayWidget> {
                                                                         .bodyMedium
                                                                         .fontStyle,
                                                                   ),
-                                                                  fontSize:
-                                                                      12.0,
-                                                                  letterSpacing:
-                                                                      0.0,
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .w600,
-                                                                  fontStyle: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMedium
-                                                                      .fontStyle,
-                                                                ),
+                                                            ),
                                                           ),
                                                         ),
                                                       ),
@@ -411,45 +428,57 @@ class _VideoplayWidgetState extends State<VideoplayWidget> {
                                   .secondaryBackground,
                               borderRadius: BorderRadius.circular(0.0),
                             ),
-                            child: Row(
+                            child: Column(
                               mainAxisSize: MainAxisSize.max,
-                              mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                Expanded(
-                                  child: Align(
-                                    alignment: AlignmentDirectional(0.0, 0.0),
-                                    child: Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          10.0, 0.0, 10.0, 0.0),
-                                      child: FlutterFlowMediaDisplay(
-                                        path: FFAppState().hdlvideolink,
-                                        imageBuilder: (path) => ClipRRect(
-                                          borderRadius:
-                                              BorderRadius.circular(8.0),
-                                          child: Image.network(
-                                            path,
-                                            width: MediaQuery.sizeOf(context)
-                                                    .width *
-                                                1.0,
-                                            height: 300.0,
-                                            fit: BoxFit.contain,
-                                          ),
-                                        ),
-                                        videoPlayerBuilder: (path) =>
-                                            FlutterFlowVideoPlayer(
-                                          path: path,
-                                          width:
-                                              MediaQuery.sizeOf(context).width *
+                                Row(
+                                  mainAxisSize: MainAxisSize.max,
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Expanded(
+                                      child: Align(
+                                        alignment:
+                                            AlignmentDirectional(0.0, 0.0),
+                                        child: Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  10.0, 0.0, 10.0, 0.0),
+                                          child: FlutterFlowMediaDisplay(
+                                            path: FFAppState().hdlvideolink,
+                                            imageBuilder: (path) => ClipRRect(
+                                              borderRadius:
+                                                  BorderRadius.circular(8.0),
+                                              child: Image.network(
+                                                path,
+                                                width:
+                                                    MediaQuery.sizeOf(context)
+                                                            .width *
+                                                        1.0,
+                                                height: 300.0,
+                                                fit: BoxFit.contain,
+                                              ),
+                                            ),
+                                            videoPlayerBuilder: (path) =>
+                                                FlutterFlowVideoPlayer(
+                                              path: path,
+                                              width: MediaQuery.sizeOf(context)
+                                                      .width *
                                                   1.0,
-                                          autoPlay: false,
-                                          looping: true,
-                                          showControls: true,
-                                          allowFullScreen: true,
-                                          allowPlaybackSpeedMenu: false,
+                                              autoPlay: false,
+                                              looping: true,
+                                              showControls: true,
+                                              allowFullScreen: true,
+                                              allowPlaybackSpeedMenu: false,
+                                            ),
+                                          ),
                                         ),
                                       ),
                                     ),
-                                  ),
+                                  ],
+                                ),
+                                Row(
+                                  mainAxisSize: MainAxisSize.max,
+                                  children: [],
                                 ),
                               ],
                             ),
