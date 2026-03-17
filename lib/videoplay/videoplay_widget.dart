@@ -240,7 +240,7 @@ class _VideoplayWidgetState extends State<VideoplayWidget> {
                                                     Expanded(
                                                       child: FlutterFlowWebView(
                                                         content:
-                                                            'https://hilltopdigitallab0.sharepoint.com/sites/HDLabsTeam2/Shared%20Documents/External/The%20Open%20Practice/Videos%20Curated%20for%20AHS/evolutionofthebrain.mp4',
+                                                            'https://hilltopdigitallab0.sharepoint.com/:v:/s/HDLabsTeam2/IQCqpaWcGGbsR5Owf3ZwUTT9AYcJgAR7UIzYhr6vz0lVhDs?e=4b8thD',
                                                         bypass: true,
                                                         width:
                                                             MediaQuery.sizeOf(
