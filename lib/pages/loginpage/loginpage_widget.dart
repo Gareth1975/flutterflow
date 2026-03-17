@@ -627,6 +627,12 @@ class _LoginpageWidgetState extends State<LoginpageWidget>
                                       ),
                                     ),
                                   ),
+                                  Expanded(
+                                    child: Row(
+                                      mainAxisSize: MainAxisSize.max,
+                                      children: [],
+                                    ),
+                                  ),
                                 ],
                               ),
                             ),

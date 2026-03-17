@@ -634,7 +634,8 @@ class _AccountSettingsWidgetState extends State<AccountSettingsWidget> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(16.0, 12.0, 0.0, 0.0),
+                  padding:
+                      EdgeInsetsDirectional.fromSTEB(16.0, 12.0, 16.0, 0.0),
                   child: FFButtonWidget(
                     onPressed: () async {
                       GoRouter.of(context).prepareAuthEvent();
@@ -679,27 +680,48 @@ class _AccountSettingsWidgetState extends State<AccountSettingsWidget> {
                     ),
                   ),
                 ),
-                Text(
-                  valueOrDefault<String>(
-                    _model.getAppVersionInfo,
-                    '0.0.0.0',
-                  ),
-                  style: FlutterFlowTheme.of(context).bodyMedium.override(
-                        font: GoogleFonts.inter(
-                          fontWeight: FlutterFlowTheme.of(context)
-                              .bodyMedium
-                              .fontWeight,
-                          fontStyle:
-                              FlutterFlowTheme.of(context).bodyMedium.fontStyle,
-                        ),
-                        letterSpacing: 0.0,
-                        fontWeight:
-                            FlutterFlowTheme.of(context).bodyMedium.fontWeight,
-                        fontStyle:
-                            FlutterFlowTheme.of(context).bodyMedium.fontStyle,
-                      ),
-                ),
               ],
+            ),
+            Expanded(
+              child: Align(
+                alignment: AlignmentDirectional(0.0, -1.0),
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Expanded(
+                      child: Align(
+                        alignment: AlignmentDirectional(0.0, -1.0),
+                        child: Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(
+                              0.0, 15.0, 0.0, 30.0),
+                          child: Text(
+                            valueOrDefault<String>(
+                              _model.getAppVersionInfo,
+                              '0.0.0.0',
+                            ),
+                            style: FlutterFlowTheme.of(context)
+                                .bodyMedium
+                                .override(
+                                  font: GoogleFonts.inter(
+                                    fontWeight: FontWeight.w600,
+                                    fontStyle: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .fontStyle,
+                                  ),
+                                  letterSpacing: 0.0,
+                                  fontWeight: FontWeight.w600,
+                                  fontStyle: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .fontStyle,
+                                ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
             ),
           ].addToEnd(SizedBox(height: 64.0)),
         ),
