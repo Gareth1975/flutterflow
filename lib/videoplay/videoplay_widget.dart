@@ -3,6 +3,7 @@ import '/flutter_flow/flutter_flow_media_display.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_video_player.dart';
+import '/flutter_flow/flutter_flow_web_view.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
@@ -235,21 +236,30 @@ class _VideoplayWidgetState extends State<VideoplayWidget> {
                                                 Row(
                                                   mainAxisSize:
                                                       MainAxisSize.max,
+                                                  children: [
+                                                    Expanded(
+                                                      child: FlutterFlowWebView(
+                                                        content:
+                                                            'https://hilltopdigitallab0.sharepoint.com/sites/HDLabsTeam2/Shared%20Documents/External/The%20Open%20Practice/Videos%20Curated%20for%20AHS/evolutionofthebrain.mp4',
+                                                        bypass: true,
+                                                        width:
+                                                            MediaQuery.sizeOf(
+                                                                        context)
+                                                                    .width *
+                                                                0.9,
+                                                        height: 300.0,
+                                                        verticalScroll: false,
+                                                        horizontalScroll: false,
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                                Row(
+                                                  mainAxisSize:
+                                                      MainAxisSize.max,
                                                   crossAxisAlignment:
                                                       CrossAxisAlignment.start,
                                                   children: [
-                                                    FlutterFlowVideoPlayer(
-                                                      path:
-                                                          'https://hilltopdigitallab0.sharepoint.com/sites/HDLabsTeam2/Shared%20Documents/External/The%20Open%20Practice/Videos%20Curated%20for%20AHS/evolutionofthebrain.mp4?download=1',
-                                                      videoType:
-                                                          VideoType.network,
-                                                      autoPlay: true,
-                                                      looping: true,
-                                                      showControls: true,
-                                                      allowFullScreen: true,
-                                                      allowPlaybackSpeedMenu:
-                                                          false,
-                                                    ),
                                                     Expanded(
                                                       child: Align(
                                                         alignment:
@@ -603,6 +613,16 @@ class _VideoplayWidgetState extends State<VideoplayWidget> {
                                             mainAxisAlignment:
                                                 MainAxisAlignment.spaceBetween,
                                             children: [
+                                              FlutterFlowVideoPlayer(
+                                                path:
+                                                    'https://hilltopdigitallab0.sharepoint.com/sites/HDLabsTeam2/Shared%20Documents/External/The%20Open%20Practice/Videos%20Curated%20for%20AHS/evolutionofthebrain.mp4?download=1',
+                                                videoType: VideoType.network,
+                                                autoPlay: true,
+                                                looping: true,
+                                                showControls: true,
+                                                allowFullScreen: true,
+                                                allowPlaybackSpeedMenu: false,
+                                              ),
                                               Expanded(
                                                 child: Align(
                                                   alignment:
