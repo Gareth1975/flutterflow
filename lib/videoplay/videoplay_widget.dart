@@ -1,8 +1,6 @@
 import '/flutter_flow/flutter_flow_icon_button.dart';
-import '/flutter_flow/flutter_flow_media_display.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_video_player.dart';
 import '/flutter_flow/flutter_flow_web_view.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:auto_size_text/auto_size_text.dart';
@@ -236,20 +234,68 @@ class _VideoplayWidgetState extends State<VideoplayWidget> {
                                                 Row(
                                                   mainAxisSize:
                                                       MainAxisSize.max,
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.center,
                                                   children: [
-                                                    Expanded(
-                                                      child: FlutterFlowWebView(
-                                                        content:
-                                                            'https://hilltopdigitallab0.sharepoint.com/:v:/s/HDLabsTeam2/IQCqpaWcGGbsR5Owf3ZwUTT9AYcJgAR7UIzYhr6vz0lVhDs?e=4b8thD',
-                                                        bypass: true,
-                                                        width:
-                                                            MediaQuery.sizeOf(
-                                                                        context)
-                                                                    .width *
-                                                                0.9,
-                                                        height: 300.0,
-                                                        verticalScroll: false,
-                                                        horizontalScroll: false,
+                                                    FFButtonWidget(
+                                                      onPressed: () async {
+                                                        await launchURL(
+                                                            widget.video!);
+                                                      },
+                                                      text: 'Button',
+                                                      options: FFButtonOptions(
+                                                        height: 40.0,
+                                                        padding:
+                                                            EdgeInsetsDirectional
+                                                                .fromSTEB(
+                                                                    16.0,
+                                                                    0.0,
+                                                                    16.0,
+                                                                    0.0),
+                                                        iconPadding:
+                                                            EdgeInsetsDirectional
+                                                                .fromSTEB(
+                                                                    0.0,
+                                                                    0.0,
+                                                                    0.0,
+                                                                    0.0),
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .primary,
+                                                        textStyle:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .titleSmall
+                                                                .override(
+                                                                  font: GoogleFonts
+                                                                      .interTight(
+                                                                    fontWeight: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .titleSmall
+                                                                        .fontWeight,
+                                                                    fontStyle: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .titleSmall
+                                                                        .fontStyle,
+                                                                  ),
+                                                                  color: Colors
+                                                                      .white,
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                  fontWeight: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .titleSmall
+                                                                      .fontWeight,
+                                                                  fontStyle: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .titleSmall
+                                                                      .fontStyle,
+                                                                ),
+                                                        elevation: 0.0,
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(8.0),
                                                       ),
                                                     ),
                                                   ],
@@ -366,6 +412,29 @@ class _VideoplayWidgetState extends State<VideoplayWidget> {
                                                   child: Row(
                                                     mainAxisSize:
                                                         MainAxisSize.max,
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .spaceBetween,
+                                                    children: [
+                                                      Expanded(
+                                                        child:
+                                                            FlutterFlowWebView(
+                                                          content:
+                                                              'https://hilltopdigitallab0.sharepoint.com/:v:/s/HDLabsTeam2/IQCqpaWcGGbsR5Owf3ZwUTT9AYcJgAR7UIzYhr6vz0lVhDs?e=4b8thD',
+                                                          bypass: true,
+                                                          height: 300.0,
+                                                          verticalScroll: false,
+                                                          horizontalScroll:
+                                                              false,
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                ),
+                                                Expanded(
+                                                  child: Row(
+                                                    mainAxisSize:
+                                                        MainAxisSize.max,
                                                     children: [
                                                       Flexible(
                                                         child: Align(
@@ -425,70 +494,6 @@ class _VideoplayWidgetState extends State<VideoplayWidget> {
                                       ],
                                     ),
                                   ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                        Expanded(
-                          child: Container(
-                            height: MediaQuery.sizeOf(context).height * 0.3,
-                            decoration: BoxDecoration(
-                              color: FlutterFlowTheme.of(context)
-                                  .secondaryBackground,
-                              borderRadius: BorderRadius.circular(0.0),
-                            ),
-                            child: Column(
-                              mainAxisSize: MainAxisSize.max,
-                              children: [
-                                Row(
-                                  mainAxisSize: MainAxisSize.max,
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Expanded(
-                                      child: Align(
-                                        alignment:
-                                            AlignmentDirectional(0.0, 0.0),
-                                        child: Padding(
-                                          padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  10.0, 0.0, 10.0, 0.0),
-                                          child: FlutterFlowMediaDisplay(
-                                            path: FFAppState().hdlvideolink,
-                                            imageBuilder: (path) => ClipRRect(
-                                              borderRadius:
-                                                  BorderRadius.circular(8.0),
-                                              child: Image.network(
-                                                path,
-                                                width:
-                                                    MediaQuery.sizeOf(context)
-                                                            .width *
-                                                        1.0,
-                                                height: 300.0,
-                                                fit: BoxFit.contain,
-                                              ),
-                                            ),
-                                            videoPlayerBuilder: (path) =>
-                                                FlutterFlowVideoPlayer(
-                                              path: path,
-                                              width: MediaQuery.sizeOf(context)
-                                                      .width *
-                                                  1.0,
-                                              autoPlay: false,
-                                              looping: true,
-                                              showControls: true,
-                                              allowFullScreen: true,
-                                              allowPlaybackSpeedMenu: false,
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                                Row(
-                                  mainAxisSize: MainAxisSize.max,
-                                  children: [],
                                 ),
                               ],
                             ),
@@ -613,16 +618,6 @@ class _VideoplayWidgetState extends State<VideoplayWidget> {
                                             mainAxisAlignment:
                                                 MainAxisAlignment.spaceBetween,
                                             children: [
-                                              FlutterFlowVideoPlayer(
-                                                path:
-                                                    'https://hilltopdigitallab0.sharepoint.com/sites/HDLabsTeam2/Shared%20Documents/External/The%20Open%20Practice/Videos%20Curated%20for%20AHS/evolutionofthebrain.mp4?download=1',
-                                                videoType: VideoType.network,
-                                                autoPlay: true,
-                                                looping: true,
-                                                showControls: true,
-                                                allowFullScreen: true,
-                                                allowPlaybackSpeedMenu: false,
-                                              ),
                                               Expanded(
                                                 child: Align(
                                                   alignment:

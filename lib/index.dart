@@ -27,3 +27,4 @@ export '/powerpointview/powerpointview_widget.dart' show PowerpointviewWidget;
 export '/pages/programmme/programmme_widget.dart' show ProgrammmeWidget;
 export '/pages/weeks_activities/weeks_activities_widget.dart'
     show WeeksActivitiesWidget;
+export '/pages/logout/logout_widget.dart' show LogoutWidget;

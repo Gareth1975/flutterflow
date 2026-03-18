@@ -261,6 +261,13 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
                       ParamType.String,
                     ),
                   ),
+                )),
+        FFRoute(
+            name: LogoutWidget.routeName,
+            path: LogoutWidget.routePath,
+            builder: (context, params) => NavBarPage(
+                  initialPage: '',
+                  page: LogoutWidget(),
                 ))
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
       observers: [routeObserver],
