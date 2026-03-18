@@ -417,15 +417,21 @@ class _VideoplayWidgetState extends State<VideoplayWidget> {
                                                             .spaceBetween,
                                                     children: [
                                                       Expanded(
-                                                        child:
-                                                            FlutterFlowWebView(
-                                                          content:
-                                                              'https://hilltopdigitallab0.sharepoint.com/:v:/s/HDLabsTeam2/IQCqpaWcGGbsR5Owf3ZwUTT9AYcJgAR7UIzYhr6vz0lVhDs?e=4b8thD',
-                                                          bypass: true,
-                                                          height: 300.0,
-                                                          verticalScroll: false,
-                                                          horizontalScroll:
-                                                              false,
+                                                        child: Align(
+                                                          alignment:
+                                                              AlignmentDirectional(
+                                                                  0.0, -1.0),
+                                                          child:
+                                                              FlutterFlowWebView(
+                                                            content:
+                                                                'https://hilltopdigitallab0.sharepoint.com/:v:/s/HDLabsTeam2/IQCqpaWcGGbsR5Owf3ZwUTT9AYcJgAR7UIzYhr6vz0lVhDs?e=yltQeT',
+                                                            bypass: true,
+                                                            height: 600.0,
+                                                            verticalScroll:
+                                                                false,
+                                                            horizontalScroll:
+                                                                false,
+                                                          ),
                                                         ),
                                                       ),
                                                     ],
